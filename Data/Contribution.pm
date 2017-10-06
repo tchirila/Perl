@@ -1,4 +1,6 @@
 package Data::Contribution;
+use strict;
+use warnings;
 use Exporter qw(import);
 
 @EXPORT_OK = qw(setType);
