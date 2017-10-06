@@ -24,14 +24,14 @@ sub new{
 	my $class = shift;
 	
 	my $contribution = {
-		"type" = shift,
-		"cont_pc" = shift,
-		"cont_amount" = shift,
-		"salary" = shift,
-		"process_date" = shift,
-		"effective_date" = shift,
-		"charity_id" = shift,
-		"approved_by" = shift,
+		"type" => shift,
+		"cont_pc" => shift,
+		"cont_amount" => shift,
+		"salary" => shift,
+		"process_date" => shift,
+		"effective_date" => shift,
+		"charity_id" => shift,
+		"approved_by" => shift,
 	};
 	
 	bless($contribution, $class);
@@ -85,35 +85,35 @@ sub setApprovedBy{
 }
 
 sub getType{
-	return shif->{"type"};
+	return shift->{"type"};
 }
 
 sub getContPc{
-	return shif->{"cont_pc"};
+	return shift->{"cont_pc"};
 }
 
 sub getContAmount{
-	return shif->{"cont_amount"};
+	return shift->{"cont_amount"};
 }
 
 sub getSalary{
-	return shif->{"salary"};
+	return shift->{"salary"};
 }
 
 sub getProcessDate{
-	return shif->{"process_date"};
+	return shift->{"process_date"};
 }
 
 sub getEffectiveDate{
-	return shif->{"effective_date"};
+	return shift->{"effective_date"};
 }
 
 sub getCharityId{
-	return shif->{"charity_id"};
+	return shift->{"charity_id"};
 }
 
 sub getApprovedBy{
-	return shif->{"approved_by"};
+	return shift->{"approved_by"};
 }
 
 1;
