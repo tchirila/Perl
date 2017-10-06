@@ -23,6 +23,11 @@ sub main {
 
 }
 
+<<<<<<< HEAD
+=======
+
+main();
+>>>>>>> tchirila/master
 
 
 main();
