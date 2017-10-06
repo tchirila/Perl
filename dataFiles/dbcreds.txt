@@ -1,4 +1,4 @@
-
+# db localhost credentials for MySQL
 db_name=pensions 
 db_username= JoeRoot
 db_pass=J03R00tABC1234
