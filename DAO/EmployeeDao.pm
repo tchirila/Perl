@@ -2,8 +2,12 @@ package DAO::EmployeeDao;
 use strict;
 use warnings;
 use Data::Dumper;
-
+use lib '..';
+use Exporter qw(import);
 require Data::Employee;
+
+#@EXPORT_OK = qw(getEmployeesFromCSV getAllEmployeesDb);
+
 $|=1;
 
 
@@ -51,28 +55,13 @@ sub hashRemoveEmployee	{
 #Param1: Employees hash.
 #Param2: Employee object.
 sub hashAddEmployee	{
+	#TODO: Check if employee exists first before adding.
 	my ($hash, $emp) = @_;
 	my $empNum = Data::Employee::getNumber($emp);
 	$hash->{$empNum} = $emp;
 }
 
-#Param1: Employees hash.
-#Param2: filename.
-sub saveEmployeesToCSV	{
-	my ($hash, $file) = @_;
-	open(OUTPUT, '>'.$file) or die "Can't open file $file";
-	print OUTPUT "Name,number,DOB,salary,employer_contribution,employee_contribution\n"; ##Header
-	foreach my $value (values $hash) {
-		my $line = Data::Employee::getName($value).","
-			.Data::Employee::getNumber($value).","
-			.Data::Employee::getDOB($value).","
-			.Data::Employee::getSalary($value).","
-			.Data::Employee::getEmployerContribution($value).","
-			.Data::Employee::getEmployeeContribution($value)."\n";
-		print OUTPUT $line;
-	}
-	close(OUTPUT);
-}
+
 
 
 1;

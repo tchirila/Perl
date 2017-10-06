@@ -1,4 +1,6 @@
-package DAO::EmployeeDao;
+package DAO::ConnectionDao;
+use strict;
+use warnings;
 use Exporter qw(import);
 use DBI;
 use lib '..';
