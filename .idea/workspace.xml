@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b59b0d74-379b-4ae3-9e16-7927d4d67df5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DAO/CharityDao.pm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dataFiles/contributionRecords.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DAO/ConnectionDao.pm" afterPath="$PROJECT_DIR$/DAO/ConnectionDao.pm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DAO/ContributionDao.pl" afterPath="$PROJECT_DIR$/DAO/ContributionDao.pl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DAO/EmployeeDao.pm" afterPath="$PROJECT_DIR$/DAO/EmployeeDao.pm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main.pl" afterPath="$PROJECT_DIR$/Main.pl" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -438,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507295417655</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added CharityDao">
+      <created>1507307448711</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1507307448711</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -477,7 +478,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Employee getters &amp; setters as well as EmployeeDao sub-routines for file and employee hash interaction.." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Employee getters &amp; setters as well as EmployeeDao sub-routines for file and employee hash interaction.." />
+    <MESSAGE value="Added CharityDao" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added CharityDao" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
