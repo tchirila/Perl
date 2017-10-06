@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b59b0d74-379b-4ae3-9e16-7927d4d67df5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main.pl" afterPath="$PROJECT_DIR$/Main.pl" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -420,6 +419,14 @@
       <option name="presentableId" value="Default" />
       <updated>1507277357527</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added Employee getters &amp; setters as well as EmployeeDao sub-routines for file and employee hash interaction..">
+      <created>1507295417655</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1507295417655</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -454,7 +461,8 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Added Employee getters &amp; setters as well as EmployeeDao sub-routines for file and employee hash interaction.." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Employee getters &amp; setters as well as EmployeeDao sub-routines for file and employee hash interaction.." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
