@@ -1,9 +1,11 @@
 package DAO::ConnectionDao;
-use Exporter qw(import);
+use strict;
+use warnings;
 use DBI;
 use lib '..';
+use Exporter qw(import);
 
-@EXPORT_OK = qw(getDbConnection closeDbConnection);
+my @EXPORT_OK = qw(getDbConnection closeDbConnection); 
 
 $|=1;
 
@@ -38,7 +40,7 @@ sub getDbConnection()
 		}
 	
 		# load db property
-		$key = $lineProps[0];
+		my $key = $lineProps[0];
 		if ($key eq "db_name")
 		{
 			$dbName = $lineProps[1];
@@ -56,7 +58,7 @@ sub getDbConnection()
 		{
 			$dbPort = $lineProps[1];
 		}	
-	    if ($key eq "db_server")
+	    if ($key eq "db_server") 
 		{
 			$dbServer = $lineProps[1];	
 		}	

@@ -6,7 +6,15 @@ use lib '..';
 use Exporter qw(import);
 require Data::Employee;
 
-#@EXPORT_OK = qw(getEmployeesFromCSV getAllEmployeesDb);
+my @EXPORT_OK = qw(addEmployee);
+
+package DAO::ConnectionDao;
+use Exporter qw(import);
+use DBI;
+use lib '..';
+@EXPORT_OK = qw(getDbConnection closeDbConnection);
+
+
 
 $|=1;
 
@@ -80,6 +88,41 @@ sub hashAddEmployee	{
 #}
 
 ####################################################################################################
+
+
+sub addEmployee()
+{
+	my $data = shift;
+	
+	# first do check that an employee of this number does not already exist
+	
+	# get this connection from the connection class + close it there 
+	my $connection = DBI-> connect("dbi:mysql:bands", "JoeRoot", "J03R00tABC1234");
+	
+	
+	
+	my $stmtEmplIns = $connection-> prepare('insert into employees (name, empl_num, dob, salary, ' .
+	                                     ' employee_contr, employer_contr) values (?, ?, ?, ?, ?, ?)');
+	unless($stmtEmplIns)   
+	{
+		die ("Error preparing employee insert SQL\n");	
+	}
+
+    # just for testing
+	my $name = "Paul";
+	my $number = "098789"; 
+	my $dob; #  = "DOB";
+	my $salary = 10000; 
+	my $emprC = 3; 
+	my $empeC = 4;	
+	unless($stmtEmplIns->execute($name, $number, $dob, $salary, $emprC, $empeC))
+	{
+		die "Error executing SQL\n";
+	}  
+		
+	$stmtEmplIns->finish();
+	$connection->disconnect();
+}
 
 
 
