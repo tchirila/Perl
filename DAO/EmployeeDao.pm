@@ -6,7 +6,19 @@ use lib '..';
 use Exporter qw(import);
 require Data::Employee;
 
+<<<<<<< HEAD
 #@EXPORT_OK = qw(getEmployeesFromCSV getAllEmployeesDb);
+=======
+my @EXPORT_OK = qw(addEmployee);
+
+package DAO::ConnectionDao;
+use Exporter qw(import);
+use DBI;
+use lib '..';
+@EXPORT_OK = qw(getDbConnection closeDbConnection);
+
+
+>>>>>>> tchirila/master
 
 $|=1;
 
@@ -60,6 +72,66 @@ sub hashAddEmployee	{
 	my $empNum = Data::Employee::getNumber($emp);
 	$hash->{$empNum} = $emp;
 }
+
+<<<<<<< HEAD
+
+=======
+#Param1: Employees hash.
+#Param2: filename.
+#sub saveEmployeesToCSV	{
+#	my ($hash, $file) = @_;
+#	open(OUTPUT, '>'.$file) or die "Can't open file $file";
+#	print OUTPUT "Name,number,DOB,salary,employer_contribution,employee_contribution\n"; ##Header
+#	foreach my $value (values $hash) 
+#	{
+#		my $line = Data::Employee::getName($value).","
+#			.Data::Employee::getNumber($value).","
+#			.Data::Employee::getDOB($value).","
+#			.Data::Employee::getSalary($value).","
+#			.Data::Employee::getEmployerContribution($value).","
+#			.Data::Employee::getEmployeeContribution($value)."\n";
+#		print OUTPUT $line;
+#	}
+#	close(OUTPUT);
+#}
+
+####################################################################################################
+
+
+sub addEmployee()
+{
+	my $data = shift;
+	
+	# first do check that an employee of this number does not already exist
+	
+	# get this connection from the connection class + close it there 
+	my $connection = DBI-> connect("dbi:mysql:bands", "JoeRoot", "J03R00tABC1234");
+	
+	
+	
+	my $stmtEmplIns = $connection-> prepare('insert into employees (name, empl_num, dob, salary, ' .
+	                                     ' employee_contr, employer_contr) values (?, ?, ?, ?, ?, ?)');
+	unless($stmtEmplIns)   
+	{
+		die ("Error preparing employee insert SQL\n");	
+	}
+
+    # just for testing
+	my $name = "Paul";
+	my $number = "098789"; 
+	my $dob; #  = "DOB";
+	my $salary = 10000; 
+	my $emprC = 3; 
+	my $empeC = 4;	
+	unless($stmtEmplIns->execute($name, $number, $dob, $salary, $emprC, $empeC))
+	{
+		die "Error executing SQL\n";
+	}  
+		
+	$stmtEmplIns->finish();
+	$connection->disconnect();
+}
+>>>>>>> tchirila/master
 
 
 
