@@ -1,0 +1,6 @@
+
+db_name=pensions 
+db_username= JoeRoot
+db_pass=J03R00tABC1234
+db_port=
+db_server=localhost
