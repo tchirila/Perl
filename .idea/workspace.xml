@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b59b0d74-379b-4ae3-9e16-7927d4d67df5" name="Default" comment="Clearing conflicts in EmployeeDao.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Data/Charity2.pm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dataFiles/charities.csv" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dataFiles/file.csv" afterPath="" />
+    <list default="true" id="b59b0d74-379b-4ae3-9e16-7927d4d67df5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DAO/CharityDao.pm" afterPath="$PROJECT_DIR$/DAO/CharityDao.pm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DAO/EmployeeDao.pm" afterPath="$PROJECT_DIR$/DAO/EmployeeDao.pm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/Charity.pm" afterPath="$PROJECT_DIR$/Data/Charity.pm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/Employee.pm" afterPath="$PROJECT_DIR$/Data/Employee.pm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main.pl" afterPath="$PROJECT_DIR$/Main.pl" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -563,7 +555,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507307861193</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added DAO::CharityDao, charities.csv test file and refactored Data::Employee.">
+      <created>1507380114688</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1507380114688</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -604,7 +603,8 @@
     <MESSAGE value="Added CharityDao" />
     <MESSAGE value="Clearing conflicts in ConnectionDao." />
     <MESSAGE value="Clearing conflicts in EmployeeDao." />
-    <option name="LAST_COMMIT_MESSAGE" value="Clearing conflicts in EmployeeDao." />
+    <MESSAGE value="Added DAO::CharityDao, charities.csv test file and refactored Data::Employee." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added DAO::CharityDao, charities.csv test file and refactored Data::Employee." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
