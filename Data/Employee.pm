@@ -8,19 +8,13 @@ $|=1;
 
 sub new {
 	my $class = shift;
-	my $name= shift; 
-	my $number = shift;
-	my $dob = shift;
-	my $salary = shift;
-	my $emprC = shift;
-	my $empeC = shift;
 	my $employee = {
-		"name" => $name,
-		"number" => $number,
-		"DOB" => $dob,
-		"salary" => $salary,
-		"rCont" => $emprC,
-		"eCont" => $empeC,
+		"name" => shift,
+		"number" => shift,
+		"DOB" => shift,
+		"salary" => shift,
+		"rCont" => shift,
+		"eCont" => shift,
 	};
 	
 	bless($employee, $class);
@@ -110,7 +104,6 @@ sub setSEmployeeContribution	{
 	my $newCont = shift;
 	$emp->{"eCont"} = $newCont;
 }
-
 
 
 1;

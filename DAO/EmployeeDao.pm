@@ -8,7 +8,8 @@ require Data::Employee;
 
 my @EXPORT_OK = qw(addEmployee);
 
-package DAO::ConnectionDao;
+#TODO: Get auth to remove package.
+# package DAO::ConnectionDao;
 use Exporter qw(import);
 use DBI;
 use lib '..';
@@ -31,7 +32,8 @@ sub getEmployeesFromCSV	{
 		chomp $line;
 		my @fields = split /\s*,\s*/, $line;
 		if(scalar(@fields)<scalar(@headers))	{
-			print "WARNING: Invalid row: $line";
+			print "WARNING: Invalid row (".
+				scalar(@fields)."/".scalar(@headers)." columns): '$line'\n";
 			next LOOP1;
 		}
 
@@ -70,24 +72,22 @@ sub hashAddEmployee	{
 
 #Param1: Employees hash.
 #Param2: filename.
-#sub saveEmployeesToCSV	{
-#	my ($hash, $file) = @_;
-#	open(OUTPUT, '>'.$file) or die "Can't open file $file";
-#	print OUTPUT "Name,number,DOB,salary,employer_contribution,employee_contribution\n"; ##Header
-#	foreach my $value (values $hash)
-#	{
-#		my $line = Data::Employee::getName($value).","
-#			.Data::Employee::getNumber($value).","
-#			.Data::Employee::getDOB($value).","
-#			.Data::Employee::getSalary($value).","
-#			.Data::Employee::getEmployerContribution($value).","
-#			.Data::Employee::getEmployeeContribution($value)."\n";
-#		print OUTPUT $line;
-#	}
-#	close(OUTPUT);
-#}
-
-####################################################################################################
+sub saveEmployeesToCSV	{
+	my ($hash, $file) = @_;
+	open(OUTPUT, '>'.$file) or die "Can't open file $file";
+	print OUTPUT "Name,number,DOB,salary,employer_contribution,employee_contribution\n"; ##Header
+	foreach my $value (values $hash)
+	{
+		my $line = Data::Employee::getName($value).","
+			.Data::Employee::getNumber($value).","
+			.Data::Employee::getDOB($value).","
+			.Data::Employee::getSalary($value).","
+			.Data::Employee::getEmployerContribution($value).","
+			.Data::Employee::getEmployeeContribution($value)."\n";
+		print OUTPUT $line;
+	}
+	close(OUTPUT);
+}
 
 
 sub addEmployee()

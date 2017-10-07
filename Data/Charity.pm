@@ -1,4 +1,5 @@
 package Data::Charity;
+
 use strict;
 use warnings;
 use Exporter qw(import);
@@ -8,7 +9,7 @@ use Exporter qw(import);
 
 # Create a Charity object
 # if not a pre-existing charity, expect id to be -1
-sub new(  )  
+sub new(  )
 {
 	my $class = shift;
 	my $self = { 
@@ -22,7 +23,7 @@ sub new(  )
 		"telephone" => shift
 	};
 
-	bless($self, $class);    
+	bless($self, $class);
 }
 
 
