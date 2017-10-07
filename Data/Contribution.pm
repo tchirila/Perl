@@ -3,23 +3,23 @@ use strict;
 use warnings;
 use Exporter qw(import);
 
-@EXPORT_OK = qw(setType);
-@EXPORT_OK = qw(setContpc);
-@EXPORT_OK = qw(setContAmount);
-@EXPORT_OK = qw(setSalary);
-@EXPORT_OK = qw(setProcessDate);
-@EXPORT_OK = qw(setEffectiveDate);
-@EXPORT_OK = qw(setCharityId);
-@EXPORT_OK = qw(setApprovedBy);
+my @EXPORT_OK = qw(setType);
+my @EXPORT_OK = qw(setContpc);
+my @EXPORT_OK = qw(setContAmount);
+my @EXPORT_OK = qw(setSalary);
+my @EXPORT_OK = qw(setProcessDate);
+my @EXPORT_OK = qw(setEffectiveDate);
+my @EXPORT_OK = qw(setCharityId);
+my @EXPORT_OK = qw(setApprovedBy);
 
-@EXPORT_OK = qw(getType);
-@EXPORT_OK = qw(getContpc);
-@EXPORT_OK = qw(getContAmount);
-@EXPORT_OK = qw(getSalary);
-@EXPORT_OK = qw(getProcessDate);
-@EXPORT_OK = qw(getEffectiveDate);
-@EXPORT_OK = qw(getCharityId);
-@EXPORT_OK = qw(getApprovedBy);
+my @EXPORT_OK = qw(getType);
+my @EXPORT_OK = qw(getContpc);
+my @EXPORT_OK = qw(getContAmount);
+my @EXPORT_OK = qw(getSalary);
+my @EXPORT_OK = qw(getProcessDate);
+my @EXPORT_OK = qw(getEffectiveDate);
+my @EXPORT_OK = qw(getCharityId);
+my @EXPORT_OK = qw(getApprovedBy);
 
 
 sub new{

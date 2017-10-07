@@ -5,15 +5,10 @@ use Data::Dumper;
 use lib '..';
 use Exporter qw(import);
 require Data::Employee;
+require DAO::ConnectionDao;
 
-my @EXPORT_OK = qw(addEmployee);
 
-package DAO::ConnectionDao;
-use Exporter qw(import);
-use DBI;
-use lib '..';
-@EXPORT_OK = qw(getDbConnection closeDbConnection);
-
+my @EXPORT_OK = qw(addEmployee removeEmployee getEmployee getAllEmployees);
 
 
 $|=1;
@@ -90,41 +85,136 @@ sub hashAddEmployee	{
 ####################################################################################################
 
 
+
+# pb in progress
 sub addEmployee()
 {
-	my $data = shift;
+	# prepare db connection 
+	my $connection = DAO::ConnectionDao::getDbConnection();
+	my $stmtEmplIns = $connection->prepare('insert into employees (name, empl_num, dob, salary, employee_contr, employer_contr) values (?, ?, ?, ?, ?, ?)');
 	
-	# first do check that an employee of this number does not already exist
-	
-	# get this connection from the connection class + close it there 
-	my $connection = DBI-> connect("dbi:mysql:bands", "JoeRoot", "J03R00tABC1234");
-	
-	
-	
-	my $stmtEmplIns = $connection-> prepare('insert into employees (name, empl_num, dob, salary, ' .
-	                                     ' employee_contr, employer_contr) values (?, ?, ?, ?, ?, ?)');
 	unless($stmtEmplIns)   
 	{
 		die ("Error preparing employee insert SQL\n");	
 	}
-
-    # just for testing
-	my $name = "Paul";
-	my $number = "098789"; 
-	my $dob; #  = "DOB";
-	my $salary = 10000; 
-	my $emprC = 3; 
-	my $empeC = 4;	
+   
+	my ($name, $number, $dob, $salary, $emprC, $empeC) = @_;   # TODO  need to check the mandatory values are not undefined & date is a date
+	$dob = undef;  # TODO need to add date 
 	unless($stmtEmplIns->execute($name, $number, $dob, $salary, $emprC, $empeC))
 	{
-		die "Error executing SQL\n";
+		print "Error executing SQL\n";
+		return 0;
 	}  
+	
+	print "Employee number $number added successfully....\n";
 		
 	$stmtEmplIns->finish();
-	$connection->disconnect();
+	DAO::ConnectionDao::closeDbConnection($connection);
+	return 1;
 }
 
 
+
+# pb in progress
+#Param1: Employee number
+sub removeEmployee()
+{
+	my $employNum =  shift;   # TODO add checking
+
+	# prepare db connection 
+	my $connection = DAO::ConnectionDao::getDbConnection();
+	my $error;
+	$connection->do("delete from employees where empl_num = '$employNum'") or $error = "Failed to delete";
+	DAO::ConnectionDao::closeDbConnection($connection);
+	
+	if(defined($error))
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+
+
+# pb in progress
+#Param1: Db prepared statement
+sub readEmployees
+{
+	my $stmtGetEmpl = shift;
+	my %hash;
+	while(my $row = $stmtGetEmpl->fetchrow_hashref())
+	{
+		my $id = $row->{"id"};
+		my $name = $row->{"name"};
+		my $num = $row->{"empl_num"};
+		my $dob = $row->{"dob"};
+		my $salary = $row->{"salary"};
+		my $empleeContr = $row->{"employee_contr"};
+		my $emplerContr = $row->{"employer_contr"};
+
+		# create and return a hash of Employee
+		my $employee = new Data::Employee($id, $name, $num, $dob, $salary, $empleeContr, $emplerContr);
+		hashAddEmployee(\%hash, $employee);		
+		return %hash;
+	}
+}
+
+
+
+
+# pb in progress
+#Param1: Employee number
+sub getEmployee() 
+{
+	my $employNum =  shift;     # TODO add checking
+	
+	# prepare db connection 
+	my $connection = DAO::ConnectionDao::getDbConnection();
+	
+	my $sql = 'select id, name, empl_num, dob, salary, employee_contr, employer_contr from employees where empl_num = ? '; 
+	my $stmtGetEmpl = $connection->prepare($sql);
+	unless(defined($stmtGetEmpl))
+	{
+		die("Could not prepare statement for export from db\n");
+	}
+	
+	unless($stmtGetEmpl->execute($employNum))
+	{
+		die "Could not retrieve employee $employNum from db\n";
+	}
+
+	my %hash = readEmployees($stmtGetEmpl);
+	$stmtGetEmpl->finish();
+	return %hash;	
+}
+
+
+
+# pb in progress
+sub getAllEmployees()  # TODO  fix BUG here: only returning single employee
+{
+	# prepare db connection 
+	my $connection = DAO::ConnectionDao::getDbConnection();
+	
+	my $sql = 'select id, name, empl_num, dob, salary, employee_contr, employer_contr from employees'; 
+	my $stmtGetEmpl = $connection->prepare($sql);
+	unless(defined($stmtGetEmpl))
+	{
+		die("Could not prepare statement for export from db\n");
+	}
+	
+	unless($stmtGetEmpl->execute())
+	{
+		die "Could not retrieve employees from db\n";
+	} 
+
+	my %hash = readEmployees($stmtGetEmpl);
+	$stmtGetEmpl->finish();
+	return %hash;	
+}
 
 
 1;

@@ -1,13 +1,18 @@
 package Data::Employee;
+use Exporter qw(import);
 
 use strict;
 use warnings;
 use Data::Dumper;
 
+my @EXPORT_OK = qw(getName);
+
+
 $|=1;
 
 sub new {
 	my $class = shift;
+	my $id = shift;
 	my $name= shift; 
 	my $number = shift;
 	my $dob = shift;
