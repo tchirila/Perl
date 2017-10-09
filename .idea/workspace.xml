@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b59b0d74-379b-4ae3-9e16-7927d4d67df5" name="Default" comment="">
+    <list default="true" id="b59b0d74-379b-4ae3-9e16-7927d4d67df5" name="Default" comment="Merge remote-tracking branch 'tchirila/master'&#10;&#10;# Conflicts:&#10;#&#9;DAO/EmployeeDao.pm&#10;#&#9;Data/Charity.pm&#10;#&#9;Data/Employee.pm">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Data/Charity2.pm" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DAO/CharityDao.pm" afterPath="$PROJECT_DIR$/DAO/CharityDao.pm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DAO/EmployeeDao.pm" afterPath="$PROJECT_DIR$/DAO/EmployeeDao.pm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/Charity.pm" afterPath="$PROJECT_DIR$/Data/Charity.pm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/Employee.pm" afterPath="$PROJECT_DIR$/Data/Employee.pm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main.pl" afterPath="$PROJECT_DIR$/Main.pl" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,11 +21,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.pl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.pl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main.pl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="8" lean-forward="false" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+            <state relative-caret-position="782">
+              <caret line="46" column="1" lean-forward="false" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
               <folding>
                 <element signature="e#26#42#0#Perl5" expanded="true" />
               </folding>
@@ -27,18 +33,53 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Employee.pm" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Charity.pm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Data/Charity.pm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="25" lean-forward="false" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+              <folding>
+                <element signature="e#92#117#0#Perl5" expanded="true" />
+                <element signature="e#479#505#0#Perl5" expanded="false" />
+                <element signature="e#557#630#0#Perl5" expanded="false" />
+                <element signature="e#645#673#0#Perl5" expanded="false" />
+                <element signature="e#687#766#0#Perl5" expanded="false" />
+                <element signature="e#789#827#0#Perl5" expanded="false" />
+                <element signature="e#849#940#0#Perl5" expanded="false" />
+                <element signature="e#963#1001#0#Perl5" expanded="false" />
+                <element signature="e#1023#1114#0#Perl5" expanded="false" />
+                <element signature="e#1129#1157#0#Perl5" expanded="false" />
+                <element signature="e#1171#1250#0#Perl5" expanded="false" />
+                <element signature="e#1269#1301#0#Perl5" expanded="false" />
+                <element signature="e#1319#1410#0#Perl5" expanded="false" />
+                <element signature="e#1428#1459#0#Perl5" expanded="false" />
+                <element signature="e#1476#1564#0#Perl5" expanded="false" />
+                <element signature="e#1578#1611#0#Perl5" expanded="false" />
+                <element signature="e#1624#1706#0#Perl5" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Employee.pm" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Data/Employee.pm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1225">
-              <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+            <state relative-caret-position="102">
+              <caret line="6" column="20" lean-forward="false" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
               <folding>
-                <element signature="e#492#516#0#Perl5" expanded="true" />
-                <element signature="e#692#716#0#Perl5" expanded="true" />
-                <element signature="e#890#914#0#Perl5" expanded="true" />
-                <element signature="e#1085#1109#0#Perl5" expanded="true" />
-                <element signature="e#1308#1332#0#Perl5" expanded="true" />
-                <element signature="e#1547#1571#0#Perl5" expanded="true" />
+                <element signature="e#786#810#0#Perl5" expanded="true" />
+                <element signature="e#986#1010#0#Perl5" expanded="true" />
+                <element signature="e#1184#1208#0#Perl5" expanded="true" />
+                <element signature="e#1379#1403#0#Perl5" expanded="true" />
+                <element signature="e#1602#1626#0#Perl5" expanded="true" />
+                <element signature="e#1840#1864#0#Perl5" expanded="true" />
+                <element signature="e#1919#1991#0#Perl5" expanded="false" />
+                <element signature="e#2040#2068#0#Perl5" expanded="false" />
+                <element signature="e#2070#2094#0#Perl5" expanded="true" />
+                <element signature="e#2133#2204#0#Perl5" expanded="false" />
+                <element signature="e#2257#2285#0#Perl5" expanded="false" />
+                <element signature="e#2287#2311#0#Perl5" expanded="true" />
+                <element signature="e#2358#2429#0#Perl5" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -47,20 +88,57 @@
       <file leaf-file-name="EmployeeDao.pm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DAO/EmployeeDao.pm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="37" column="38" lean-forward="false" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
+            <state relative-caret-position="1193">
+              <caret line="81" column="48" lean-forward="false" selection-start-line="81" selection-start-column="48" selection-end-line="81" selection-end-column="48" />
               <folding>
-                <element signature="e#52#69#0#Perl5" expanded="true" />
-                <element signature="e#707#733#0#Perl5" expanded="true" />
-                <element signature="e#871#896#0#Perl5" expanded="true" />
-                <element signature="e#1025#1049#0#Perl5" expanded="true" />
-                <element signature="e#1198#1222#0#Perl5" expanded="true" />
+                <element signature="e#84#108#0#Perl5" expanded="true" />
+                <element signature="e#906#932#0#Perl5" expanded="true" />
+                <element signature="e#1070#1095#0#Perl5" expanded="true" />
+                <element signature="e#1224#1248#0#Perl5" expanded="true" />
+                <element signature="e#1398#1422#0#Perl5" expanded="true" />
+                <element signature="e#2130#2905#1#Perl5" expanded="false" />
+                <element signature="e#2955#3299#1#Perl5" expanded="false" />
+                <element signature="e#3303#3319#0#Perl5" expanded="true" />
+                <element signature="e#3369#3898#1#Perl5" expanded="false" />
+                <element signature="e#3946#4536#1#Perl5" expanded="false" />
+                <element signature="e#4633#5133#1#Perl5" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CharityDao.pm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DAO/CharityDao.pm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-690">
+              <caret line="3" column="0" lean-forward="true" selection-start-line="2" selection-start-column="13" selection-end-line="3" selection-end-column="0" />
+              <folding>
+                <element signature="e#992#1016#0#Perl5" expanded="true" />
+                <element signature="e#1062#1244#1#Perl5" expanded="false" />
+                <element signature="e#1247#1273#0#Perl5" expanded="true" />
+                <element signature="e#1315#1407#0#Perl5" expanded="false" />
+                <element signature="e#1410#1434#0#Perl5" expanded="true" />
+                <element signature="e#1478#1559#0#Perl5" expanded="false" />
+                <element signature="e#1561#1585#0#Perl5" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Perl5 package" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>charity</find>
+      <find>charity2</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -74,19 +152,24 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Data/Contribution.pm" />
-        <option value="$PROJECT_DIR$/Data/Charity.pm" />
         <option value="$PROJECT_DIR$/Data/ProcessHistory.pm" />
-        <option value="$PROJECT_DIR$/DAO/EmployeeDao.pm" />
-        <option value="$PROJECT_DIR$/Main.pl" />
+        <option value="$PROJECT_DIR$/DAO/ConnectionDao.pm" />
+        <option value="$PROJECT_DIR$/dataFiles/charities.csv" />
+        <option value="$PROJECT_DIR$/dataFiles/charities2.csv" />
+        <option value="$PROJECT_DIR$/Data/Charity2.pm" />
+        <option value="$PROJECT_DIR$/DAO/CharityDao.pm" />
+        <option value="$PROJECT_DIR$/Data/Charity.pm" />
         <option value="$PROJECT_DIR$/Data/Employee.pm" />
+        <option value="$PROJECT_DIR$/Main.pl" />
+        <option value="$PROJECT_DIR$/DAO/EmployeeDao.pm" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1440" />
-    <option name="y" value="-157" />
-    <option name="width" value="1665" />
-    <option name="height" value="1056" />
+    <option name="x" value="4" />
+    <option name="y" value="23" />
+    <option name="width" value="1436" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -169,6 +252,12 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.3678161" />
+    <property name="ToolWindowRun.ShowToolbar" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dataFiles" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -426,35 +515,87 @@
       <option name="project" value="LOCAL" />
       <updated>1507295417655</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added CharityDao">
+      <created>1507307448711</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1507307448711</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Clearing conflicts in ConnectionDao.">
+      <created>1507307834667</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1507307834667</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Clearing conflicts in EmployeeDao.">
+      <created>1507307861193</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1507307861193</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added DAO::CharityDao, charities.csv test file and refactored Data::Employee.">
+      <created>1507380114688</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1507380114688</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added DAO::CharityDao, charities.csv test file and refactored Data::Employee.">
+      <created>1507380297984</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1507380297984</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Updated Data::Employee.">
+      <created>1507541131452</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1507541131452</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added DAO::CharityDao, charities.csv test file and refactored Data::Employee.">
+      <created>1507541176203</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1507541176203</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="-157" width="1665" height="1056" extended-state="0" />
+    <frame x="4" y="23" width="1436" height="877" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32928064" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826748" sideWeight="0.50275105" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2792793" sideWeight="0.49724898" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928064" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826748" sideWeight="0.50275105" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27846536" sideWeight="0.49724898" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12072072" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13997215" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Log4jMonitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Log4jMonitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -462,11 +603,23 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Employee getters &amp; setters as well as EmployeeDao sub-routines for file and employee hash interaction.." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Employee getters &amp; setters as well as EmployeeDao sub-routines for file and employee hash interaction.." />
+    <MESSAGE value="Added CharityDao" />
+    <MESSAGE value="Clearing conflicts in ConnectionDao." />
+    <MESSAGE value="Clearing conflicts in EmployeeDao." />
+    <MESSAGE value="Updated Data::Employee." />
+    <MESSAGE value="Added DAO::CharityDao, charities.csv test file and refactored Data::Employee." />
+    <MESSAGE value="Merge remote-tracking branch 'tchirila/master'&#10;&#10;# Conflicts:&#10;#&#9;DAO/EmployeeDao.pm&#10;#&#9;Data/Charity.pm&#10;#&#9;Data/Employee.pm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'tchirila/master'&#10;&#10;# Conflicts:&#10;#&#9;DAO/EmployeeDao.pm&#10;#&#9;Data/Charity.pm&#10;#&#9;Data/Employee.pm" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Main.pl">
@@ -491,14 +644,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1802">
           <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
-          <folding>
-            <element signature="e#492#516#0#Perl5" expanded="true" />
-            <element signature="e#692#716#0#Perl5" expanded="true" />
-            <element signature="e#890#914#0#Perl5" expanded="true" />
-            <element signature="e#1085#1109#0#Perl5" expanded="true" />
-            <element signature="e#1308#1332#0#Perl5" expanded="true" />
-            <element signature="e#1547#1571#0#Perl5" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -506,13 +652,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="27" column="4" lean-forward="false" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
-          <folding>
-            <element signature="e#52#69#0#Perl5" expanded="true" />
-            <element signature="e#707#733#0#Perl5" expanded="true" />
-            <element signature="e#871#896#0#Perl5" expanded="true" />
-            <element signature="e#1025#1049#0#Perl5" expanded="true" />
-            <element signature="e#1198#1222#0#Perl5" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -530,14 +670,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1598">
           <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
-          <folding>
-            <element signature="e#492#516#0#Perl5" expanded="true" />
-            <element signature="e#692#716#0#Perl5" expanded="true" />
-            <element signature="e#890#914#0#Perl5" expanded="true" />
-            <element signature="e#1085#1109#0#Perl5" expanded="true" />
-            <element signature="e#1308#1332#0#Perl5" expanded="true" />
-            <element signature="e#1547#1571#0#Perl5" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -545,13 +678,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1020">
           <caret line="66" column="17" lean-forward="false" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
-          <folding>
-            <element signature="e#52#69#0#Perl5" expanded="true" />
-            <element signature="e#707#733#0#Perl5" expanded="true" />
-            <element signature="e#871#896#0#Perl5" expanded="true" />
-            <element signature="e#1025#1049#0#Perl5" expanded="true" />
-            <element signature="e#1198#1222#0#Perl5" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -603,37 +730,308 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1225">
           <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main.pl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="17" lean-forward="true" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
           <folding>
-            <element signature="e#492#516#0#Perl5" expanded="true" />
-            <element signature="e#692#716#0#Perl5" expanded="true" />
-            <element signature="e#890#914#0#Perl5" expanded="true" />
-            <element signature="e#1085#1109#0#Perl5" expanded="true" />
-            <element signature="e#1308#1332#0#Perl5" expanded="true" />
-            <element signature="e#1547#1571#0#Perl5" expanded="true" />
+            <element signature="e#26#42#0#Perl5" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DAO/EmployeeDao.pm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="37" column="38" lean-forward="false" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
+        <state relative-caret-position="1394">
+          <caret line="85" column="0" lean-forward="true" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
           <folding>
-            <element signature="e#52#69#0#Perl5" expanded="true" />
-            <element signature="e#707#733#0#Perl5" expanded="true" />
-            <element signature="e#871#896#0#Perl5" expanded="true" />
-            <element signature="e#1025#1049#0#Perl5" expanded="true" />
-            <element signature="e#1198#1222#0#Perl5" expanded="true" />
+            <element signature="e#84#108#0#Perl5" expanded="true" />
+            <element signature="e#906#932#0#Perl5" expanded="true" />
+            <element signature="e#1070#1095#0#Perl5" expanded="true" />
+            <element signature="e#1224#1248#0#Perl5" expanded="true" />
+            <element signature="e#1398#1422#0#Perl5" expanded="true" />
+            <element signature="e#2130#2905#1#Perl5" expanded="false" />
+            <element signature="e#2955#3299#1#Perl5" expanded="false" />
+            <element signature="e#3303#3319#0#Perl5" expanded="true" />
+            <element signature="e#3369#3898#1#Perl5" expanded="false" />
+            <element signature="e#3946#4536#1#Perl5" expanded="false" />
+            <element signature="e#4633#5133#1#Perl5" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Main.pl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="8" lean-forward="false" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+        <state relative-caret-position="442">
+          <caret line="36" column="80" lean-forward="false" selection-start-line="36" selection-start-column="80" selection-end-line="36" selection-end-column="80" />
           <folding>
             <element signature="e#26#42#0#Perl5" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataFiles/employeeRecords.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/Employee.pm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1802">
+          <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DAO/EmployeeDao.pm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="27" column="4" lean-forward="false" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+          <folding>
+            <element signature="e#84#108#0#Perl5" expanded="true" />
+            <element signature="e#906#932#0#Perl5" expanded="true" />
+            <element signature="e#1070#1095#0#Perl5" expanded="true" />
+            <element signature="e#1224#1248#0#Perl5" expanded="true" />
+            <element signature="e#1398#1422#0#Perl5" expanded="true" />
+            <element signature="e#2130#2905#1#Perl5" expanded="false" />
+            <element signature="e#2955#3299#1#Perl5" expanded="false" />
+            <element signature="e#3303#3319#0#Perl5" expanded="true" />
+            <element signature="e#3369#3898#1#Perl5" expanded="false" />
+            <element signature="e#3946#4536#1#Perl5" expanded="false" />
+            <element signature="e#4633#5133#1#Perl5" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main.pl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <element signature="e#26#42#0#Perl5" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/Employee.pm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1598">
+          <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DAO/EmployeeDao.pm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="66" column="17" lean-forward="false" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
+          <folding>
+            <element signature="e#84#108#0#Perl5" expanded="true" />
+            <element signature="e#906#932#0#Perl5" expanded="true" />
+            <element signature="e#1070#1095#0#Perl5" expanded="true" />
+            <element signature="e#1224#1248#0#Perl5" expanded="true" />
+            <element signature="e#1398#1422#0#Perl5" expanded="true" />
+            <element signature="e#2130#2905#1#Perl5" expanded="false" />
+            <element signature="e#2955#3299#1#Perl5" expanded="false" />
+            <element signature="e#3303#3319#0#Perl5" expanded="true" />
+            <element signature="e#3369#3898#1#Perl5" expanded="false" />
+            <element signature="e#3946#4536#1#Perl5" expanded="false" />
+            <element signature="e#4633#5133#1#Perl5" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/ProcessHistory.pm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DAO/ContributionDao.pl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataFiles/file.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataFiles/employeeRecords.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataFiles/extract_registration.bcp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/Contribution.pm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataFiles/pensions.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DAO/ConnectionDao.pm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="104" column="23" lean-forward="true" selection-start-line="104" selection-start-column="23" selection-end-line="104" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataFiles/charities2.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataFiles/contributionRecords.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataFiles/charities.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/Charity2.pm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="655">
+          <caret line="122" column="2" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="122" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main.pl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="46" column="1" lean-forward="false" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
+          <folding>
+            <element signature="e#26#42#0#Perl5" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DAO/CharityDao.pm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-690">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="2" selection-start-column="13" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <element signature="e#992#1016#0#Perl5" expanded="true" />
+            <element signature="e#1062#1244#1#Perl5" expanded="false" />
+            <element signature="e#1247#1273#0#Perl5" expanded="true" />
+            <element signature="e#1315#1407#0#Perl5" expanded="false" />
+            <element signature="e#1410#1434#0#Perl5" expanded="true" />
+            <element signature="e#1478#1559#0#Perl5" expanded="false" />
+            <element signature="e#1561#1585#0#Perl5" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DAO/EmployeeDao.pm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1193">
+          <caret line="81" column="48" lean-forward="false" selection-start-line="81" selection-start-column="48" selection-end-line="81" selection-end-column="48" />
+          <folding>
+            <element signature="e#84#108#0#Perl5" expanded="true" />
+            <element signature="e#906#932#0#Perl5" expanded="true" />
+            <element signature="e#1070#1095#0#Perl5" expanded="true" />
+            <element signature="e#1224#1248#0#Perl5" expanded="true" />
+            <element signature="e#1398#1422#0#Perl5" expanded="true" />
+            <element signature="e#2130#2905#1#Perl5" expanded="false" />
+            <element signature="e#2955#3299#1#Perl5" expanded="false" />
+            <element signature="e#3303#3319#0#Perl5" expanded="true" />
+            <element signature="e#3369#3898#1#Perl5" expanded="false" />
+            <element signature="e#3946#4536#1#Perl5" expanded="false" />
+            <element signature="e#4633#5133#1#Perl5" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/Charity.pm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="25" lean-forward="false" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <folding>
+            <element signature="e#92#117#0#Perl5" expanded="true" />
+            <element signature="e#479#505#0#Perl5" expanded="false" />
+            <element signature="e#557#630#0#Perl5" expanded="false" />
+            <element signature="e#645#673#0#Perl5" expanded="false" />
+            <element signature="e#687#766#0#Perl5" expanded="false" />
+            <element signature="e#789#827#0#Perl5" expanded="false" />
+            <element signature="e#849#940#0#Perl5" expanded="false" />
+            <element signature="e#963#1001#0#Perl5" expanded="false" />
+            <element signature="e#1023#1114#0#Perl5" expanded="false" />
+            <element signature="e#1129#1157#0#Perl5" expanded="false" />
+            <element signature="e#1171#1250#0#Perl5" expanded="false" />
+            <element signature="e#1269#1301#0#Perl5" expanded="false" />
+            <element signature="e#1319#1410#0#Perl5" expanded="false" />
+            <element signature="e#1428#1459#0#Perl5" expanded="false" />
+            <element signature="e#1476#1564#0#Perl5" expanded="false" />
+            <element signature="e#1578#1611#0#Perl5" expanded="false" />
+            <element signature="e#1624#1706#0#Perl5" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/Employee.pm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="20" lean-forward="false" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+          <folding>
+            <element signature="e#786#810#0#Perl5" expanded="true" />
+            <element signature="e#986#1010#0#Perl5" expanded="true" />
+            <element signature="e#1184#1208#0#Perl5" expanded="true" />
+            <element signature="e#1379#1403#0#Perl5" expanded="true" />
+            <element signature="e#1602#1626#0#Perl5" expanded="true" />
+            <element signature="e#1840#1864#0#Perl5" expanded="true" />
+            <element signature="e#1919#1991#0#Perl5" expanded="false" />
+            <element signature="e#2040#2068#0#Perl5" expanded="false" />
+            <element signature="e#2070#2094#0#Perl5" expanded="true" />
+            <element signature="e#2133#2204#0#Perl5" expanded="false" />
+            <element signature="e#2257#2285#0#Perl5" expanded="false" />
+            <element signature="e#2287#2311#0#Perl5" expanded="true" />
+            <element signature="e#2358#2429#0#Perl5" expanded="false" />
           </folding>
         </state>
       </provider>
