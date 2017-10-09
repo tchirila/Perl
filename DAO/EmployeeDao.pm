@@ -66,24 +66,24 @@ sub hashAddEmployee	{
 
 #Param1: Employees hash.
 #Param2: filename.
-sub saveEmployeesToCSV	{
-	my ($hash, $file) = @_;
-	open(OUTPUT, '>'.$file) or die "Can't open file $file";
-	print OUTPUT "Name,number,DOB,salary,employer_contribution,employee_contribution\n"; ##Header
-	foreach my $value (values $hash)
-	{
-		my $line = Data::Employee::getName($value).","
-			.Data::Employee::getNumber($value).","
-			.Data::Employee::getDOB($value).","
-			.Data::Employee::getSalary($value).","
-			.Data::Employee::getEmployerContribution($value).","
-			.Data::Employee::getEmployeeContribution($value).","
-			.Data::Employee::getEmployeeRole($value).","
-			.Data::Employee::getEmployeePassword($value)."\n";
-		print OUTPUT $line;
-	}
-	close(OUTPUT);
-}
+#sub saveEmployeesToCSV	{
+#	my ($hash, $file) = @_;
+#	open(OUTPUT, '>'.$file) or die "Can't open file $file";
+#	print OUTPUT "Name,number,DOB,salary,employer_contribution,employee_contribution\n"; ##Header
+#	foreach my $value (values $hash)
+#	{
+#		my $line = Data::Employee::getName($value).","
+#			.Data::Employee::getNumber($value).","
+#			.Data::Employee::getDOB($value).","
+#			.Data::Employee::getSalary($value).","
+#			.Data::Employee::getEmployerContribution($value).","
+#			.Data::Employee::getEmployeeContribution($value).","
+#			.Data::Employee::getEmployeeRole($value).","
+#			.Data::Employee::getEmployeePassword($value)."\n";
+#		print OUTPUT $line;
+#	}
+#	close(OUTPUT);
+#}
 
 
 sub addEmployee()
