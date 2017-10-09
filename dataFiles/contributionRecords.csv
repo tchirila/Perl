@@ -1,2 +1,3 @@
-﻿type,cont_pc,cont_amount,salary,process_date,effective_date,charity_id,approved_by
-EMPLOYEE_EOM,5,50,1000,01/01/2017,08/01/2017,102,116
+id, type,cont_pc,cont_amount,salary,process_date,effective_date,employees_id,charity_id
+a,a,a,a,a,a,a,a,a
+a,a,a,a,a,a,a,a,a
