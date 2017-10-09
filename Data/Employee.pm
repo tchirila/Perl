@@ -20,6 +20,9 @@ sub new {
 	my $empeC = shift;
 	my $role = shift;
 	my $pass = shift;
+	my $charityId = shift;
+	my $startDate = shift;
+	
 	my $employee = {
 		"name" => $name,
 		"number" => $number,
@@ -27,8 +30,10 @@ sub new {
 		"salary" => $salary,
 		"rCont" => $emprC,
 		"eCont" => $empeC,
-		"role" => $role,
-		"pass" => $pass,
+#		"role" => $role,
+#		"pass" => $pass,
+# 		"charity_id" INT NULL,
+#  		"start_date" DATE NOT NULL,
 	};
 	
 	bless($employee, $class);
