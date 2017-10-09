@@ -1,9 +1,11 @@
-package DAO::EmployeeDao;
-use Exporter qw(import);
+package DAO::ConnectionDao;
+use strict;
+use warnings;
 use DBI;
 use lib '..';
+use Exporter qw(import);
 
-@EXPORT_OK = qw(getDbConnection closeDbConnection);
+my @EXPORT_OK = qw(getDbConnection closeDbConnection); 
 
 $|=1;
 
@@ -38,7 +40,7 @@ sub getDbConnection()
 		}
 	
 		# load db property
-		$key = $lineProps[0];
+		my $key = $lineProps[0];
 		if ($key eq "db_name")
 		{
 			$dbName = $lineProps[1];
@@ -56,7 +58,7 @@ sub getDbConnection()
 		{
 			$dbPort = $lineProps[1];
 		}	
-	    if ($key eq "db_server")
+	    if ($key eq "db_server") 
 		{
 			$dbServer = $lineProps[1];	
 		}	
@@ -75,6 +77,7 @@ sub getDbConnection()
 		}	
 		
 		print "\nConnected successfully to database: $dbName\n";
+		return $dbHandle;
 	}
 	else
 	{
@@ -105,8 +108,7 @@ sub closeDbConnection()
 	my $dbHandle = shift;  
 	unless(defined($dbHandle))
 	{
-		print "\nConnection closed\n";
-		close($dbHandle);
+		die "\nCannot close an undefined database conenction\n";
 	}
 }
 

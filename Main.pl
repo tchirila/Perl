@@ -15,19 +15,16 @@ $| = 1;
 sub main {
 
 	my $filePath = "dataFiles/employeeRecords.csv";
-	my %employeesHash = DAO::EmployeeDao::getEmployeesFromCSV($filePath);
-
+	my %employeesHash = DAO::EmployeeDao::getAllEmployees($filePath);
 	foreach my $emp (keys %employeesHash) {
 		print Dumper($employeesHash{$emp});
 	}
-
+	
 }
 
-<<<<<<< HEAD
-=======
-
-main();
->>>>>>> dfd5d5a979460ef7582424d574220f80b1af17d0
+##-----------------------------------------------------------------
 
 
 main();
+
+

@@ -1,5 +1,4 @@
 package Data::Charity;
-use strict;
 use warnings;
 use Exporter qw(import);
 

@@ -1,19 +1,25 @@
 package Data::Employee;
-
-use strict;
+use Exporter qw(import);
 use warnings;
 use Data::Dumper;
+
+@EXPORT_OK = qw(getName setName getNumber setNumber getDOB setDOB getSalary setSalary getEmployerContribution 
+                setEmployerContribution getEmployeeContribution setEmployeeContribution);
+
 
 $|=1;
 
 sub new {
 	my $class = shift;
+	my $id = shift;
 	my $name= shift; 
 	my $number = shift;
 	my $dob = shift;
 	my $salary = shift;
 	my $emprC = shift;
 	my $empeC = shift;
+	my $role = shift;
+	my $pass = shift;
 	my $employee = {
 		"name" => $name,
 		"number" => $number,
@@ -21,12 +27,16 @@ sub new {
 		"salary" => $salary,
 		"rCont" => $emprC,
 		"eCont" => $empeC,
+		"role" => $role,
+		"pass" => $pass,
 	};
 	
 	bless($employee, $class);
 
 	return $employee;	
 }
+
+
 
 #Param1: Employee object
 sub getName	{
@@ -91,7 +101,7 @@ sub getEmployerContribution	{
 
 #Param1: Employee object
 #Param2: New contribution
-sub setSEmployerContribution	{
+sub setEmployerContribution	{
 	my $emp = shift;
 	my $newCont = shift;
 	$emp->{"rCont"} = $newCont;
@@ -105,7 +115,7 @@ sub getEmployeeContribution	{
 
 #Param1: Employee object
 #Param2: New contribution
-sub setSEmployeeContribution	{
+sub setEmployeeContribution	{
 	my $emp = shift;
 	my $newCont = shift;
 	$emp->{"eCont"} = $newCont;

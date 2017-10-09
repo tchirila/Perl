@@ -17,6 +17,8 @@ CREATE TABLE IF NOT EXISTS `pensions`.`employees` (
   `salary` DECIMAL NOT NULL,
   `employee_contr` DECIMAL NOT NULL,
   `employer_contr` DECIMAL NOT NULL,
+  `role` VARCHAR(1) NOT NULL,
+  `pass` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `empl_num_UNIQUE` (`empl_num` ASC))
 ENGINE = InnoDB;

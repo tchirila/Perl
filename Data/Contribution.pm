@@ -1,5 +1,4 @@
 package Data::Contribution;
-use strict;
 use warnings;
 use Exporter qw(import);
 
@@ -11,7 +10,6 @@ use Exporter qw(import);
 @EXPORT_OK = qw(setEffectiveDate);
 @EXPORT_OK = qw(setCharityId);
 @EXPORT_OK = qw(setApprovedBy);
-
 @EXPORT_OK = qw(getType);
 @EXPORT_OK = qw(getContpc);
 @EXPORT_OK = qw(getContAmount);
