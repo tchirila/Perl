@@ -1,7 +1,7 @@
 package Utilities::Time;
-
 use strict;
 use warnings;
+
 
 sub getCurrentTimestamp{
 	my $timeUnformatted = localtime();
@@ -62,5 +62,12 @@ sub getCurrentTimestampTime{
 	
 	return $time;
 }
+
+
+sub test()
+{
+	print "\nIn the test class\n";
+}
+
 
 1;

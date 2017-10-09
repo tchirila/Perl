@@ -70,24 +70,24 @@ sub hashRemoveCharity	{
 
 #Param1: Charities hash.
 #Param2: filename.
-sub saveCharitiesToCSV	{
-    my ($hash, $file) = @_;
-    open(OUTPUT, '>'.$file) or die "Can't open file $file";
-    print OUTPUT "id,name,address_line_1,address_line_2,city,postcode,country,telephone\n"; ##Header
-    foreach my $value (values $hash)
-    {
-        my $line = Data::Charity::getId($value).","
-            .Data::Charity::getName($value).","
-            .Data::Charity::getAddressLine1($value).","
-            .Data::Charity::getAddressLine2($value).","
-            .Data::Charity::getCity($value).","
-            .Data::Charity::getPostCode($value).","
-            .Data::Charity::getCountry($value).","
-            .Data::Charity::getTel($value)."\n";
-        print OUTPUT $line;
-    }
-    close(OUTPUT);
-}
+#sub saveCharitiesToCSV	{
+#    my ($hash, $file) = @_;
+#    open(OUTPUT, '>'.$file) or die "Can't open file $file";
+#    print OUTPUT "id,name,address_line_1,address_line_2,city,postcode,country,telephone\n"; ##Header
+#    foreach my $value (values $hash)
+#    {
+#        my $line = Data::Charity::getId($value).","
+#            .Data::Charity::getName($value).","
+#            .Data::Charity::getAddressLine1($value).","
+#            .Data::Charity::getAddressLine2($value).","
+#            .Data::Charity::getCity($value).","
+#            .Data::Charity::getPostCode($value).","
+#            .Data::Charity::getCountry($value).","
+#            .Data::Charity::getTel($value)."\n";
+#        print OUTPUT $line;
+#    }
+#    close(OUTPUT);
+#}
 
 
 1;

@@ -6,7 +6,6 @@ use Data::Dumper;
 @EXPORT_OK = qw(getName setName getNumber setNumber getDOB setDOB getSalary setSalary getEmployerContribution
 					setEmployerContribution getEmployeeContribution setEmployeeContribution);
 
-
 $|=1;
 
 sub new {
@@ -23,6 +22,10 @@ sub new {
 	my $charityId = shift;
 	my $startDate = shift;
 	
+	print "\nchartiy id = $charityId\n";
+	print "\nstart date = $startDate\n";
+	print "";
+	
 	my $employee = {
 		"name" => $name,
 		"number" => $number,
@@ -30,10 +33,10 @@ sub new {
 		"salary" => $salary,
 		"rCont" => $emprC,
 		"eCont" => $empeC,
-#		"role" => $role,
-#		"pass" => $pass,
-# 		"charity_id" INT NULL,
-#  		"start_date" DATE NOT NULL,
+		"role" => $role,
+		"pass" => $pass,
+ 		"charity_id" => $charityId,
+  		"start_date" => $startDate,
 	};
 
 	bless($employee, $class);
