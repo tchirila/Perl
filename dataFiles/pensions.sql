@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS `pensions`.`employees` (
   `employer_contr` DECIMAL NOT NULL,
   `role` VARCHAR(1) NOT NULL,
   `pass` VARCHAR(45) NOT NULL,
+  `charity_id` INT NULL,
+  `start_date` DATE NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `empl_num_UNIQUE` (`empl_num` ASC))
 ENGINE = InnoDB;
@@ -28,7 +30,7 @@ ENGINE = InnoDB;
 -- Table `pensions`.`charities`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pensions`.`charities` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `address_line_1` VARCHAR(45) NOT NULL,
   `address_line_2` VARCHAR(45) NULL,
@@ -44,7 +46,7 @@ ENGINE = InnoDB;
 -- Table `pensions`.`process_history`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pensions`.`process_history` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `process_date` TIMESTAMP NOT NULL,
   `user_started` INT NOT NULL,
   `successful` TINYINT NOT NULL,
@@ -58,7 +60,7 @@ ENGINE = InnoDB;
 -- Table `pensions`.`contributions`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pensions`.`contributions` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL  AUTO_INCREMENT,
   `type` VARCHAR(1) NOT NULL,
   `contr_pc` DECIMAL NULL,
   `contr_amount` DECIMAL NULL,
@@ -68,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `pensions`.`contributions` (
   `charity_id` INT NOT NULL,
   `employees_id` INT NOT NULL,
   `charities_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `employees_id`, `charities_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_contributions_employees_idx` (`employees_id` ASC),
   INDEX `fk_contributions_charities1_idx` (`charities_id` ASC),
   CONSTRAINT `fk_contributions_employees`
