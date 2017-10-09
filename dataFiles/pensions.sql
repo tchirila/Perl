@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS `pensions`.`employees` (
   `employer_contr` DECIMAL NOT NULL,
   `role` VARCHAR(1) NOT NULL,
   `pass` VARCHAR(45) NOT NULL,
+  `charity_id` INT NULL,
+  `start_date` DATE NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `empl_num_UNIQUE` (`empl_num` ASC))
 ENGINE = InnoDB;
@@ -28,7 +30,7 @@ ENGINE = InnoDB;
 -- Table `pensions`.`charities`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pensions`.`charities` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `address_line_1` VARCHAR(45) NOT NULL,
   `address_line_2` VARCHAR(45) NULL,
@@ -36,6 +38,8 @@ CREATE TABLE IF NOT EXISTS `pensions`.`charities` (
   `postcode` VARCHAR(45) NULL,
   `country` VARCHAR(45) NOT NULL,
   `telephone` VARCHAR(45) NULL,
+  `approved` INT NULL,
+  `discarded` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -44,7 +48,7 @@ ENGINE = InnoDB;
 -- Table `pensions`.`process_history`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pensions`.`process_history` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `process_date` TIMESTAMP NOT NULL,
   `user_started` INT NOT NULL,
   `successful` TINYINT NOT NULL,
@@ -55,29 +59,28 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pensions`.`contributions`
+-- Table `pensions`.`contributions`employees
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pensions`.`contributions` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL  AUTO_INCREMENT,
   `type` VARCHAR(1) NOT NULL,
   `contr_pc` DECIMAL NULL,
   `contr_amount` DECIMAL NULL,
   `salary` DECIMAL NOT NULL,
-  `process_date` TIMESTAMP NOT NULL,
-  `effective_date` TIMESTAMP NOT NULL,
-  `charity_id` INT NOT NULL,
+  `process_date` TIMESTAMP NULL,
+  `effective_date` TIMESTAMP NULL,
   `employees_id` INT NOT NULL,
-  `charities_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `employees_id`, `charities_id`),
+  `charity_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
   INDEX `fk_contributions_employees_idx` (`employees_id` ASC),
-  INDEX `fk_contributions_charities1_idx` (`charities_id` ASC),
+  INDEX `fk_contributions_charities1_idx` (`charity_id` ASC),
   CONSTRAINT `fk_contributions_employees`
     FOREIGN KEY (`employees_id`)
     REFERENCES `pensions`.`employees` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_contributions_charities1`
-    FOREIGN KEY (`charities_id`)
+    FOREIGN KEY (`charity_id`)
     REFERENCES `pensions`.`charities` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
