@@ -1,4 +1,4 @@
-Name,number,DOB,salary,employer_contribution,employee_contribution
+Name,number,DOB,salary,employer_contribution,employee_contribution, role, pass, charity, start_date
 Alex Jones, 213, 01/04/1987, 35000, 350, 700
 Moses Tywelli, 214, 09/11/1980, 24400, 244, 500
 Simon Peter, 216, 22/07/1967, 82000, 800, 1000
