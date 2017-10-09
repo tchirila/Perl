@@ -77,6 +77,7 @@ sub getDbConnection()
 		}
 
 		print "\nConnected successfully to database: $dbName\n";
+		return $dbHandle;
 	}
 	else
 	{
@@ -107,7 +108,6 @@ sub closeDbConnection()
 	my $dbHandle = shift;
 	unless(defined($dbHandle))
 	{
-		print "\nConnection closed\n";
-		close($dbHandle);
+		die "\nCannot close an undefined database conenction\n";
 	}
 }

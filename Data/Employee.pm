@@ -1,11 +1,19 @@
 package Data::Employee;
+<<<<<<< HEAD
 use strict;
+=======
+>>>>>>> tchirila/master
 use Exporter qw(import);
 use warnings;
 use Data::Dumper;
 
+<<<<<<< HEAD
 @EXPORT_OK = qw(getName setName getNumber setNumber getDOB setDOB getSalary setSalary getEmployerContribution
 setEmployerContribution getEmployeeContribution setEmployeeContribution);
+=======
+@EXPORT_OK = qw(getName setName getNumber setNumber getDOB setDOB getSalary setSalary getEmployerContribution 
+                setEmployerContribution getEmployeeContribution setEmployeeContribution);
+>>>>>>> tchirila/master
 
 
 $|=1;
@@ -13,12 +21,18 @@ $|=1;
 sub new {
 	my $class = shift;
 	my $id = shift;
+<<<<<<< HEAD
 	my $name= shift;
+=======
+	my $name= shift; 
+>>>>>>> tchirila/master
 	my $number = shift;
 	my $dob = shift;
 	my $salary = shift;
 	my $emprC = shift;
 	my $empeC = shift;
+	my $role = shift;
+	my $pass = shift;
 	my $employee = {
 		"name" => $name,
 		"number" => $number,
@@ -26,12 +40,16 @@ sub new {
 		"salary" => $salary,
 		"rCont" => $emprC,
 		"eCont" => $empeC,
+		"role" => $role,
+		"pass" => $pass,
 	};
 
 	bless($employee, $class);
 
 	return $employee;
 }
+
+
 
 #Param1: Employee object
 sub getName	{

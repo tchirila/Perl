@@ -1,6 +1,9 @@
 package Data::Charity;
+<<<<<<< HEAD
 
 use strict;
+=======
+>>>>>>> tchirila/master
 use warnings;
 use Exporter qw(import);
 
