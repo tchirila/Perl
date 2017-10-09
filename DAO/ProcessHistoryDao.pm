@@ -10,7 +10,7 @@ require DAO::ConnectionDao;
 $| = 1;
 
 sub getAProcessHistory() {
-	my $processHistoryID = shift;
+	my $processHistoryID = shift; 
 
 	my $connection = DAO::ConnectionDao::getDbConnection();
 
