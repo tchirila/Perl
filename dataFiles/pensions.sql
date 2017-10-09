@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `pensions`.`charities` (
   `country` VARCHAR(45) NOT NULL,
   `telephone` VARCHAR(45) NULL,
   `approved` INT NULL,
+  `discarded` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
