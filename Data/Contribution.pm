@@ -27,8 +27,8 @@ sub new{
 	my $contribution = {
 		"id" => shift,
 		"type" => shift,
-		"cont_pc" => shift,
-		"cont_amount" => shift,
+		"contr_pc" => shift,
+		"contr_amount" => shift,
 		"salary" => shift,
 		"process_date" => shift,
 		"effective_date" => shift,
@@ -50,12 +50,12 @@ sub setType{
 sub setContPc{
 	my $contribution = shift;
 	my $toChange = shift;
-	$contribution->{"cont_pc"} = $toChange;
+	$contribution->{"contr_pc"} = $toChange;
 }
 sub setContAmount{
 	my $contribution = shift;
 	my $toChange = shift;
-	$contribution->{"cont_amount"} = $toChange;
+	$contribution->{"contr_amount"} = $toChange;
 }
 
 sub setSalary{
@@ -91,11 +91,11 @@ sub getType{
 }
 
 sub getContPc{
-	return shift->{"cont_pc"};
+	return shift->{"contr_pc"};
 }
 
 sub getContAmount{
-	return shift->{"cont_amount"};
+	return shift->{"contr_amount"};
 }
 
 sub getSalary{
