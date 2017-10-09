@@ -9,7 +9,7 @@ use Exporter qw(import);
 @EXPORT_OK = qw(setProcessDate);
 @EXPORT_OK = qw(setEffectiveDate);
 @EXPORT_OK = qw(setCharityId);
-@EXPORT_OK = qw(setApprovedBy);
+@EXPORT_OK = qw(setEmployeesId);
 @EXPORT_OK = qw(getType);
 @EXPORT_OK = qw(getContpc);
 @EXPORT_OK = qw(getContAmount);
@@ -17,21 +17,23 @@ use Exporter qw(import);
 @EXPORT_OK = qw(getProcessDate);
 @EXPORT_OK = qw(getEffectiveDate);
 @EXPORT_OK = qw(getCharityId);
-@EXPORT_OK = qw(getApprovedBy);
+@EXPORT_OK = qw(getEmployeesId);
+@EXPORT_OK = qw(getId);
 
 
 sub new{
 	my $class = shift;
 	
 	my $contribution = {
+		"id" => shift,
 		"type" => shift,
 		"cont_pc" => shift,
 		"cont_amount" => shift,
 		"salary" => shift,
 		"process_date" => shift,
 		"effective_date" => shift,
-		"charity_id" => shift,
-		"approved_by" => shift,
+		"employees_id" => shift,
+		"charity_id" => shift,	
 	};
 	
 	bless($contribution, $class);
@@ -78,10 +80,10 @@ sub setCharityId{
 	my $toChange = shift;
 	$contribution->{"charity_id"} = $toChange;
 }
-sub setApprovedBy{
+sub setEmployeesId{
 	my $contribution = shift;
 	my $toChange = shift;
-	$contribution->{"approved_by"} = $toChange;
+	$contribution->{"employees_id"} = $toChange;
 }
 
 sub getType{
@@ -112,8 +114,12 @@ sub getCharityId{
 	return shift->{"charity_id"};
 }
 
-sub getApprovedBy{
-	return shift->{"approved_by"};
+sub getEmployeesId{
+	return shift->{"employees_id"};
+}
+
+sub getId{
+	return shift->{"id"};
 }
 
 1;
