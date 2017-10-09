@@ -75,12 +75,24 @@ sub test()
 
 	#my %employeeHash = DAO::EmployeeDao::getEmployee("0987992");
 	my %employeeHash = DAO::EmployeeDao::getAllEmployees();
+	
+	
+	
 	my @emplHashKeys = keys %employeeHash;  
 	foreach my $month(@emplHashKeys) 
 	{
 		my $empl = $employeeHash{$month};
-		my $emplName = $empl->{"name"};
-		print "\nEmployee = $emplName \n";
+
+		
+		print "zzzzz" . $empl->getName() . "\n";	
+		print "YYYY" . $empl->{"name"} . "\n";
+		
+		
+		#my $emplName = $empl->{"name"};
+
+
+
+		#print "\nEmployee = $emplName \n";
 	}
 	
 	
