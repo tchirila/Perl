@@ -10,33 +10,18 @@ $|=1;
 
 sub new {
 	my $class = shift;
-	my $id = shift;
-	my $name= shift;
-	my $number = shift;
-	my $dob = shift;
-	my $salary = shift;
-	my $emprC = shift;
-	my $empeC = shift;
-	my $role = shift;
-	my $pass = shift;
-	my $charityId = shift;
-	my $startDate = shift;
-	
-	print "\nchartiy id = $charityId\n";
-	print "\nstart date = $startDate\n";
-	print "";
-	
 	my $employee = {
-		"name" => $name,
-		"number" => $number,
-		"DOB" => $dob,
-		"salary" => $salary,
-		"rCont" => $emprC,
-		"eCont" => $empeC,
-		"role" => $role,
-		"pass" => $pass,
- 		"charity_id" => $charityId,
-  		"start_date" => $startDate,
+		"id" => shift,
+		"name" => shift,
+		"number" => shift,
+		"DOB" => shift,
+		"salary" => shift,
+		"rCont" => shift,
+		"eCont" => shift,
+		"role" => shift,
+		"pass" => shift,
+ 		"charity_id" => shift,
+  		"start_date" => shift,
 	};
 
 	bless($employee, $class);

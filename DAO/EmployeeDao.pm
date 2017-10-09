@@ -100,8 +100,6 @@ sub addEmployee()
 	# prepare db connection
 	my $connection = DAO::ConnectionDao::getDbConnection();
 	my $stmtEmplIns = $connection->prepare('insert into employees (name, empl_num, dob, salary, employee_contr, employer_contr, role, pass, charity_id, start_date) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'); 
-	 
-
 	unless($stmtEmplIns)
 	{
 		print "Error preparing employee insert SQL\n";
