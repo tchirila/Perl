@@ -1,5 +1,7 @@
 package Data::Charity;
-use Exporter qw(import); 
+use strict;
+use warnings;
+use Exporter qw(import);
 
 @EXPORT_OK = qw(getName);
 
