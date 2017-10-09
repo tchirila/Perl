@@ -22,6 +22,8 @@ sub updateContributions()
 	
 	my $endOfMonthCount = generateEndOfMonthContributions();
 	my $anniversCount = generateAnnualAnniversaryContributions();
+	
+	# add $endOfMonthCount + $anniversCount and create process history record in db 
 }
   
 
