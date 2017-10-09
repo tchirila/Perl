@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `pensions`.`charities` (
   `postcode` VARCHAR(45) NULL,
   `country` VARCHAR(45) NOT NULL,
   `telephone` VARCHAR(45) NULL,
+  `approved` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -57,7 +58,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pensions`.`contributions`
+-- Table `pensions`.`contributions`employees
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pensions`.`contributions` (
   `id` INT NOT NULL  AUTO_INCREMENT,
@@ -65,21 +66,20 @@ CREATE TABLE IF NOT EXISTS `pensions`.`contributions` (
   `contr_pc` DECIMAL NULL,
   `contr_amount` DECIMAL NULL,
   `salary` DECIMAL NOT NULL,
-  `process_date` TIMESTAMP NOT NULL,
-  `effective_date` TIMESTAMP NOT NULL,
-  `charity_id` INT NOT NULL,
+  `process_date` TIMESTAMP NULL,
+  `effective_date` TIMESTAMP NULL,
   `employees_id` INT NOT NULL,
-  `charities_id` INT NOT NULL,
+  `charity_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_contributions_employees_idx` (`employees_id` ASC),
-  INDEX `fk_contributions_charities1_idx` (`charities_id` ASC),
+  INDEX `fk_contributions_charities1_idx` (`charity_id` ASC),
   CONSTRAINT `fk_contributions_employees`
     FOREIGN KEY (`employees_id`)
     REFERENCES `pensions`.`employees` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_contributions_charities1`
-    FOREIGN KEY (`charities_id`)
+    FOREIGN KEY (`charity_id`)
     REFERENCES `pensions`.`charities` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
