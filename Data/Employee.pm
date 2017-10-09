@@ -18,6 +18,8 @@ sub new {
 	my $salary = shift;
 	my $emprC = shift;
 	my $empeC = shift;
+	my $role = shift;
+	my $pass = shift;
 	my $employee = {
 		"name" => $name,
 		"number" => $number,
@@ -25,12 +27,16 @@ sub new {
 		"salary" => $salary,
 		"rCont" => $emprC,
 		"eCont" => $empeC,
+		"role" => $role,
+		"pass" => $pass,
 	};
 	
 	bless($employee, $class);
 
 	return $employee;	
 }
+
+
 
 #Param1: Employee object
 sub getName	{

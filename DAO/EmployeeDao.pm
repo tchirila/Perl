@@ -7,7 +7,6 @@ use Exporter qw(import);
 require Data::Employee;
 require DAO::ConnectionDao;
 
-
 my @EXPORT_OK = qw(addEmployee removeEmployee getEmployee getAllEmployees);
 
 
@@ -63,6 +62,7 @@ sub hashAddEmployee	{
 	$hash->{$empNum} = $emp;
 }
 
+
 #Param1: Employees hash.
 #Param2: filename.
 #sub saveEmployeesToCSV	{
@@ -70,7 +70,7 @@ sub hashAddEmployee	{
 #	open(OUTPUT, '>'.$file) or die "Can't open file $file";
 #	print OUTPUT "Name,number,DOB,salary,employer_contribution,employee_contribution\n"; ##Header
 #	foreach my $value (values $hash) 
-#	{
+#	{ 
 #		my $line = Data::Employee::getName($value).","
 #			.Data::Employee::getNumber($value).","
 #			.Data::Employee::getDOB($value).","
@@ -83,10 +83,8 @@ sub hashAddEmployee	{
 #}
 
 ####################################################################################################
+## PB below  
 
-
-
-# pb in progress
 sub addEmployee()
 {
 	# prepare db connection 
@@ -115,11 +113,10 @@ sub addEmployee()
 
 
 
-# pb in progress
 #Param1: Employee number
 sub removeEmployee()
 {
-	my $employNum =  shift;   # TODO add checking
+	my $employNum =  shift;  
 
 	# prepare db connection 
 	my $connection = DAO::ConnectionDao::getDbConnection();
@@ -165,7 +162,6 @@ sub readEmployees
 
 
 
-# pb in progress
 #Param1: Employee number
 sub getEmployee() 
 {

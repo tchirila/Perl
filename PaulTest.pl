@@ -82,17 +82,8 @@ sub test()
 	foreach my $month(@emplHashKeys) 
 	{
 		my $empl = $employeeHash{$month};
-
-		
-		print "zzzzz" . $empl->getName() . "\n";	
-		print "YYYY" . $empl->{"name"} . "\n";
-		
-		
-		#my $emplName = $empl->{"name"};
-
-
-
-		#print "\nEmployee = $emplName \n";
+		my $emplName = $empl->{"name"};
+		print "\nEmployee = $emplName \n";
 	}
 	
 	
