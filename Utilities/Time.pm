@@ -67,11 +67,4 @@ sub getCurrentTimestampTime{
 	return $time;
 }
 
-
-sub test()
-{
-	print "\nIn the test class\n";
-}
-
-
 1;
