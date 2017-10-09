@@ -1,4 +1,4 @@
-id,name,address_line_1,address_line_2,city,postcode,country,telephone
+id,name,address_line_1,address_line_2,city,postcode,country,telephone, role, pass, charity, start_date
 517724,Hospice of the Valleys (Hosbis y Cymoedd),Festival Drive,Ebbw Vale,Blaenau Gwent,NP23 8XF,Wales,01495 717277
 1001428,Hospice at Home Gwynedd and Anglesey,Eryri Hospital,Caernarfon,Gwynedd,LL55 2YE,Wales, 01286 662772
 1154109,Welsh Hearts,Castle Court,Cathedral Road,Cardiff,CF11 9LJ,Wales,02920 647735
