@@ -7,19 +7,7 @@ use Exporter qw(import);
 require Data::Employee;
 require DAO::ConnectionDao;
 
-<<<<<<< HEAD
-my @EXPORT_OK = qw(addEmployee);
-
-#TODO: Get auth to remove package.
-# package DAO::ConnectionDao;
-use Exporter qw(import);
-use DBI;
-use lib '..';
-@EXPORT_OK = qw(getDbConnection closeDbConnection);
-
-=======
 my @EXPORT_OK = qw(addEmployee removeEmployee getEmployee getAllEmployees);
->>>>>>> tchirila/master
 
 
 $|=1;
@@ -78,7 +66,6 @@ sub hashAddEmployee	{
 
 #Param1: Employees hash.
 #Param2: filename.
-<<<<<<< HEAD
 sub saveEmployeesToCSV	{
 	my ($hash, $file) = @_;
 	open(OUTPUT, '>'.$file) or die "Can't open file $file";
@@ -90,7 +77,9 @@ sub saveEmployeesToCSV	{
 			.Data::Employee::getDOB($value).","
 			.Data::Employee::getSalary($value).","
 			.Data::Employee::getEmployerContribution($value).","
-			.Data::Employee::getEmployeeContribution($value)."\n";
+			.Data::Employee::getEmployeeContribution($value).","
+			.Data::Employee::getEmployeeRole($value).","
+			.Data::Employee::getEmployeePassword($value)."\n";
 		print OUTPUT $line;
 	}
 	close(OUTPUT);
@@ -99,77 +88,25 @@ sub saveEmployeesToCSV	{
 
 sub addEmployee()
 {
-	my $data = shift;
-
-	# first do check that an employee of this number does not already exist
-
-	# get this connection from the connection class + close it there
-	my $connection = DBI-> connect("dbi:mysql:bands", "JoeRoot", "J03R00tABC1234");
-
-
-
-	my $stmtEmplIns = $connection-> prepare('insert into employees (name, empl_num, dob, salary, ' .
-		' employee_contr, employer_contr) values (?, ?, ?, ?, ?, ?)');
-	unless($stmtEmplIns)
-=======
-#sub saveEmployeesToCSV	{
-#	my ($hash, $file) = @_;
-#	open(OUTPUT, '>'.$file) or die "Can't open file $file";
-#	print OUTPUT "Name,number,DOB,salary,employer_contribution,employee_contribution\n"; ##Header
-#	foreach my $value (values $hash) 
-#	{ 
-#		my $line = Data::Employee::getName($value).","
-#			.Data::Employee::getNumber($value).","
-#			.Data::Employee::getDOB($value).","
-#			.Data::Employee::getSalary($value).","
-#			.Data::Employee::getEmployerContribution($value).","
-#			.Data::Employee::getEmployeeContribution($value)."\n";
-#		print OUTPUT $line;
-#	}
-#	close(OUTPUT);
-#}
-
-####################################################################################################
-## PB below  
-
-sub addEmployee()
-{
-	# prepare db connection 
+	# prepare db connection
 	my $connection = DAO::ConnectionDao::getDbConnection();
 	my $stmtEmplIns = $connection->prepare('insert into employees (name, empl_num, dob, salary, employee_contr, employer_contr) values (?, ?, ?, ?, ?, ?)');
-	
-	unless($stmtEmplIns)   
->>>>>>> tchirila/master
+
+	unless($stmtEmplIns)
 	{
 		die ("Error preparing employee insert SQL\n");
 	}
-<<<<<<< HEAD
 
-	# just for testing
-	my $name = "Paul";
-	my $number = "098789";
-	my $dob; #  = "DOB";
-	my $salary = 10000;
-	my $emprC = 3;
-	my $empeC = 4;
-	unless($stmtEmplIns->execute($name, $number, $dob, $salary, $emprC, $empeC))
-	{
-		die "Error executing SQL\n";
-	}
-
-=======
-   
 	my ($name, $number, $dob, $salary, $emprC, $empeC) = @_;   # TODO  need to check the mandatory values are not undefined & date is a date
-	$dob = undef;  # TODO need to add date 
+	$dob = undef;  # TODO need to add date
 	unless($stmtEmplIns->execute($name, $number, $dob, $salary, $emprC, $empeC))
 	{
 		print "Error executing SQL\n";
 		return 0;
-	}  
-	
+	}
+
 	print "Employee number $number added successfully....\n";
-		
->>>>>>> tchirila/master
+
 	$stmtEmplIns->finish();
 	DAO::ConnectionDao::closeDbConnection($connection);
 	return 1;
@@ -180,14 +117,14 @@ sub addEmployee()
 #Param1: Employee number
 sub removeEmployee()
 {
-	my $employNum =  shift;  
+	my $employNum =  shift;
 
-	# prepare db connection 
+	# prepare db connection
 	my $connection = DAO::ConnectionDao::getDbConnection();
 	my $error;
 	$connection->do("delete from employees where empl_num = '$employNum'") or $error = "Failed to delete";
 	DAO::ConnectionDao::closeDbConnection($connection);
-	
+
 	if(defined($error))
 	{
 		return 1;
@@ -218,7 +155,7 @@ sub readEmployees
 
 		# create and return a hash of Employee
 		my $employee = new Data::Employee($id, $name, $num, $dob, $salary, $empleeContr, $emplerContr);
-		hashAddEmployee(\%hash, $employee);		
+		hashAddEmployee(\%hash, $employee);
 		return %hash;
 	}
 }
@@ -227,20 +164,20 @@ sub readEmployees
 
 
 #Param1: Employee number
-sub getEmployee() 
+sub getEmployee()
 {
 	my $employNum =  shift;     # TODO add checking
-	
+
 	# prepare db connection 
 	my $connection = DAO::ConnectionDao::getDbConnection();
-	
-	my $sql = 'select id, name, empl_num, dob, salary, employee_contr, employer_contr from employees where empl_num = ? '; 
+
+	my $sql = 'select id, name, empl_num, dob, salary, employee_contr, employer_contr from employees where empl_num = ? ';
 	my $stmtGetEmpl = $connection->prepare($sql);
 	unless(defined($stmtGetEmpl))
 	{
 		die("Could not prepare statement for export from db\n");
 	}
-	
+
 	unless($stmtGetEmpl->execute($employNum))
 	{
 		die "Could not retrieve employee $employNum from db\n";
@@ -248,7 +185,7 @@ sub getEmployee()
 
 	my %hash = readEmployees($stmtGetEmpl);
 	$stmtGetEmpl->finish();
-	return %hash;	
+	return %hash;
 }
 
 
@@ -258,22 +195,22 @@ sub getAllEmployees()  # TODO  fix BUG here: only returning single employee
 {
 	# prepare db connection 
 	my $connection = DAO::ConnectionDao::getDbConnection();
-	
-	my $sql = 'select id, name, empl_num, dob, salary, employee_contr, employer_contr from employees'; 
+
+	my $sql = 'select id, name, empl_num, dob, salary, employee_contr, employer_contr from employees';
 	my $stmtGetEmpl = $connection->prepare($sql);
 	unless(defined($stmtGetEmpl))
 	{
 		die("Could not prepare statement for export from db\n");
 	}
-	
+
 	unless($stmtGetEmpl->execute())
 	{
 		die "Could not retrieve employees from db\n";
-	} 
+	}
 
 	my %hash = readEmployees($stmtGetEmpl);
 	$stmtGetEmpl->finish();
-	return %hash;	
+	return %hash;
 }
 
 

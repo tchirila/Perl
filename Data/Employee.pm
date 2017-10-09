@@ -1,19 +1,10 @@
 package Data::Employee;
-<<<<<<< HEAD
-use strict;
-=======
->>>>>>> tchirila/master
 use Exporter qw(import);
 use warnings;
 use Data::Dumper;
 
-<<<<<<< HEAD
 @EXPORT_OK = qw(getName setName getNumber setNumber getDOB setDOB getSalary setSalary getEmployerContribution
-setEmployerContribution getEmployeeContribution setEmployeeContribution);
-=======
-@EXPORT_OK = qw(getName setName getNumber setNumber getDOB setDOB getSalary setSalary getEmployerContribution 
-                setEmployerContribution getEmployeeContribution setEmployeeContribution);
->>>>>>> tchirila/master
+					setEmployerContribution getEmployeeContribution setEmployeeContribution);
 
 
 $|=1;
@@ -21,11 +12,7 @@ $|=1;
 sub new {
 	my $class = shift;
 	my $id = shift;
-<<<<<<< HEAD
 	my $name= shift;
-=======
-	my $name= shift; 
->>>>>>> tchirila/master
 	my $number = shift;
 	my $dob = shift;
 	my $salary = shift;
@@ -45,7 +32,6 @@ sub new {
 	};
 
 	bless($employee, $class);
-
 	return $employee;
 }
 
@@ -134,6 +120,35 @@ sub setEmployeeContribution	{
 	$emp->{"eCont"} = $newCont;
 }
 
+
+
+#Param1: Employee object
+sub getEmployeeRole	{
+	return shift->{"role"};
+}
+
+#Param1: Employee object
+#Param2: New role
+sub setEmployeeRole	{
+	my $emp = shift;
+	my $newRole = shift;
+	$emp->{"role"} = $newRole;
+}
+
+
+
+#Param1: Employee object
+sub getEmployeePassword	{
+	return shift->{"pass"};
+}
+
+#Param1: Employee object
+#Param2: New password
+sub setEmployeePassword	{
+	my $emp = shift;
+	my $newPass = shift;
+	$emp->{"pass"} = $newPass;
+}
 
 
 1;

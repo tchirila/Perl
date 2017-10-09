@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 #require Data::Charity;
-require Data::Charity2;
+require Data::Charity;
 
 
 
@@ -24,7 +24,7 @@ sub getCharitiesFromCSV	{
             next LOOP1;
         }
 
-        my $newCharity = new Data::Charity2(
+        my $newCharity = new Data::Charity(
             $fields[0],
             $fields[1],
             $fields[2],
@@ -45,7 +45,7 @@ sub getCharitiesFromCSV	{
 #Param2: Employee object.
 sub hashAddCharity	{ #TODO: Get auth for this change.
     my ($charities, $charity) = @_;
-    my $id = Data::Charity2::getId($charity);
+    my $id = Data::Charity::getId($charity);
     #my $id = getId($charity);
     $charities->{$id} = $charity;
 }
@@ -76,14 +76,14 @@ sub saveCharitiesToCSV	{
     print OUTPUT "id,name,address_line_1,address_line_2,city,postcode,country,telephone\n"; ##Header
     foreach my $value (values $hash)
     {
-        my $line = Data::Charity2::getId($value).","
-            .Data::Charity2::getName($value).","
-            .Data::Charity2::getAddressLine1($value).","
-            .Data::Charity2::getAddressLine2($value).","
-            .Data::Charity2::getCity($value).","
-            .Data::Charity2::getPostCode($value).","
-            .Data::Charity2::getCountry($value).","
-            .Data::Charity2::getTel($value)."\n";
+        my $line = Data::Charity::getId($value).","
+            .Data::Charity::getName($value).","
+            .Data::Charity::getAddressLine1($value).","
+            .Data::Charity::getAddressLine2($value).","
+            .Data::Charity::getCity($value).","
+            .Data::Charity::getPostCode($value).","
+            .Data::Charity::getCountry($value).","
+            .Data::Charity::getTel($value)."\n";
         print OUTPUT $line;
     }
     close(OUTPUT);
