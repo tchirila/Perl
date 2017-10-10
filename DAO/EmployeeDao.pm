@@ -99,9 +99,7 @@ sub addEmployee()
 {
 	# prepare db connection
 	my $connection = DAO::ConnectionDao::getDbConnection();
-
-	my $stmtEmplIns = $connection->prepare('insert into employees (name, empl_num, dob, salary, employee_contr, employer_contr, role, pass, charity_id, start_date) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
-
+	my $stmtEmplIns = $connection->prepare('insert into employees (name, empl_num, dob, salary, employee_contr, employer_contr, role, pass, charity_id, start_date) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'); 
 	unless($stmtEmplIns)
 	{
 		print "Error preparing employee insert SQL\n";
@@ -111,7 +109,7 @@ sub addEmployee()
 	my $empl = shift;
 	my $name = $empl->{"name"};
 	my $number = $empl->{"number"};
-	my $dob = $empl->{"DOB"};
+	my $dob = $empl->{"DOB"}; 
 	my $salary = $empl->{"salary"};
 	my $emprC = $empl->{"rCont"};
 	my $empeC = $empl->{"eCont"};
@@ -120,7 +118,6 @@ sub addEmployee()
 	my $charityId = $empl->{"charity_id"};
 	my $startDate = $empl->{"start_date"};
 	unless($stmtEmplIns->execute($name, $number, $dob, $salary, $emprC, $empeC, $role, $pass, $charityId, $startDate))   
-
 	{
 		print "Error executing SQL\n";
 		return 0;
@@ -168,7 +165,6 @@ sub readEmployees
 		my $employee = new Data::Employee($row->{"id"}, $row->{"name"}, $row->{"empl_num"}, $row->{"dob"}, $row->{"salary"}, 
 		                                  $row->{"employee_contr"}, $row->{"employer_contr"}, $row->{"role"}, $row->{"pass"},
 		                                  $row->{"charity_id"}, $row->{"start_date"});
-
 		hashAddEmployee(\%hash, $employee);
 	}
 
@@ -181,14 +177,12 @@ sub readEmployees
 #Param1: Employee number
 sub getEmployee()
 {
+	my $employNum =  shift;  
 
-	my $employNum =  shift;
-
-	# prepare db connection
+	# prepare db connection 
 	my $connection = DAO::ConnectionDao::getDbConnection();
 	my $sql = 'select id, name, empl_num, dob, salary, employee_contr, employer_contr, role, pass, charity_id, start_date from employees where empl_num = ? ';
-
-
+	           
 	my $stmtGetEmpl = $connection->prepare($sql);
 	unless(defined($stmtGetEmpl))
 	{
@@ -210,7 +204,6 @@ sub getEmployee()
 
 
 # returns a hash of all employees (employee number / Data::Employee)
-
 sub getAllEmployees()  
 { 
 	# prepare db connection 
@@ -218,8 +211,6 @@ sub getAllEmployees()
 	my $sql = 'select id, name, empl_num, dob, salary, employee_contr, employer_contr, role, pass, charity_id, start_date from employees ';
 	my $stmtGetEmpl = $connection->prepare($sql);
 	
-	print "\nwhere are I?\n";
-
 	unless(defined($stmtGetEmpl))
 	{
 		print "Could not prepare statement for export from db\n";

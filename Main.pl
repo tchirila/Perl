@@ -34,7 +34,7 @@ sub charity	{
 	my %charitiesHash = DAO::CharityDao::getCharitiesFromCSV($CHARITY_FILE);
 	foreach my $charity (keys %charitiesHash) {
 		print Dumper($charitiesHash{$charity});
-		#	print Dumper(DAO::CharityDao::hashGetCharity(\%charitiesHash,$charity));
+	#	print Dumper(DAO::CharityDao::hashGetCharity(\%charitiesHash,$charity));
 	}
 }
 
@@ -48,5 +48,6 @@ sub contribution{
 #main();
 #charity();
 #contribution();
+
 
 

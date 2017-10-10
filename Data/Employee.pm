@@ -4,7 +4,7 @@ use warnings;
 use Data::Dumper;
 
 @EXPORT_OK = qw(getName setName getNumber setNumber getDOB setDOB getSalary setSalary getEmployerContribution
-setEmployerContribution getEmployeeContribution setEmployeeContribution);
+					setEmployerContribution getEmployeeContribution setEmployeeContribution);
 
 $|=1;
 
@@ -20,8 +20,8 @@ sub new {
 		"eCont" => shift,
 		"role" => shift,
 		"pass" => shift,
-		"charity_id" => shift,
-		"start_date" => shift,
+ 		"charity_id" => shift,
+  		"start_date" => shift,
 	};
 
 	bless($employee, $class);

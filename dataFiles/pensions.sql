@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `pensions`.`employees` (
   `pass` VARCHAR(45) NOT NULL,
   `charity_id` INT NULL,
   `start_date` DATE NOT NULL,
+  `annual_contr` DECIMAL NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `empl_num_UNIQUE` (`empl_num` ASC))
 ENGINE = InnoDB;
@@ -56,7 +57,6 @@ CREATE TABLE IF NOT EXISTS `pensions`.`process_history` (
   `type` VARCHAR(1) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `pensions`.`contributions`employees
