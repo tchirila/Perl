@@ -95,16 +95,16 @@ sub hashRemoveCharity	{
 #Param1: Charity object.
 sub addCharity   {
     my $connection = DAO::ConnectionDao::getDbConnection();
-    my $stmtCharlIns = $connection->prepare('INSERT INTO charities (name, address_line_1, address_line_2, city,
+    my $stmt = $connection->prepare('INSERT INTO charities (name, address_line_1, address_line_2, city,
     postcode, country, telephone, approved, discarded) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
 
-    unless($stmtCharlIns)
+    unless($stmt)
     {
         die ("Error preparing charity insert SQL\n");
     }
 
     my $charity = shift;
-    unless($stmtCharlIns->execute(
+    unless($stmt->execute(
         $charity->{"name"},
         $charity->{"address_line_1"},
         $charity->{"address_line_2"},
@@ -119,9 +119,9 @@ sub addCharity   {
         return 0;
     }
 
-    print "Charity name $name added successfully....\n";
+    print "Charity name ".$charity->{"name"}." added successfully....\n";
 
-    $stmtCharlIns->finish();
+    $stmt->finish();
     DAO::ConnectionDao::closeDbConnection($connection);
     return 1;
 }
@@ -150,10 +150,10 @@ sub removeCharity    {
 
 #TODO: Test func.
 #Param1: Prepared statement.
-sub readCharity   {
-    my $stmtGetCharity = shift;
+sub readCharities   {
+    my $stmt = shift;
     my %hash;
-    while (my $row = $stmtGetCharity->fetchrow_hashref())    {
+    while (my $row = $stmt->fetchrow_hashref())    {
         my $charity = new Data::Charity(
             $row->{"id"},
             $row->{"name"},
@@ -189,7 +189,7 @@ sub getCharity{
         die "Could not retrieve charity '$charityId' from db\n";
     }
 
-    my %hash = readEmployees($stmt);
+    my %hash = readCharities($stmt);
     $stmt->finish();
     return %hash;
 }
@@ -201,7 +201,7 @@ sub getAllCharities   {
         # prepare db connection
         my $connection = DAO::ConnectionDao::getDbConnection();
 
-        my $sql = 'select id, name, address_line_1, address_line_2, city, postcode, country, telephone, approved, discarded from charities';
+        my $sql = 'SELECT id, name, address_line_1, address_line_2, city, postcode, country, telephone, approved, discarded FROM charities';
         my $stmt = $connection->prepare($sql);
         unless(defined($stmt))
         {
@@ -213,13 +213,11 @@ sub getAllCharities   {
             die "Could not retrieve charities from db\n";
         }
 
-        my %hash = readEmployees($stmt);
+        my %hash = readCharities($stmt);
         $stmt->finish();
         return %hash;
     }
 
 }
-
-
 
 1;
