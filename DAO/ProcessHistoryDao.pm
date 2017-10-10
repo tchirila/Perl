@@ -7,7 +7,7 @@ use Exporter qw(import);
 require Data::ProcessHistory;
 require DAO::ConnectionDao;
 
-$| = 1;
+$| = 1;                  
 
 sub getAProcessHistory() {
 	my $processHistoryID = shift; 
@@ -28,7 +28,7 @@ sub getAProcessHistory() {
 sub getAllProcessHistory() {
 	my $connection = DAO::ConnectionDao::getDbConnection();
 
-	my $sql = 'select id, process_date, user_started, successful, num_contributions_added, type from processhistory';
+	my $sql = 'select id, process_date, user_started, successful, num_contributions_added, type from processhistory order by process_date desc ';
 	my $stmtGetAllProcess = $connection->prepare($sql);
 	unless ( defined($stmtGetAllProcess) ) {
 		die("Could not prepare statement for export from db\n");
@@ -41,7 +41,7 @@ sub getAllProcessHistory() {
 
 sub removeProcess()
 {
-	my $processNum =  shift;  
+	my $processNum =  shift;   
 
 	my $connection = DAO::ConnectionDao::getDbConnection();
 	$connection->do("delete from processhistory where process_id = '$processNum'");

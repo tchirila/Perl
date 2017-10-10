@@ -7,25 +7,70 @@ require Data::Contribution;
 require DAO::ConnectionDao;
 require Utilities::Time;
 
-sub addContribution{
-	my ($type, $cont_pc, $cont_amount, $salary, $effective_date, $employees_id, $charity_id) = @_;
+sub getAllContributionsForEmployeeId{
+	my $employeeId = shift;
 	
 	my $connection = DAO::ConnectionDao::getDbConnection();
-	my $query = $connection->prepare('insert into contributions (type,cont_pc,cont_amount,salary,process_date,effective_date,employees_id,charity_id) values (?, ?, ?, ?, ?, ?, ?, ?)');
+	my $query = "select * from contributions where employees_id = $employeeId";
+	my $preparedQuery = $connection->prepare($query);
 	
-	unless($query){
+	unless(defined($preparedQuery)){
+		die "Error preparing contribution SQL query\n";
+	}
+	
+	unless($preparedQuery->execute()){
+		die "Error executing get all contributions for employee id SQL query\n";
+	}
+	
+	my %contribution = readContributions($preparedQuery);
+	$preparedQuery->finish();
+	return %contribution;
+}
+
+sub readContributions{
+	my $preparedQuery = shift;
+	my @contributions;
+	my %hash;
+	
+	while(my $record = $preparedQuery->fetchrow_hashref()){		
+		
+		my $id = $record->{"id"};
+		my $type = $record->{"type"};
+		my $contr_pc = $record->{"contr_pc"};
+		my $contr_amount = $record->{"contr_amount"};
+		my $salary = $record->{"salary"};
+		my $processed_date = $record->{"processed_date"};
+		my $effective_date = $record->{"effective_date"};
+		my $employees_id = $record->{"employees_id"};
+		my $charity_id = $record->{"charity_id"};
+		
+		my $contribution = new Data::Contribution($id, $type, $contr_pc, $contr_amount, $salary, $processed_date, $effective_date, $employees_id, $charity_id);
+		hashAddContribution(\%hash, $contribution);
+	}
+	
+	return %hash;
+}
+
+sub addContribution{
+	my ($type, $contr_pc, $contr_amount, $salary, $effective_date, $employees_id, $charity_id) = @_;
+	
+	my $connection = DAO::ConnectionDao::getDbConnection();
+	my $query = 'insert into contributions (type,contr_pc,contr_amount,salary,process_date,effective_date,employees_id,charity_id) values (?, ?, ?, ?, ?, ?, ?, ?)';
+	my $preparedQuery = $connection->prepare($query);
+	
+	unless(defined($preparedQuery)){
 		die "Error preparing contribution SQL query\n";
 	}
 	
 	my $process_date = Utilities::Time::getCurrentTimestamp();
 	
-	unless($query->execute($type, $cont_pc, $cont_amount, $salary, $process_date, $effective_date, $employees_id, $charity_id)){
-		print "Error executing contribution SQL query\n";
+	unless($preparedQuery->execute($type, $contr_pc, $contr_amount, $salary, $process_date, $effective_date, $employees_id, $charity_id)){
+		print "Error executing add contribution SQL query\n";
 		return 0;
 	}
 	
-	$query->finish();
-	DAO::ConnectionDao::closeDbConnection($connection);
+	$preparedQuery->finish();
+	#DAO::ConnectionDao::closeDbConnection($connection);
 	return 1;
 }
 
@@ -72,8 +117,8 @@ sub getAllContributionsForEmployeeIdFromCSV{
 
 sub hashAddContribution{
 	my ($contributions, $contribution) = @_;
-	my $approvedBy = Data::Contribution::getId($contribution);
-	$contributions->{$approvedBy} = $contribution;
+	my $id = Data::Contribution::getId($contribution);
+	$contributions->{$id} = $contribution;
 }
 
 sub addContributionToCSV{

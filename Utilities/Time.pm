@@ -1,7 +1,7 @@
 package Utilities::Time;
-
 use strict;
 use warnings;
+
 
 sub getCurrentTimestamp{
 	my $timeUnformatted = localtime();
@@ -47,12 +47,12 @@ sub setDay{
 	return $day;
 }
 
-sub getCurrentTimestampDate{
+sub getCurrentDate{
 	my $timestamp = getCurrentTimestamp();
-	my @values = (split " ", $timestamp);
-	my $date = @values[0];
-	
-	return $date;
+	my @date = (split " ", $timestamp);
+	my $dateString = $date[0];
+
+	return @date;
 }
 
 sub getCurrentTimestampTime{
