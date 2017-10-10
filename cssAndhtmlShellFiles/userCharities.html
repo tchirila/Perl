@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="stylesheet.css" />
+<title>Pensions</title>
+</head>
+<body>
+	<header class="main-header">
+		<div class="page-container">
+			<h1>Pensions - User - Charities </h1>
+		</div>
+	</header>
+	
+	<div class="page-container">
+		
+		<form action="userAddNewCharity" method="post">
+			<div class="col12 breaker center-a">
+				Name <input name="name">		
+			</div>
+			<div class="col12 breaker center-a">
+				Address Line 1 <input name="addline1">
+			</div>
+			<div class="col12 breaker center-a">
+				Address Line 2 <input name="addline2">
+			</div>
+			<div class="col12 breaker center-a">
+				City <input name="city">
+			</div>
+			<div class="col12 breaker center-a">
+				Postcode <input name="postcode">	
+			</div>
+			<div class="col12 breaker center-a">
+				Country <input name="country">	
+			</div>
+			<div class="col12 breaker center-a">
+				Telephone <input name="telephone">	
+			</div>
+			<div class="col12 breaker center-a">
+				<input class="center-a purchaseButton" type="submit" value="Add" />
+			</div>
+		</form>
+	
+		<form action="getCharityDetails" method="post">
+			<div class="col12 breaker center-a">
+				<!-- change below to a drop down of all charities -->
+				Charity <input name="Charity">		
+			</div>
+			<div class="col12 center-a">
+				Address line 1 : <!-- insert (Address Line 1 value) passed to html page here -->
+			</div>
+			<div class="col12 center-a">
+				Address line 2 : <!-- insert (Address Line 2 value) passed to html page here -->
+			</div>
+			<div class="col12 center-a">
+				City : <!-- insert (City value) passed to html page here -->
+			</div>
+			<div class="col12 center-a">
+				Postcode : <!-- insert (Postcode value) passed to html page here -->
+			</div>
+			<div class="col12 center-a">
+				Country : <!-- insert (Country  value) passed to html page here -->
+			</div>
+			<div class="col12 center-a">
+				Telephone : <!-- insert (Telephone  value) passed to html page here -->
+			</div>
+		</form>
+	
+	
+	
+	</div>
+	
+	<footer class="row main-footer">
+		<div class="col12">
+			<a href=""> Return Home</a>
+		</div>
+	</footer>
+</body>
+</html>
