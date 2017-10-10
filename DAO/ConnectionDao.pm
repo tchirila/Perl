@@ -10,8 +10,7 @@ my @EXPORT_OK = qw(getDbConnection closeDbConnection);
 $|=1;
 
 
-#our $DB_CREDENTIALS_FILE = 'C:\j2ee_vaadin_test_workspace\PerlFDM\pensionScheme\dataFiles\dbcreds.txt'; # TODO need to find from relative path
-our $DB_CREDENTIALS_FILE = '/Users/alfredbwomezi/Desktop/dbcreds.txt';
+our $DB_CREDENTIALS_FILE = 'C:\j2ee_vaadin_test_workspace\PerlFDM\pensionScheme\dataFiles\dbcreds.txt'; # TODO need to find from relative path
 our $CORRUPT_DB_PROP_FILE_MSG = "Database file $DB_CREDENTIALS_FILE";
 
 # create and return a new databae conenction
@@ -112,7 +111,3 @@ sub closeDbConnection()
 		die "\nCannot close an undefined database conenction\n";
 	}
 }
-
-
-
-##--------------------------------------------------------------

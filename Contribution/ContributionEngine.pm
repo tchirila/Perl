@@ -23,9 +23,11 @@ sub updateContributions()
 	my $endOfMonthCount = generateEndOfMonthContributions();
 	my $anniversCount = generateAnnualAnniversaryContributions();
 	
-	# add $endOfMonthCount + $anniversCount and create process history record in db 
+	# add $endOfMonthCount + $anniversCount and create process history record in db
+	# DAO::ConnectionDao.getAllProcessHistory() - the first record will be contain the last run date
 }
   
+
 
 
 # sub-routine for calculating annual employee anniversary contributions
