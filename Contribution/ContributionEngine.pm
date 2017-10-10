@@ -52,7 +52,7 @@ sub generateAnnualAnniversaryContributions()
 		my $emplSalary = $employee->{"salary"};  
 		my $emplerContr = $employee->{"rCont"}; 
 		my $empleeContr = $employee->{"eCont"};
-		my $emplAnnualEmployeeContr = $employee->{"eCont"};   # TODO !!!!!  need to get this from a new field in DB table!!!   annualContr 
+		my $emplAnnualEmployeeContr = $employee->{"annual_contr"};  
 		
 		# find the start date for this employee
 		my $emplStartDate = $employee->{"start_date"};
