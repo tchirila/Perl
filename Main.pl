@@ -7,6 +7,7 @@ require Data::Employee;
 require DAO::EmployeeDao;
 require DAO::CharityDao;
 require DAO::ConnectionDao;
+require DAO::ContributionDao;
 
 #use Dao::EmployeesDao qw(readEmployees writeEmployees);
 
@@ -35,16 +36,18 @@ sub charity	{
 		print Dumper($charitiesHash{$charity});
 	#	print Dumper(DAO::CharityDao::hashGetCharity(\%charitiesHash,$charity));
 	}
+}
 
-
-
-
+sub contribution{
+	my $response = Utilities::Time::getCurrentDate();
+	print $response;
 }
 
 ##-----------------------------------------------------------------
 
 #main();
 #charity();
+#contribution();
 
 
 
