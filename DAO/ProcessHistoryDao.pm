@@ -14,7 +14,7 @@ sub getAProcessHistory() {
 
 	my $connection = DAO::ConnectionDao::getDbConnection();
 
-	my $sql = 'select id, process_date, user_started, successful, num_contributions_added, type from processhistory where processhistory_num = ? ';
+	my $sql = 'select id, process_date, user_started, successful, num_contr_added, type from process_history where id = ? ';
 	my $stmtGetAProcess = $connection->prepare($sql);
 	unless ( defined($stmtGetAProcess) ) {
 		die("Could not prepare statement for export from db\n");
@@ -28,7 +28,7 @@ sub getAProcessHistory() {
 sub getAllProcessHistory() {
 	my $connection = DAO::ConnectionDao::getDbConnection();
 
-	my $sql = 'select id, process_date, user_started, successful, num_contributions_added, type from processhistory order by process_date desc ';
+	my $sql = 'select id, process_date, user_started, successful, num_contr_added, type from process_history order by process_date desc ';
 	my $stmtGetAllProcess = $connection->prepare($sql);
 	unless ( defined($stmtGetAllProcess) ) {
 		die("Could not prepare statement for export from db\n");
@@ -44,22 +44,22 @@ sub removeProcess()
 	my $processNum =  shift;   
 
 	my $connection = DAO::ConnectionDao::getDbConnection();
-	$connection->do("delete from processhistory where process_id = '$processNum'");
+	$connection->do("delete from process_history where process_id = '$processNum'");
 	DAO::ConnectionDao::closeDbConnection($connection);
 }
 
 sub addProcess()
 {
 	my $connection = DAO::ConnectionDao::getDbConnection();
-	my $stmtAddProcess = $connection->prepare('insert into processhistory (process_date, user_started, successful, num_contributions_added, type) values (?, ?, ?, ?, ?)');
+	my $stmtAddProcess = $connection->prepare('insert into process_history (process_date, user_started, successful, num_contr_added, type) values (?, ?, ?, ?, ?)');
 	
 	unless($stmtAddProcess)   
 	{
 		die ("Error preparing process insert SQL\n");	
 	}
    
-	my ($process_date, $user_started, $successful, $num_contributions_added, $type) = @_; 
-	unless($stmtAddProcess->execute($process_date, $user_started, $successful, $num_contributions_added, $type))
+	my ($process_date, $user_started, $successful, $num_contr_added, $type) = @_; 
+	unless($stmtAddProcess->execute($process_date, $user_started, $successful, $num_contr_added, $type))
 	{
 		print "Error executing SQL\n";
 		return 0;
