@@ -22,17 +22,17 @@ sub getAllContributionsForEmployeeId{
 		die "Error executing get all contributions for employee id SQL query\n";
 	}
 	
-	my @contributions = readContributions($preparedQuery);
+	my %contribution = readContributions($preparedQuery);
 	$preparedQuery->finish();
-	return @contributions;
+	return %contribution;
 }
 
 sub readContributions{
 	my $preparedQuery = shift;
 	my @contributions;
+	my %hash;
 	
-	while(my $record = $preparedQuery->fetchrow_hashref()){
-		my %hash;
+	while(my $record = $preparedQuery->fetchrow_hashref()){		
 		
 		my $id = $record->{"id"};
 		my $type = $record->{"type"};
@@ -46,10 +46,9 @@ sub readContributions{
 		
 		my $contribution = new Data::Contribution($id, $type, $contr_pc, $contr_amount, $salary, $processed_date, $effective_date, $employees_id, $charity_id);
 		hashAddContribution(\%hash, $contribution);
-		push @contributions,\%hash;
 	}
 	
-	return @contributions;
+	return %hash;
 }
 
 sub addContribution{
