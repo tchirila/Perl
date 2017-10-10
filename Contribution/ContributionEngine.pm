@@ -10,15 +10,18 @@ require DAO::EmployeeDao;
 require DAO::ConnectionDao;
 require DAO::ContributionDao;
 require Utilities::Time;
+require Date::Calc;
+use DateTime::Format::Strptime;
+use DateTime::Format::MySQL
 
-my @EXPORT_OK = qw(updateContributions);
+
+my @EXPORT_OK = qw(updateContributions); 
 
 $|=1;
 
 our $MONTHLY_EMPLOYEE_CONTIBUTIONS = "E";
 our $MONTHLY_EMPLOYER_CONTIBUTIONS = "C";
 our $ANNUAL_EMPLOYER_CONTIBUTIONS = "A";
-
 
 
 # Single point of access for this class to update the system for
@@ -52,7 +55,7 @@ sub generateAnnualAnniversaryContributions()
 		my $emplSalary = $employee->{"salary"};  
 		my $emplerContr = $employee->{"rCont"}; 
 		my $empleeContr = $employee->{"eCont"};
-		my $emplAnnualEmployeeContr = $employee->{"eCont"};   # TODO !!!!!  need to get this from a new field in DB table!!!   annualContr 
+		my $emplAnnualEmployeeContr = $employee->{"annual_contr"};  
 		
 		# find the start date for this employee
 		my $emplStartDate = $employee->{"start_date"};
@@ -126,13 +129,67 @@ sub updateSystemProcessRecords( )
 
 
 
+#############################################################
+
+#require Utilities::Time;
+#require DateTime::Duration;
+#use DateTime qw( );
+
+	# get the last day of each month
+#	my $pYr = 2017;
+#	my $dt1 = DateTime->new( year => $pYr, month => 8, day => 31 );
+#	$dt1->add( months => 1, end_of_month => 'limit' );
+#	print "\n\nPrint " . $dt1;
+	
+	# add a year	
+#	my $pYr = 2016;
+#	my $dt1 = DateTime->new( year => $pYr, month => 2, day => 29 );
+#	$dt1 = $dt1->add( years => 1, end_of_month => 'limit' );
+#	print "\n\nPrint " . $dt1 . "\n";
+#	
+#	my $pYr2 = 2015;
+#	my $dt2 = DateTime->new( year => $pYr2, month => 3, day => 29 );
+#	$dt2 = $dt2->add( years => 1, end_of_month => 'limit' );
+#	print "\n\nPrint 2 " . $dt2 . "\n";
+
+
+	# compare dates
+#	my $cmp = DateTime->compare( $dt1, $dt2 );
+#	print "\n\nXXX $cmp \n";
+
+ 
+ # WRITE FROM DATETIME TO DB FORMAT
+#my $dt1   = DateTime->now;  
+#my $date = $dt1->ymd;   
+#my $time = $dt1->hms;   
+#my $wanted = "$date $time";  
+#print "\n WANTED " . $wanted .  "\n";
+#my $test = $dt1->month;   # 
+#print "\n$test\n";
+
+# WRITE FROM DB FORMAT TO DATETIME 
+#	my $dt = DateTime::Format::MySQL->parse_datetime('2017-03-16 23:12:01');
+#	my $test = $dt->year;   # year month day hour minute second ymd hms
+#	my $test2 = $dt->month;
+#	
+#	print "\nYEAR = $test\n";
+#	print "\nMonth = $test2  \n";
+# There's also a parse_date() and a parse_timestamp() method.
+
+############################################################	
+
+
+
+
+
 
 # Get any anniversary dates for which there is no contribution record. 
 # Return the list in ascending order
 #@param - $lastContrDate
-#@param type - contributions type (see definitions at top)
 sub getMissingAnnualContrDatesForEmployee()
 {
+	my $lastContrDate = shift;
+	
 		
 	
 	# return dates in ascending order
@@ -168,9 +225,6 @@ sub getLastDateContribution()
 	# loop through all contributions, and for each type, get the most recent date	
     my %typeToMostRecentEffDate;     # type v date
 
-		
-	
-	
 	
 	# TODO get this data from a new DAO::ContributionDao method and set the array of contribution hashes for all employees once  
 			# do up top and pass in
@@ -184,7 +238,7 @@ sub getLastDateContribution()
 	
 	
 	return 0;
-}  
+}   
 
 
 1;

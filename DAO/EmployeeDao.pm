@@ -99,7 +99,7 @@ sub addEmployee()
 {
 	# prepare db connection
 	my $connection = DAO::ConnectionDao::getDbConnection();
-	my $stmtEmplIns = $connection->prepare('insert into employees (name, empl_num, dob, salary, employee_contr, employer_contr, role, pass, charity_id, start_date) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'); 
+	my $stmtEmplIns = $connection->prepare('insert into employees (name, empl_num, dob, salary, employee_contr, employer_contr, role, pass, charity_id, start_date, annual_contr) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'); 
 	unless($stmtEmplIns)
 	{
 		print "Error preparing employee insert SQL\n";
@@ -117,7 +117,9 @@ sub addEmployee()
 	my $pass = $empl->{"pass"};
 	my $charityId = $empl->{"charity_id"};
 	my $startDate = $empl->{"start_date"};
-	unless($stmtEmplIns->execute($name, $number, $dob, $salary, $emprC, $empeC, $role, $pass, $charityId, $startDate))   
+	my $annualC = $empl->{"annual_contr"};
+
+	unless($stmtEmplIns->execute($name, $number, $dob, $salary, $emprC, $empeC, $role, $pass, $charityId, $startDate, $annualC))   
 	{
 		print "Error executing SQL\n";
 		return 0;
@@ -164,8 +166,8 @@ sub readEmployees
 		# create and return a hash of Employee
 		my $employee = new Data::Employee($row->{"id"}, $row->{"name"}, $row->{"empl_num"}, $row->{"dob"}, $row->{"salary"}, 
 		                                  $row->{"employee_contr"}, $row->{"employer_contr"}, $row->{"role"}, $row->{"pass"},
-		                                  $row->{"charity_id"}, $row->{"start_date"});
-		hashAddEmployee(\%hash, $employee);
+		                                  $row->{"charity_id"}, $row->{"start_date"}, $row->{"annual_contr"});
+		hashAddEmployee(\%hash, $employee);  
 	}
 
 	return %hash;
@@ -181,7 +183,7 @@ sub getEmployee()
 
 	# prepare db connection 
 	my $connection = DAO::ConnectionDao::getDbConnection();
-	my $sql = 'select id, name, empl_num, dob, salary, employee_contr, employer_contr, role, pass, charity_id, start_date from employees where empl_num = ? ';
+	my $sql = 'select id, name, empl_num, dob, salary, employee_contr, employer_contr, role, pass, charity_id, start_date, annual_contr from employees where empl_num = ? ';
 	           
 	my $stmtGetEmpl = $connection->prepare($sql);
 	unless(defined($stmtGetEmpl))
@@ -208,7 +210,7 @@ sub getAllEmployees()
 { 
 	# prepare db connection 
 	my $connection = DAO::ConnectionDao::getDbConnection();
-	my $sql = 'select id, name, empl_num, dob, salary, employee_contr, employer_contr, role, pass, charity_id, start_date from employees ';
+	my $sql = 'select id, name, empl_num, dob, salary, employee_contr, employer_contr, role, pass, charity_id, start_date, annual_contr from employees ';
 	my $stmtGetEmpl = $connection->prepare($sql);
 	
 	unless(defined($stmtGetEmpl))
