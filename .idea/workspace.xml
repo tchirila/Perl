@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b59b0d74-379b-4ae3-9e16-7927d4d67df5" name="Default" comment="Refactored charityDao.pm">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/UnitTests/cases.t" />
+    <list default="true" id="b59b0d74-379b-4ae3-9e16-7927d4d67df5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -717,7 +716,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507658053247</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added Unit Test cases.">
+      <created>1507677179894</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1507677179894</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView" selected-index="1">
@@ -730,7 +736,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1493" y="-144" width="1847" height="1044" extended-state="0" />
+    <frame x="1493" y="-144" width="1847" height="1044" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -783,7 +789,8 @@
     <MESSAGE value="Resolving Conflicts:&#10;#&#9;Data/Employee.pm" />
     <MESSAGE value="Resolve conflict in Employee.pm" />
     <MESSAGE value="Refactored charityDao.pm" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored charityDao.pm" />
+    <MESSAGE value="Added Unit Test cases." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Unit Test cases." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
