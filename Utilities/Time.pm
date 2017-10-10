@@ -1,7 +1,6 @@
 package Utilities::Time;
 use strict;
 use warnings;
-use DateTime;
 
 
 sub getCurrentTimestamp{
@@ -50,13 +49,10 @@ sub setDay{
 
 sub getCurrentDate{
 	my $timestamp = getCurrentTimestamp();
-	my @values = (split " ", $timestamp);
-	my $dateString = $values[0];
-	my ($year, $month, $day) = (split "-", $dateString);
-	my $dateTime = DateTime->now();
-	my $date = $dateTime->ymd();
-	
-	return $date;
+	my @date = (split " ", $timestamp);
+	my $dateString = $date[0];
+
+	return @date;
 }
 
 sub getCurrentTimestampTime{
