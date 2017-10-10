@@ -57,7 +57,6 @@ CREATE TABLE IF NOT EXISTS `pensions`.`process_history` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `pensions`.`contributions`employees
 -- -----------------------------------------------------
