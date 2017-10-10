@@ -9,7 +9,7 @@ require Utilities::Time;
 
 sub getAllContributionsForEmployeeId{
 	my $employeeId = shift;
-	
+
 	my $connection = DAO::ConnectionDao::getDbConnection();
 	my $query = "select * from contributions where employees_id = $employeeId";
 	my $preparedQuery = $connection->prepare($query);
