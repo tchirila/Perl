@@ -1,6 +1,5 @@
 use strict;
 use warnings;
-
 use Test::More qw(no_plan);
 
 BEGIN	{
@@ -36,7 +35,7 @@ BEGIN	{
     use_ok('Data::Charity');
     can_ok('Data::Charity',('new','getId', 'setId','getName','setName', 'getAddressLine1','setAddressLine1',
             'getAddressLine2','setAddressLine2','getCity','setCity','getPostCode','setPostCode','getCountry',
-            'setCountry','getTel', 'setTel', 'getApprovalStatus', 'setApprovalStatus','getDiscardStatus','setDiscardStatus',));
+            'setCountry','getTel','setTel','getApprovalStatus','setApprovalStatus','getDiscardStatus','setDiscardStatus',));
 
     use_ok('Data::Contribution');
     can_ok('Data::Contribution', ('new','setType','setContPc','setContAmount','setSalary','setProcessDate',
@@ -45,8 +44,9 @@ BEGIN	{
 
     use_ok('Data::Employee');
     can_ok('Data::Employee',('new','getName','setName','getNumber','setNumber','getDOB','setDOB','getSalary',
-            'setSalary','getEmployerContribution','setEmployerContribution','getEmployeeContribution',
-            'setEmployeeContribution','getEmployeeRole','setEmployeeRole','getEmployeePassword','setEmployeePassword',));
+        'setSalary','getEmployerContribution','setEmployerContribution','getEmployeeContribution',
+        'setEmployeeContribution','getEmployeeRole','setEmployeeRole','getEmployeePassword','setEmployeePassword',
+        'getCharityId','setCharityId','getStartDate','setStartDate'));
 
     use_ok('Data::ProcessHistory');
     can_ok('Data::ProcessHistory',('new','print_details','setProcessDate','getProcessDate','setUserStarted',
@@ -56,7 +56,7 @@ BEGIN	{
     #TODO: To be fixed. Failing test.
     use_ok('Contribution::ContributionEngine');
     can_ok('Contribution::ContributionEngine',('generateAnnualAnniversaryContributions','updateSystemProcessRecords',
-            'getMissingAnnualContrDatesForEmployee','getMissingMnthContrDates',));
+            'getMissingAnnualContrDatesForEmployee','getMissingMnthContrDates','getAnnualContribution','setAnnualContribution'));
 
     ## ----------------------- Utilities modules -----------------------
     #TODO: To be fixed. Failing test.
@@ -64,6 +64,9 @@ BEGIN	{
     #TODO: To be fixed. Failing test.
     can_ok('Utilities::Time' ,('getCurrentTimestamp','setMonth','setDay','getCurrentDate','getCurrentTimestampTime',));
 
+    my $charity = Data::Charity->new('1122564','Gobaith i Ethiopia','8 Penymaes Avenue','Wrexham','Wrexham','LL12 7AP','Wales','01978 351964','1','0');
+    isa_ok( $charity,'Data::Charity', 'Check_Charity' );
+    ok( defined $charity && $charity->isa('Data::Charity'), 'Check_Charity');
 
-	
+
 }

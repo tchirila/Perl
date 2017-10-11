@@ -43,9 +43,10 @@ sub contribution{
 	print $response;
 }
 
+
 ##-----------------------------------------------------------------
 
-#main();
+main();
 #charity();
 #contribution();
 

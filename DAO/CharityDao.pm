@@ -122,7 +122,7 @@ sub addCharity   {
     print "Charity name ".$charity->{"name"}." added successfully....\n";
 
     $stmt->finish();
-    DAO::ConnectionDao::closeDbConnection($connection);
+#    DAO::ConnectionDao::closeDbConnection($connection);
     return 1;
 }
 
@@ -136,7 +136,7 @@ sub removeCharity    {
     my $connection = DAO::ConnectionDao::getDbConnection();
     my $error;
     $connection->do("DELETE FROM employees WHERE id = '$charityId'") or $error = "Failed to delete";
-    DAO::ConnectionDao::closeDbConnection($connection);
+#    DAO::ConnectionDao::closeDbConnection($connection);
 
     if(defined($error))
     {

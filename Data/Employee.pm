@@ -4,7 +4,9 @@ use warnings;
 use Data::Dumper;
 
 @EXPORT_OK = qw(getName setName getNumber setNumber getDOB setDOB getSalary setSalary getEmployerContribution
-					setEmployerContribution getEmployeeContribution setEmployeeContribution);
+	setEmployerContribution getEmployeeContribution setEmployeeContribution getEmployeeRole setEmployeeRole
+	getEmployeePassword setEmployeePassword getCharityId setCharityId getStartDate setStartDate getAnnualContribution
+	getAnnualContribution getId setId);
 
 $|=1;
 
@@ -142,6 +144,62 @@ sub setEmployeePassword	{
 	my $emp = shift;
 	my $newPass = shift;
 	$emp->{"pass"} = $newPass;
+}
+
+
+#Param1: Employee object
+sub getCharityId	{
+	return shift->{"charity_id"};
+}
+
+#Param1: Employee object
+#Param2: Charity ID
+sub setCharityId	{
+	my $emp = shift;
+	my $id = shift;
+	$emp->{"charity_id"} = $id;
+}
+
+
+#Param1: Employee object
+sub getStartDate	{
+	return shift->{"start_date"};
+}
+
+#Param1: Employee object
+#Param2: New password
+sub setStartDate	{
+	my $emp = shift;
+	my $date = shift;
+	$emp->{"start_date"} = $date;
+}
+
+
+#Param1: Employee object
+sub getAnnualContribution	{
+	return shift->{"annual_contr"};
+}
+
+#Param1: Employee object
+#Param2: Annual contribution
+sub setAnnualContribution	{
+	my $emp = shift;
+	my $contr = shift;
+	$emp->{"annual_contr"} = $contr;
+}
+
+
+#Param1: Employee object
+sub getId	{
+	return shift->{"id"};
+}
+
+#Param1: Employee object
+#Param2: New ID
+sub setId	{
+	my $emp = shift;
+	my $id = shift;
+	$emp->{"id"} = $id;
 }
 
 
