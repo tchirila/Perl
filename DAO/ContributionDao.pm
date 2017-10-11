@@ -51,6 +51,8 @@ sub readContributions{
 	return %hash;
 }
 
+
+
 sub addContribution{
 	my ($type, $contr_pc, $contr_amount, $salary, $effective_date, $employees_id, $charity_id) = @_;
 	
@@ -141,5 +143,55 @@ sub addContributionToCSV{
 	print OUTPUT $line;
 	close(OUTPUT);
 }
+
+
+
+############################################
+# start PB method added for use by ContributionEngine 
+
+# Reads in an array of contributions
+sub readContributionsArray{
+	my $preparedQuery = shift;
+	my @contributions;
+	while(my $record = $preparedQuery->fetchrow_hashref()){		
+		my $id = $record->{"id"};
+		my $type = $record->{"type"};
+		my $contr_pc = $record->{"contr_pc"};
+		my $contr_amount = $record->{"contr_amount"};
+		my $salary = $record->{"salary"};
+		my $processed_date = $record->{"processed_date"};
+		my $effective_date = $record->{"effective_date"};
+		my $employees_id = $record->{"employees_id"};
+		my $charity_id = $record->{"charity_id"};
+		my $contribution = new Data::Contribution($id, $type, $contr_pc, $contr_amount, $salary, $processed_date, $effective_date, $employees_id, $charity_id);
+		push @contributions, $contribution;
+	}
+	
+	return @contributions;
+}
+
+
+# Returns a list of all contributions ordered with the most recent first 
+sub getAllContributions {
+	my $connection = DAO::ConnectionDao::getDbConnection();
+	my $query = "select * from contributions order by effective_date desc "; 
+	my $preparedQuery = $connection->prepare($query);
+	
+	unless(defined($preparedQuery)){
+		die "Error preparing contribution SQL query\n";
+	}
+	
+	unless($preparedQuery->execute()){
+		die "Error executing get all contributions for employee id SQL query\n";
+	}
+	
+	my @contributions = readContributionsArray($preparedQuery); 
+	$preparedQuery->finish();
+	return @contributions;
+}
+# end 
+############################################
+
+
 
 1;
