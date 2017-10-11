@@ -2,8 +2,6 @@ use strict;
 use warnings;
 use LWP::Simple;
 use Data::Dumper;
-
-#use Switch;
 require Data::Employee;
 require DAO::EmployeeDao;
 require DAO::ConnectionDao;
@@ -129,19 +127,19 @@ sub test1()
 #	$dt1->add( months => 1, end_of_month => 'limit' );
 #	print "\n\nPrint " . $dt1;
 	
-	# add a year	
+#	# add a year	
 #	my $pYr = 2016;
 #	my $dt1 = DateTime->new( year => $pYr, month => 2, day => 29 );
 #	$dt1 = $dt1->add( years => 1, end_of_month => 'limit' );
 #	print "\n\nPrint " . $dt1 . "\n";
-#	
+##	
 #	my $pYr2 = 2015;
 #	my $dt2 = DateTime->new( year => $pYr2, month => 3, day => 29 );
 #	$dt2 = $dt2->add( years => 1, end_of_month => 'limit' );
 #	print "\n\nPrint 2 " . $dt2 . "\n";
-
-
-	# compare dates
+#
+#
+#	# compare dates
 #	my $cmp = DateTime->compare( $dt1, $dt2 );
 #	print "\n\nXXX $cmp \n";
 
@@ -168,7 +166,23 @@ sub test1()
 sub test2() 
 {
 		
-	
+		# add a year	
+	my $pYr = 2016;
+	my $dt1 = DateTime->new( year => $pYr, month => 2, day => 29 );
+	$dt1 = $dt1->add( years => 1, end_of_month => 'limit' );
+	print "\n\nPrint " . $dt1 . "\n";
+#	
+	my $pYr2 = 2015;
+	my $dt2 = DateTime->new( year => $pYr2, month => 3, day => 29 );
+	$dt2 = $dt2->add( years => 1, end_of_month => 'limit' );
+	print "\n\nPrint 2 " . $dt2 . "\n";
+
+
+	# compare dates
+	my $cmp = DateTime->compare( $dt1, $dt2 );
+	print "\n\nXXX $cmp \n";
+
+ 
 	 
 	
 	
