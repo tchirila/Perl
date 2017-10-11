@@ -11,8 +11,19 @@ require DAO::ConnectionDao;
 require DAO::ContributionDao;
 require Utilities::Time;
 require Date::Calc;
+require DateTime::Duration;
 use DateTime::Format::Strptime;
 use DateTime::Format::MySQL
+require DateTime::Duration;
+
+use DateTime qw( );
+
+
+
+
+
+
+
 
 
 my @EXPORT_OK = qw(updateContributions); 
@@ -129,70 +140,64 @@ sub updateSystemProcessRecords( )
 
 
 
-#############################################################
-
-#require Utilities::Time;
-#require DateTime::Duration;
-#use DateTime qw( );
-
-	# get the last day of each month
-#	my $pYr = 2017;
-#	my $dt1 = DateTime->new( year => $pYr, month => 8, day => 31 );
-#	$dt1->add( months => 1, end_of_month => 'limit' );
-#	print "\n\nPrint " . $dt1;
-	
-	# add a year	
-#	my $pYr = 2016;
-#	my $dt1 = DateTime->new( year => $pYr, month => 2, day => 29 );
-#	$dt1 = $dt1->add( years => 1, end_of_month => 'limit' );
-#	print "\n\nPrint " . $dt1 . "\n";
-#	
-#	my $pYr2 = 2015;
-#	my $dt2 = DateTime->new( year => $pYr2, month => 3, day => 29 );
-#	$dt2 = $dt2->add( years => 1, end_of_month => 'limit' );
-#	print "\n\nPrint 2 " . $dt2 . "\n";
-
-
-	# compare dates
-#	my $cmp = DateTime->compare( $dt1, $dt2 );
-#	print "\n\nXXX $cmp \n";
-
- 
- # WRITE FROM DATETIME TO DB FORMAT
-#my $dt1   = DateTime->now;  
-#my $date = $dt1->ymd;   
-#my $time = $dt1->hms;   
-#my $wanted = "$date $time";  
-#print "\n WANTED " . $wanted .  "\n";
-#my $test = $dt1->month;   # 
-#print "\n$test\n";
-
-# WRITE FROM DB FORMAT TO DATETIME 
-#	my $dt = DateTime::Format::MySQL->parse_datetime('2017-03-16 23:12:01');
-#	my $test = $dt->year;   # year month day hour minute second ymd hms
-#	my $test2 = $dt->month;
-#	
-#	print "\nYEAR = $test\n";
-#	print "\nMonth = $test2  \n";
-# There's also a parse_date() and a parse_timestamp() method.
-
-############################################################	
-
-
-
-
-
 
 # Get any anniversary dates for which there is no contribution record. 
-# Return the list in ascending order
+# Return the array in ascending order
 #@param - $lastContrDate
 sub getMissingAnnualContrDatesForEmployee()
 {
-	my $lastContrDate = shift;
+	my $lastContrDate = shift;   # ie start date   TODO check if undefined
 	
+	# define array of missing dates
+	my @datesNoAnnualContr;
+	
+	# get $lastContrDate in DateTime form
+	my $possContrDate = getDate($lastContrDate);
+	
+	# get now in Date time form
+	my $timeNow = DateTime->now;
 		
-	
-	# return dates in ascending order
+	# while date < now>  
+	my $cmp = DateTime->compare($possContrDate, $timeNow);
+	while ($cmp < 0)
+	{
+		# get datetime in string form and add to array
+		my $possDateStr = getDateStr($possContrDate);
+	    push @datesNoAnnualContr, $possDateStr;
+		
+	    # increment possContrDate by 1 year
+		my $year = $possContrDate->year;
+		my $month = $possContrDate->month;
+		my $day = $possContrDate->day;
+		$possContrDate = DateTime->new( year => $year, month => $month, day => $day);	
+		
+		# determine if vaue of possContrDate is now in the past
+		$cmp = DateTime->compare($possContrDate, $timeNow);	
+	}
+	   
+	return @datesNoAnnualContr;    	
+}
+
+
+
+#@Param - date in SQL form 
+#@Returns - date in DateTime form
+sub getDate()
+{
+	my $dateStr = shift;
+	my $dt = DateTime::Format::MySQL->parse_datetime($dateStr);   # '2017-03-16 23:12:01'
+	return $dt;
+}
+
+
+#@Param - date in DateTime form
+#@Returns - date in SQL form 
+sub getDateStr()
+{
+	my $date = shift;
+	my $dateStr = $date->ymd;   
+	my $timeStr = $date->hms;   
+	return $dateStr . " " . $timeStr; 
 }
 
 
