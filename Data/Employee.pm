@@ -22,6 +22,7 @@ sub new {
 		"pass" => shift,
  		"charity_id" => shift,
   		"start_date" => shift,
+  		"annual_contr" => shift,
 	};
 
 	bless($employee, $class);

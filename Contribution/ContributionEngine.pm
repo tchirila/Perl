@@ -10,15 +10,29 @@ require DAO::EmployeeDao;
 require DAO::ConnectionDao;
 require DAO::ContributionDao;
 require Utilities::Time;
+require Date::Calc;
+require DateTime::Duration;
+use DateTime::Format::Strptime;
+use DateTime::Format::MySQL
+require DateTime::Duration;
 
-my @EXPORT_OK = qw(updateContributions);
+use DateTime qw( );
+
+
+
+
+
+
+
+
+
+my @EXPORT_OK = qw(updateContributions); 
 
 $|=1;
 
 our $MONTHLY_EMPLOYEE_CONTIBUTIONS = "E";
 our $MONTHLY_EMPLOYER_CONTIBUTIONS = "C";
 our $ANNUAL_EMPLOYER_CONTIBUTIONS = "A";
-
 
 
 # Single point of access for this class to update the system for
@@ -52,7 +66,7 @@ sub generateAnnualAnniversaryContributions()
 		my $emplSalary = $employee->{"salary"};  
 		my $emplerContr = $employee->{"rCont"}; 
 		my $empleeContr = $employee->{"eCont"};
-		my $emplAnnualEmployeeContr = $employee->{"eCont"};   # TODO !!!!!  need to get this from a new field in DB table!!!   annualContr 
+		my $emplAnnualEmployeeContr = $employee->{"annual_contr"};  
 		
 		# find the start date for this employee
 		my $emplStartDate = $employee->{"start_date"};
@@ -128,14 +142,62 @@ sub updateSystemProcessRecords( )
 
 
 # Get any anniversary dates for which there is no contribution record. 
-# Return the list in ascending order
+# Return the array in ascending order
 #@param - $lastContrDate
-#@param type - contributions type (see definitions at top)
 sub getMissingAnnualContrDatesForEmployee()
 {
-		
+	my $lastContrDate = shift;   # ie start date   TODO check if undefined
 	
-	# return dates in ascending order
+	# define array of missing dates
+	my @datesNoAnnualContr;
+	
+	# get $lastContrDate in DateTime form
+	my $possContrDate = getDate($lastContrDate);
+	
+	# get now in Date time form
+	my $timeNow = DateTime->now;
+		
+	# while date < now>  
+	my $cmp = DateTime->compare($possContrDate, $timeNow);
+	while ($cmp < 0)
+	{
+		# get datetime in string form and add to array
+		my $possDateStr = getDateStr($possContrDate);
+	    push @datesNoAnnualContr, $possDateStr;
+		
+	    # increment possContrDate by 1 year
+		my $year = $possContrDate->year;
+		my $month = $possContrDate->month;
+		my $day = $possContrDate->day;
+		$possContrDate = DateTime->new( year => $year, month => $month, day => $day);	
+		
+		# determine if vaue of possContrDate is now in the past
+		$cmp = DateTime->compare($possContrDate, $timeNow);	
+	}
+	   
+	return @datesNoAnnualContr;    	
+}
+
+
+
+#@Param - date in SQL form 
+#@Returns - date in DateTime form
+sub getDate()
+{
+	my $dateStr = shift;
+	my $dt = DateTime::Format::MySQL->parse_datetime($dateStr);   # '2017-03-16 23:12:01'
+	return $dt;
+}
+
+
+#@Param - date in DateTime form
+#@Returns - date in SQL form 
+sub getDateStr()
+{
+	my $date = shift;
+	my $dateStr = $date->ymd;   
+	my $timeStr = $date->hms;   
+	return $dateStr . " " . $timeStr; 
 }
 
 
@@ -168,9 +230,6 @@ sub getLastDateContribution()
 	# loop through all contributions, and for each type, get the most recent date	
     my %typeToMostRecentEffDate;     # type v date
 
-		
-	
-	
 	
 	# TODO get this data from a new DAO::ContributionDao method and set the array of contribution hashes for all employees once  
 			# do up top and pass in
@@ -184,7 +243,7 @@ sub getLastDateContribution()
 	
 	
 	return 0;
-}  
+}   
 
 
 1;
