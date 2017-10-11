@@ -9,9 +9,9 @@ require Utilities::Time;
 
 sub getAllContributionsForEmployeeId{
 	my $employeeId = shift;
-
+	
 	my $connection = DAO::ConnectionDao::getDbConnection();
-	my $query = "select * from contributions where employees_id = $employeeId"; 
+	my $query = "select * from contributions where employees_id = $employeeId";
 	my $preparedQuery = $connection->prepare($query);
 	
 	unless(defined($preparedQuery)){
@@ -22,33 +22,32 @@ sub getAllContributionsForEmployeeId{
 		die "Error executing get all contributions for employee id SQL query\n";
 	}
 	
-	my %contribution = readContributions($preparedQuery);
+	my @contributions = readContributions($preparedQuery);
 	$preparedQuery->finish();
-	return %contribution;
+	return @contributions;
 }
 
 sub readContributions{
 	my $preparedQuery = shift;
 	my @contributions;
-	my %hash;
 	
-	while(my $record = $preparedQuery->fetchrow_hashref()){		
+	while(my $record = $preparedQuery->fetchrow_hashref()){				
+		my %hash = (
+		"id" => $record->{"id"},
+		"type" => $record->{"type"},
+		"contr_pc" => $record->{"contr_pc"},
+		"contr_amount" => $record->{"contr_amount"},
+		"salary" => $record->{"salary"},
+		"processed_date" => $record->{"processed_date"},
+		"effective_date" => $record->{"effective_date"},
+		"employees_id" => $record->{"employees_id"},
+		"charity_id" => $record->{"charity_id"},
+		);
 		
-		my $id = $record->{"id"};
-		my $type = $record->{"type"};
-		my $contr_pc = $record->{"contr_pc"};
-		my $contr_amount = $record->{"contr_amount"};
-		my $salary = $record->{"salary"};
-		my $processed_date = $record->{"processed_date"};
-		my $effective_date = $record->{"effective_date"};
-		my $employees_id = $record->{"employees_id"};
-		my $charity_id = $record->{"charity_id"};
-		
-		my $contribution = new Data::Contribution($id, $type, $contr_pc, $contr_amount, $salary, $processed_date, $effective_date, $employees_id, $charity_id);
-		hashAddContribution(\%hash, $contribution);
+		push \@contributions, %hash;
 	}
 	
-	return %hash;
+	return @contributions;
 }
 
 sub addContribution{
@@ -113,12 +112,6 @@ sub getAllContributionsForEmployeeIdFromCSV{
 	
 	close INPUT;
 	return @contributions;
-}
-
-sub hashAddContribution{
-	my ($contributions, $contribution) = @_;
-	my $id = Data::Contribution::getId($contribution);
-	$contributions->{$id} = $contribution;
 }
 
 sub addContributionToCSV{
