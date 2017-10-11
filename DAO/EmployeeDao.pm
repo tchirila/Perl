@@ -211,8 +211,6 @@ sub getAllEmployees()
 	my $sql = 'select id, name, empl_num, dob, salary, employee_contr, employer_contr, role, pass, charity_id, start_date from employees ';
 	my $stmtGetEmpl = $connection->prepare($sql);
 	
-	print "\nwhere are I?\n";
-	
 	unless(defined($stmtGetEmpl))
 	{
 		print "Could not prepare statement for export from db\n";
