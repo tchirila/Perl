@@ -7,6 +7,8 @@ use Exporter qw(import);
 require Data::ProcessHistory;
 require DAO::ConnectionDao;
 
+my @EXPORT_OK = qw(getAProcessHistory getAllProcessHistory removeProcess addProcess);
+
 $| = 1;                  
 
 sub getAProcessHistory() {
@@ -23,6 +25,7 @@ sub getAProcessHistory() {
 	unless ( $stmtGetAProcess->execute($processHistoryID) ) {
 		die "Could not retrieve process $processHistoryID from db\n";
 	}
+	#DAO::ConnectionDao::closeDbConnection($connection);
 }
 
 sub getAllProcessHistory() {
@@ -37,6 +40,7 @@ sub getAllProcessHistory() {
 	unless ( $stmtGetAllProcess->execute() ) {
 		die "Could not retrieve processhistory from db\n";
 	}
+	#DAO::ConnectionDao::closeDbConnection($connection);
 }
 
 sub removeProcess()
@@ -44,8 +48,9 @@ sub removeProcess()
 	my $processNum =  shift;   
 
 	my $connection = DAO::ConnectionDao::getDbConnection();
+	my $error;
 	$connection->do("delete from process_history where process_id = '$processNum'");
-	DAO::ConnectionDao::closeDbConnection($connection);
+	#DAO::ConnectionDao::closeDbConnection($connection);
 }
 
 sub addProcess()
@@ -55,10 +60,17 @@ sub addProcess()
 	
 	unless($stmtAddProcess)   
 	{
-		die ("Error preparing process insert SQL\n");	
+		die ("Error preparing process insert SQL\n");
+		return 0;	
 	}
-   
-	my ($process_date, $user_started, $successful, $num_contr_added, $type) = @_; 
+	
+	my $process = shift;
+	my $process_date = $process->{"process_date"};
+	my $user_started = $process->{"user_started"};
+	my $successful = $process->{"successful"};
+	my $num_contr_added = $process->{"num_contr_added"};
+	my $type = $process->{"type"};
+	
 	unless($stmtAddProcess->execute($process_date, $user_started, $successful, $num_contr_added, $type))
 	{
 		print "Error executing SQL\n";
@@ -68,6 +80,6 @@ sub addProcess()
 	print "Process added successfully....\n";
 		
 	$stmtAddProcess->finish();
-	DAO::ConnectionDao::closeDbConnection($connection);
+	#DAO::ConnectionDao::closeDbConnection($connection);
 	return 1;
 }
