@@ -91,15 +91,21 @@ sub test1()
 #    }
 
 
-#	my $employeeNum = 28;
-#	my %employeeHash = DAO::EmployeeDao::getEmployee($employeeNum);
-#	unless(%employeeHash)
-#	{
-#		print "\nno value  \n";
-#	}
-#	my $employee = $employeeHash{$employeeNum};
-#	my $emplName = $employee->{"name"};
-#	print "\nEmployee = $emplName \n";
+	my $employeeNum = 289;
+	my %employeeHash = DAO::EmployeeDao::getEmployee($employeeNum);
+	
+	unless(defined(\%employeeHash))
+	{
+		print "asd";
+	}
+	
+	unless(%employeeHash)
+	{
+		print "\nno value  \n";
+	}
+	my $employee = $employeeHash{$employeeNum};
+	my $emplName = $employee->{"name"};
+	print "\nEmployee = $emplName \n";
 	
 
 #	my %employeeHash = DAO::EmployeeDao::getAllEmployees();
@@ -198,20 +204,37 @@ sub test3()
 	 
 	
 	
-	my $emplId = "7";
-	my $badIndex = "8";
-	my %emplIdToLastContrDateTypeAnnual;
-	$emplIdToLastContrDateTypeAnnual{$emplId} = "Spme string";
-	my $result = $emplIdToLastContrDateTypeAnnual{$badIndex};
-	unless(defined($result))
-	{
-		print "\nValue is UNDEFINED\n";
-	}
-	else
-	{
-		print "\nResult is DEFINED = $result\n";	
-	}
-	
+#	my $emplId = "7";
+#	my $badIndex = "8";
+#	my %emplIdToLastContrDateTypeAnnual;
+#	$emplIdToLastContrDateTypeAnnual{$emplId} = "Spme string";
+#	my $result = $emplIdToLastContrDateTypeAnnual{$badIndex};
+#	unless(defined($result))
+#	{
+#		print "\nValue is UNDEFINED\n";
+#	}
+#	else
+#	{
+#		print "\nResult is DEFINED = $result\n";	
+#	}
+#	
+    
+#    # get the last day of next month
+#	my $pYr = 2017;
+#	my $dt1 = DateTime->new( year => $pYr, month => 8, day => 31 );
+#	$dt1->add( months => 1, end_of_month => 'limit' );
+#	print "\n\nPrint " . $dt1;
+    
+    
+    
+    
+    	# add a year	
+	my $pYr = 2016;
+	my $dt1 = DateTime->new( year => $pYr, month => 2, day => 29 );
+	$dt1 = $dt1->add( years => 1, end_of_month => 'limit' );
+	print "\n\nPrint " . $dt1 . "\n";
+    
+    
     
     print "\nCompleted\n";
 }

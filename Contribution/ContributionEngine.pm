@@ -74,51 +74,37 @@ sub generateAnnualAnniversaryContributions()
 		my $mostRecentMnthEmpleeContr =  $emplIdToLastContrDateTypeMnthEmplee{$emplId};
 		
 		# manage update of annual anniversary contributions
-		my @missingAnnualEffDates = getMissingAnnualContrDatesForEmployeeInAscOrder($mostRecentAnnualContr, $emplStartDate);
+		my @missingAnnualEffDates = getMissingContrDatesForEmployeeInAscOrder($mostRecentAnnualContr, $emplStartDate, 0);
+		my $annContr = ($emplAnnualEmployeeContr / 100) * $emplSalary; 
 		foreach my $effectiveDate(@missingAnnualEffDates)   
 		{
-			# create a new contribution record and persist it
-			my $annContr = ($emplAnnualEmployeeContr / 100) * $emplSalary;   ## SUBROUTINE  !!!!
-			my $annContrObj = new Data::Contribution(-1, $ANNUAL_EMPLOYER_CONTIBUTIONS, $emplAnnualEmployeeContr, $annContr, 
-			                              $emplSalary, $currSysTime, $effectiveDate, $emplId, $charityId);
-			addContribution($annContrObj);
+			DAO::ContributionDao::addContribution($ANNUAL_EMPLOYER_CONTIBUTIONS, $emplAnnualEmployeeContr, $annContr, $emplSalary, 
+										$effectiveDate, $emplId, $charityId);
 			$annualCount++;  
 		}		
 		
-		
-		# manage update of employee routines
-		$mostRecentMnthEmplrContr
-		
-		
-
-
-		my @missingMthEffDates = getMissingMnthContrDates($mostRecentMnthEmpleeContr);
-#		foreach my $effectiveDate(@missingMthEffDates)  
-#		{
-#			# create and persist new employee contribution record
-#			my $monthlyEmpleeContr = ($empleeContr / 100) * $emplSalary;    ## SUBROUTINE  !!!!
-#			my $monthlyEmpleeContrObj = new Data::Contribution(-1, $MONTHLY_EMPLOYEE_CONTIBUTIONS, $empleeContr, $monthlyEmpleeContr, 
-#			                              $emplSalary, $currSysTime, $effectiveDate, $emplId, $charityId);
-#			addContribution($monthlyEmpleeContrObj);
-#			$mnthEmpleeCount++; 			                              
-#			                              
-#			# create and persist new employer contribution record                              
-#			my $monthlyEmplerContr = ($emplerContr / 100) * $emplSalary;    ## SUBROUTINE  !!!!
-#			my $monthlyEmplerContrObj = new Data::Contribution(-1, $MONTHLY_EMPLOYER_CONTIBUTIONS, $emplerContr, $monthlyEmplerContr, 
-#			                              $emplSalary, $currSysTime, $effectiveDate, $emplId, $charityId);
-#			addContribution($monthlyEmplerContrObj);
-#			$mnthEmplerCount++; 
-#		}
+		# manage update of monthly contributions (both employee and employer)
+		# only applicable from the first full month in the company
+		my @missingMthEffDates = getMissingContrDatesForEmployeeInAscOrder($mostRecentMnthEmpleeContr, $emplStartDate, 1);
+		my $monthlyEmpleeContr = ($empleeContr / 100) * $emplSalary;
+		my $monthlyEmplerContr = ($emplerContr / 100) * $emplSalary;
+		foreach my $effectiveDate(@missingMthEffDates)  
+		{
+			# persist any new employee contributions
+			DAO::ContributionDao::addContribution($MONTHLY_EMPLOYEE_CONTIBUTIONS, $empleeContr, $monthlyEmpleeContr, $emplSalary, 
+										$effectiveDate, $emplId, $charityId);    
+			$mnthEmpleeCount++; 
+			
+			# persist any new employer contributions
+			DAO::ContributionDao::addContribution($MONTHLY_EMPLOYER_CONTIBUTIONS, $emplerContr, $monthlyEmplerContr, $emplSalary, 
+										$effectiveDate, $emplId, $charityId);
+			$mnthEmplerCount++;
+		}
 	}
 
 	# create a new process completed record:  with $count, and persist		
 	updateSystemProcessRecords($currSysTime, $currUserId, $annualCount, $mnthEmpleeCount, $mnthEmplerCount);
 }
-
-
-
-
-
 
 	
 
@@ -149,63 +135,70 @@ sub updateSystemProcessRecords( )
 
 
 
-
-# Get any anniversary dates for which there is no contribution record. 
+# Get any array any dates up to today for which there is currently no contribution record. 
 # Return the array in ascending order
-#@param - $mostRecentAnnualContr - the most recent annual contribution
+#@param - $mostRecentContr - the date of the most recent contribution (if one exists)
 #         note that this vaue may be undefined if it does not exist
-#@param - employee start date                     
-sub getMissingAnnualContrDatesForEmployeeInAscOrder()
+#@param - employee start date 
+#@param - an number to describe if deling with annual of monthly contributions (0 = annual, 1 == monthly)    
+sub getMissingContrDatesForEmployeeInAscOrder()
 {
-	my $mostRecentAnnualContr = shift;  
+	my $mostRecentContr = shift;  
 	my $empleeStartDate = shift;
-	unless(defined($mostRecentAnnualContr))
+	my $incrementType = shift;
+	unless(defined($mostRecentContr))
 	{
-		$mostRecentAnnualContr = $empleeStartDate;   # TODO does this need cloning?????
+		$mostRecentContr = $empleeStartDate;   # TODO does this need cloning?????   strings........
 	}
 	
 	# define array of missing dates
-	my @datesNoAnnualContr;
+	my @datesNoContr;
 	
 	# suggest the first possible date that may be due a contribution
-	my $baseContrDate = getDate($mostRecentAnnualContr);
-	my $possContrDate = incrementDateByYear();
+	my $baseContrDate = getDate($mostRecentContr);
+	my $possContrDate = incrementDate($incrementType, $baseContrDate);
 	
 	# get the time now in object form
 	my $timeNow = DateTime->now;
 		
-	# while date < now>  
+	# record any other missing contribution dates  
 	my $allContrDatesRead = DateTime->compare($possContrDate, $timeNow);
 	while ($allContrDatesRead <= 0)
 	{
 		# get datetime in string form and add to array
 		my $possDateStr = getDateStr($possContrDate);
-	    push @datesNoAnnualContr, $possDateStr;
+	    push @datesNoContr, $possDateStr;
 		
 	    # increment possContrDate by 1 year
-		$possContrDate = incrementDateByYear();
+		$possContrDate = incrementDate($incrementType, $possContrDate);
 		
 		# determine if value of possContrDate is now in the past
 		$allContrDatesRead = DateTime->compare($possContrDate, $timeNow);	
 	}
 	   
-	return @datesNoAnnualContr;    	
+	return @datesNoContr;    	
 }
 
 
 
-# Get any anniversary dates for which there is no contribution record. 
-# Return the list in ascending order
-#@param - $lastContrDate
-#@param - contributions type (see definitions at top)
-sub getMissingMnthContrDates()
+
+# Increments date according to whether this is montly or annual contributions 
+#@param - an number to describe if deling with annual of monthly contributions (0 = annual, 1 == monthly)
+#@param - the datetime field
+#@Return - the incremented date
+sub incrementDate()
 {
-	
-	
-}
-
-
-
+	my $incrementType = shift;
+	my $date = shift;
+	if ($incrementType eq 0) 
+	{
+		return incrementDateByYear($date);	
+	}
+	else 
+	{
+		return incrementDateToLastDayOfNextMonth($date);	
+	}
+}	
 
 
 
@@ -251,28 +244,37 @@ sub loadContributionHash()
 }
 
 
-
-# Persists a contribution object
-#@Param - Contribution object to be stored
-sub addContribution() 
+# Gets the date forward one calendar year - in the case of 29th Feb, the following 28th Feb is returned
+#@Param - the date to be incremented by 1 year
+#@Returns - the modified datetime object   
+sub incrementDateByYear()
 {
-	my $contrObj = shift;
-	if(defined($contrObj))
-	{
-		DAO::ContributionDao::addContribution($contrObj->{"type"}, $contrObj->{"cont_pc"}, $contrObj->{"cont_amount"}, $contrObj->{"salary"}, 
-				$contrObj->{"effective_date"}, $contrObj->{"employees_id"}, $contrObj->{"charity_id"});
-	}
+	my $date = shift;
+	return $date->add( years => 1, end_of_month => 'limit' );
 }
 
 
-sub incrementDateByYear()
+
+# Gets the last day of the following month
+#@Param - the date string to be incremented to the last day of following month
+#@Returns - the modified datetime object
+sub incrementDateToLastDayOfNextMonth()
 {
-	my $possContrDate = shift;
-	my $year = $possContrDate->year;
-	my $month = $possContrDate->month;
-	my $day = $possContrDate->day;
-	$possContrDate = DateTime->new( year => $year, month => $month, day => $day);
-	return $possContrDate;
+	my $date = shift;
+	return $date->add( months => 1, end_of_month => 'limit' );
+}
+
+
+
+# Converts a string date into a specific datetime object (with default time values)
+#@Param - the datetime object 
+sub createDateObject()
+{
+	my $date = shift;
+	my $year = $date->year;
+	my $month = $date->month;
+	my $day = $date->day;
+	return DateTime->new( year => $year, month => $month, day => $day);
 }
 
 
@@ -282,7 +284,7 @@ sub incrementDateByYear()
 sub getDate()
 {
 	my $dateStr = shift;
-	my $dt = DateTime::Format::MySQL->parse_datetime($dateStr);   # '2017-03-16 23:12:01'
+	my $dt = DateTime::Format::MySQL->parse_datetime($dateStr); 
 	return $dt;
 }
 
