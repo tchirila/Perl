@@ -2,6 +2,7 @@ package Data::ProcessHistory;
 use warnings;
 use Exporter qw(import);
 use Data::Dumper;
+require Utilities::Time;
 
 @EXPORT_OK =
   qw(getProcessDate setProcessDate setUserStarted getUserStarted getSuccessful setSuccessful getContributions setContributions getType
@@ -12,7 +13,7 @@ $| = 1;
 sub new {
 	my $class          = shift;
 	my $processHistory = {
-		"process_date"            => shift,
+		"process_date"            => Utilities::Time::getCurrentTimestamp(),
 		"user_started"            => shift,
 		"successful",             => shift,
 		"num_contributions_added" => shift,
