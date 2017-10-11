@@ -1,8 +1,8 @@
-id,name,address_line_1,address_line_2,city,postcode,country,telephone
-517724,Hospice of the Valleys (Hosbis y Cymoedd),Festival Drive,Ebbw Vale,Blaenau Gwent,NP23 8XF,Wales,01495 717277
-1001428,Hospice at Home Gwynedd and Anglesey,Eryri Hospital,Caernarfon,Gwynedd,LL55 2YE,Wales, 01286 662772
-1154109,Welsh Hearts,Castle Court,Cathedral Road,Cardiff,CF11 9LJ,Wales,02920 647735
-1022320,Mudiad Ysgolion Meithrin,Boulevard St.,Briuec,Aberystwyth,SY23 1PD,Wales,01970 639639
-1151463,Sunshine Friends,The Orchards,Ilex Road,CF14 5DZ,Cardiff,Wales,02920 761 213
-1048511,Capricorn Animal Rescue & Sanctuary,Camfra Rheinallt Farm,Padeswood Lake Road,Flintshire,CH7 4HZ,Wales,01244 547938
-1122564,Gobaith i Ethiopia,8 Penymaes Avenue,Wrexham,Wrexham,LL12 7AP,Wales,01978 351964
+id,name,address_line_1,address_line_2,city,postcode,country,telephone,approved,discarded
+517724,Hospice of the Valleys (Hosbis y Cymoedd),Festival Drive,Ebbw Vale,Blaenau Gwent,NP23 8XF,Wales,01495 717277,1,0
+1001428,Hospice at Home Gwynedd and Anglesey,Eryri Hospital,Caernarfon,Gwynedd,LL55 2YE,Wales, 01286 662772,1,1
+1154109,Welsh Hearts,Castle Court,Cathedral Road,Cardiff,CF11 9LJ,Wales,02920 647735,1,0
+1022320,Mudiad Ysgolion Meithrin,Boulevard St.,Briuec,Aberystwyth,SY23 1PD,Wales,01970 639639,1,0
+1151463,Sunshine Friends,The Orchards,Ilex Road,CF14 5DZ,Cardiff,Wales,02920 761 213,0,1
+1048511,Capricorn Animal Rescue & Sanctuary,Camfra Rheinallt Farm,Padeswood Lake Road,Flintshire,CH7 4HZ,Wales,01244 547938,1,0
+1122564,Gobaith i Ethiopia,8 Penymaes Avenue,Wrexham,Wrexham,LL12 7AP,Wales,01978 351964,1,0

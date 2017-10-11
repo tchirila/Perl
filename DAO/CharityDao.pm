@@ -89,5 +89,135 @@ sub hashRemoveCharity	{
 #    close(OUTPUT);
 #}
 
+##------------ db sub-routines -----------
+
+#TODO: Test func.
+#Param1: Charity object.
+sub addCharity   {
+    my $connection = DAO::ConnectionDao::getDbConnection();
+    my $stmt = $connection->prepare('INSERT INTO charities (name, address_line_1, address_line_2, city,
+    postcode, country, telephone, approved, discarded) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+
+    unless($stmt)
+    {
+        die ("Error preparing charity insert SQL\n");
+    }
+
+    my $charity = shift;
+    unless($stmt->execute(
+        $charity->{"name"},
+        $charity->{"address_line_1"},
+        $charity->{"address_line_2"},
+        $charity->{"city"},
+        $charity->{"postcode"},
+        $charity->{"country"},
+        $charity->{"telephone"},
+        $charity->{"approved"},
+        $charity->{"discarded"}))
+    {
+        print "Error executing SQL\n";
+        return 0;
+    }
+
+    print "Charity name ".$charity->{"name"}." added successfully....\n";
+
+    $stmt->finish();
+    DAO::ConnectionDao::closeDbConnection($connection);
+    return 1;
+}
+
+
+#TODO: Test func.
+#Param1: Charity ID
+sub removeCharity    {
+    my $charityId =  shift;
+
+    # prepare db connection
+    my $connection = DAO::ConnectionDao::getDbConnection();
+    my $error;
+    $connection->do("DELETE FROM employees WHERE id = '$charityId'") or $error = "Failed to delete";
+    DAO::ConnectionDao::closeDbConnection($connection);
+
+    if(defined($error))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+#TODO: Test func.
+#Param1: Prepared statement.
+sub readCharities   {
+    my $stmt = shift;
+    my %hash;
+    while (my $row = $stmt->fetchrow_hashref())    {
+        my $charity = new Data::Charity(
+            $row->{"id"},
+            $row->{"name"},
+            $row->{"address_line_1"},
+            $row->{"address_line_2"},
+            $row->{"city"},
+            $row->{"postcode"},
+            $row->{"country"},
+            $row->{"telephone"},
+            $row->{"approved"},
+            $row->{"discarded"});
+        hashAddCharity(\%hash, $charity);
+        return %hash;
+    }
+}
+
+
+#TODO: Test func.
+#Param1: Charity ID.
+sub getCharity{
+    my $charityId =  shift;
+    my $connection = DAO::ConnectionDao::getDbConnection();
+
+    my $sql = 'SELECT id, name, address_line_1, address_line_2, city, postcode, country, telephone, approved, discarded FROM charities WHERE id = ? ';
+    my $stmt = $connection->prepare($sql);
+    unless(defined($stmt))
+    {
+        die("Could not prepare statement for export from db\n");
+    }
+
+    unless($stmt->execute($charityId))
+    {
+        die "Could not retrieve charity '$charityId' from db\n";
+    }
+
+    my %hash = readCharities($stmt);
+    $stmt->finish();
+    return %hash;
+}
+
+
+#TODO: Test func.
+sub getAllCharities   {
+    {
+        # prepare db connection
+        my $connection = DAO::ConnectionDao::getDbConnection();
+
+        my $sql = 'SELECT id, name, address_line_1, address_line_2, city, postcode, country, telephone, approved, discarded FROM charities';
+        my $stmt = $connection->prepare($sql);
+        unless(defined($stmt))
+        {
+            die("Could not prepare statement for export from db\n");
+        }
+
+        unless($stmt->execute())
+        {
+            die "Could not retrieve charities from db\n";
+        }
+
+        my %hash = readCharities($stmt);
+        $stmt->finish();
+        return %hash;
+    }
+
+}
 
 1;

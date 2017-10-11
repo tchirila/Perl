@@ -20,6 +20,8 @@ sub new {
 		"postcode" => shift,
 		"country" => shift,
 		"telephone" => shift,
+		"approved" => shift,
+		"discarded" => shift,
 	};
 
 	bless($self, $class);
@@ -116,6 +118,28 @@ sub setTel	{
 	my $charity = shift;
 	my $newTel = shift;
 	$charity->{"telephone"} = $newTel;
+}
+
+
+sub getApprovalStatus	{
+	return shift->{"approval"};
+}
+
+sub setApprovalStatus	{
+	my $charity = shift;
+	my $newStatus = shift;
+	$charity->{"approval"} = $newStatus;
+}
+
+
+sub getDiscardStatus	{
+	return shift->{"discarded"};
+}
+
+sub setDiscardStatus	{
+	my $charity = shift;
+	my $newStatus = shift;
+	$charity->{"discarded"} = $newStatus;
 }
 
 
