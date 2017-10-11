@@ -7,11 +7,11 @@ require Data::Contribution;
 require DAO::ConnectionDao;
 require Utilities::Time;
 
-sub getAllContributionsForEmployeeId{
-	my $employeeId = shift;
+sub getAllContributionsForEmployeeNumber{
+	my $employeeNumber = shift;
 	
 	my $connection = DAO::ConnectionDao::getDbConnection();
-	my $query = "select * from contributions where employees_id = $employeeId";
+	my $query = "select * from contributions where employees_id = $employeeNumber";
 	my $preparedQuery = $connection->prepare($query);
 	
 	unless(defined($preparedQuery)){
