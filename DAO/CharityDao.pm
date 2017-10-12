@@ -81,7 +81,9 @@ sub hashRemoveCharity	{
 #            .Data::Charity::getCity($value).","
 #            .Data::Charity::getPostCode($value).","
 #            .Data::Charity::getCountry($value).","
-#            .Data::Charity::getTel($value)."\n";
+#            .Data::Charity::getTel($value).","
+#            .Data::Charity::getApprovalStatus($value).","
+#            .Data::Charity::getDiscardStatus($value)."\n";
 #        print OUTPUT $line;
 #    }
 #    close(OUTPUT);

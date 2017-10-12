@@ -59,6 +59,8 @@ BEGIN	{
 
     #------------------- Non working tests ----------------------
 
+    #    ref((DAO::CharityDao::getAllCharities) eq 'HASH');
+
     #    is(new Employee, undef, 'no params passed');
 
     #    my $empl = new Employee('on','tw','th','fo','fi','si',);
@@ -71,7 +73,7 @@ BEGIN	{
     #is_deeply($got, $expected, $testName); # Compares data structures (but not the data within).
 
     #fail($testName); #
-    #    is($empl->new(),undef, 'no params passed');
+ #  is($empl->new(),undef, 'no params passed');
 
     #TODO: Check-out Test::Unit and Test::Class (a port of JUnit) for OO testing.
 

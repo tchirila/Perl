@@ -18,8 +18,9 @@ BEGIN	{
 
     #TODO: To be fixed. Failing test.
     use_ok ('DAO::ContributionDao'); #Test module implementation.
-    can_ok('DAO::ContributionDao', ('getAllContributionsForEmployeeId','readContributions','addContribution',
-            'validateInput', 'getAllContributionsForEmployeeIdFromCSV','hashAddContribution','addContributionToCSV',)); #Check sub-routine implementations.
+    can_ok('DAO::ContributionDao', ('getAllContributionsForEmployeeNumber','readContributions','addContribution',
+            'validateInput', 'getAllContributionsForEmployeeIdFromCSV','addContributionToCSV','readContributionsArray',
+        'getAllContributions',)); #Check sub-routine implementations.
 
 
     #TODO: To be fixed. Failing test.
@@ -65,7 +66,7 @@ BEGIN	{
     use_ok('Utilities::Time');
     #TODO: To be fixed. Failing test.
     can_ok('Utilities::Time' ,('getCurrentTimestamp','setMonth','setDay','getCurrentDate','getCurrentTimestampTime',));
-    
+
 
     ## ----------------------- Data::Charity -----------------------
     my $charity = Data::Charity->new('1122564','Gobaith i Ethiopia','8 Penymaes Avenue','Wrexham','Wrexham','LL12 7AP','Wales','01978 351964','1','0');
@@ -93,7 +94,7 @@ BEGIN	{
     is($charity->setCity(), undef, 'Charity::setCity() \'undef\' on NULL param.');
 
     is($charity->getPostCode, 'LL12 7AP', 'Charity::getPostCode() returns postcode.');
-    is($charity->setPostCode('CF83 1JD'), 'CF83 1JD', 'Charity::setPostCode() changes postcode.');
+    is($charity->setPostCode('CF83 1JD'), 'CF83 1JD', 'Charity::setPostCode() change postcode.');
     is($charity->setPostCode(), undef, 'Charity::setPostCode() \'undef\' on NULL param.');
 
     is($charity->getCountry, 'Wales', 'Charity::getCountry() returns country.');
@@ -133,6 +134,33 @@ BEGIN	{
     my $count = keys %hash; #hash size = 8
     DAO::CharityDao::hashRemoveCharity(\%hash, $newCharity->getId);
     is($count - keys %hash, 1, 'CharityDao::hashRemoveCharity() 1 charity removed from hash.');
+
+
+
+
+    #TODO: Below units require db connection to test.
+    is( DAO::CharityDao::addCharity($newCharity), 1, 'CharityDao::addCharity() add chatity to db.');
+    is( DAO::CharityDao::addCharity(), undef, 'CharityDao::addCharity() \'undef\' on NULL param.');
+
+    is( DAO::CharityDao::removeCharity($newCharity->getId()), 1, 'CharityDao::removeCharity() delete charity from db.');
+    is( DAO::CharityDao::removeCharity('9999'), 0, 'CharityDao::removeCharity() delete (INVALID) charity from db.');
+    is( DAO::CharityDao::removeCharity(), undef, 'CharityDao::removeCharity()  \'undef\' on NULL param.');
+
+    my %dbHash = DAO::CharityDao::readCharities($charity_file);
+    my $stmt1 = DAO::ConnectionDao::getDbConnection()->prepare('SELECT * FROM charities');
+    isnt(DAO::CharityDao::readCharities($stmt1),undef,'CharityDao::readCharities() does not return \'undef\'.');
+    cmp_ok( keys %dbHash,'eq',7, 'CharityDao::readCharities() read all records from file.'); ##TODO: update count (7) to reflect db table record count before testing.
+
+
+    my $dbCharity = DAO::CharityDao::getCharity('1122564');
+    ok( defined $dbCharity && $dbCharity->isa('Data::Charity'), 'CharityDao::getCharity returns defined & blessed charity object.' );
+    is(DAO::CharityDao::getCharity(),undef,'CharityDao::getCharity() returns \'undef\'on NULL param.');
+
+    isa_ok(DAO::CharityDao::getAllCharities(), 'HASH' , 'CharityDao::getAllCharities() returns hash value.');
+    my %dbHash2 = DAO::CharityDao::getAllCharities();
+    is(%dbHash2, 7, 'CharityDao::getAllCharities() returns all records from db table.');##TODO: update count (7) to reflect db table record count before testing.
+
+
 
 
 
