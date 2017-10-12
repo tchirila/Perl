@@ -100,7 +100,7 @@ sub hashAddEmployee	{
 
 # Persists an new Data::Employee
 #Param Data::Employee
-sub addEmployee()
+sub addEmployee
 {
 	# prepare db connection
 	my $connection = DAO::ConnectionDao::getDbConnection();
@@ -193,14 +193,12 @@ sub getEmployee()
 	my $stmtGetEmpl = $connection->prepare($sql);
 	unless(defined($stmtGetEmpl))
 	{
-		print "Could not prepare statement for export from db\n";
-		return 0;
+		die "Could not prepare statement for export from db\n";
 	}
 
 	unless($stmtGetEmpl->execute($employNum))
 	{
-		print "Could not retrieve employee $employNum from db\n";
-		return 0;
+		die "Could not retrieve employee $employNum from db\n";
 	}
 
 	my %hash = readEmployees($stmtGetEmpl);
@@ -221,14 +219,12 @@ sub getAllEmployees()
 	
 	unless(defined($stmtGetEmpl))
 	{
-		print "Could not prepare statement for export from db\n";
-		return 0;
+		die "Could not prepare statement for export from db\n";
 	}
 
 	unless($stmtGetEmpl->execute())
 	{
-		print "Could not retrieve employees from db\n";
-		return 0;
+		die "Could not retrieve employees from db\n";
 	}
 
 	my %hash = readEmployees($stmtGetEmpl);
@@ -238,4 +234,32 @@ sub getAllEmployees()
 } 
 
 
+sub initSystem()
+{
+	my %emplHash = getAllEmployees();
+	my @emplKeys = keys %emplHash;
+	if (scalar(@emplKeys) == 0)
+	{
+		my $file = 'dataFiles/employeeRecords.csv';
+		print "loading initial employees from file: $file - this is a one off operation....";
+		%emplHash = getEmployeesFromCSV($file);   
+		foreach my $emplKey(keys %emplHash) 
+		{
+			my $emplee = $emplHash{$emplKey};
+			my $emplNum = $emplee->{"number"};
+			my $emplChar = $emplee->{"charity_id"};
+			if ($emplChar eq '-1')
+			{
+				$emplee->{"charity_id"} = undef;
+			}
+			
+			print "\n$emplNum\n";
+			print "\n$emplChar\n";
+			addEmployee($emplee);  
+		}
+	}
+}	
+	
+
 1;
+

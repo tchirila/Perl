@@ -44,7 +44,7 @@ sub readContributions{
 		"charity_id" => $record->{"charity_id"},
 		);
 		
-		#push \@contributions, %hash;
+		push \@contributions, %hash;
 	}
 	
 	return @contributions;

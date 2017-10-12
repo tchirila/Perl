@@ -1,7 +1,6 @@
 id,Name,number,DOB,salary,employer_contribution,employee_contribution,role,pass,charity,start_date,annual_contr
-1,Alex Jones, 213, 01/04/1987, 35000, 350, 700,E,password213,1154109,16/03/2010,0.25
-2,Moses Tywelli, 214, 09/11/1980, 24400, 244, 500,A,password214,,10/12/2013,0.20
-3,Simon Peter, 216, 22/07/1967, 82000, 800, 1000,E,password216,,29/10/2011,0.10
-4,Alfred Bwomezi, 215, 30/04/1983, 19800, 250, 500,E,password215,517724,01/06/2012,0.3
-5,Gwen Glyco, 212, 28/02/1991, 33000, 390, 780,A,password212,,19/09/2010,0.15
-6,Tahiya Plume, 210, 16/04/1989, 29900, 60, 120,E,password210,1122564,17/05/2015,0.21
+1,Alex Jones, 213, 1987-10-12, 35000, 350, 700,E,password213,-1,2015-12-09,5
+2,Moses Tywelli, 214, 1980-03-06, 24400, 244, 500,A,password214,-1,2016-05-09,4
+3,Simon Peter, 216, 1967-09-10, 82000, 800, 1000,E,password216,-1,2014-10-09,6
+4,Gwen Glyco, 212, 1991-04-09, 33000, 390, 780,A,password212,-1,2016-07-11,3
+5,Tahiya Plume, 210, 1989-09-08, 29900, 60, 120,E,password210,-1,2015-12-12,0

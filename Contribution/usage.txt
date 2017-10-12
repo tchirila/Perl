@@ -1,0 +1,24 @@
+
+USAGE OF CONTRIBUTION ENGINE:
+
+To update the system - somehow run this method.  
+***** Contribution::ContributionEngine::generateAnnualAnniversaryContributions() *****
+
+It relies on objects, so maybe run it from eclispe locally?
+
+It takes a minute to chug along with a lot of data, but it did generate the data on my local testing
+
+One drawback is that it does not use transactions, so it creates a new Connection for every db record added.
+Not good!
+
+It also relies on using database MySQL where datetime/timestamp is in form '2013-10-10 11:24:53',
+and date '2013-10-10'
+
+Don't forget the SQL script has changed:
+ALTER TABLE contributions MODIFY charity_id INT null;
+
+
+
+
+
+
