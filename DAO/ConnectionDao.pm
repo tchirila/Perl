@@ -9,8 +9,9 @@ my @EXPORT_OK = qw(getDbConnection closeDbConnection);
 
 $| = 1;
 
-our $DB_CREDENTIALS_FILE = 'C:\j2ee_vaadin_test_workspace\PerlFDM\pensionScheme\dataFiles\dbcreds.txt'; # TODO need to find from relative path
+our $DB_CREDENTIALS_FILE = 'dataFiles/dbcreds.txt';
 our $CORRUPT_DB_PROP_FILE_MSG = "Database file $DB_CREDENTIALS_FILE";
+
 
 # create and return a new databae conenction
 sub getDbConnection() {
@@ -21,7 +22,7 @@ sub getDbConnection() {
     my $dbServer;
 
     print "\nReading $CORRUPT_DB_PROP_FILE_MSG\n";
-    open(DB_INPUT, $DB_CREDENTIALS_FILE) or die("$CORRUPT_DB_PROP_FILE_MSG could not be found");
+    open(DB_INPUT, $DB_CREDENTIALS_FILE) or die("$CORRUPT_DB_PROP_FILE_MSG could not be found"); 
 
     my @data;
     LINE:
