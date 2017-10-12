@@ -68,10 +68,10 @@ sub addProcess()
 	my $process_date = $process->{"process_date"};
 	my $user_started = $process->{"user_started"};
 	my $successful = $process->{"successful"};
-	my $num_contr_added = $process->{"num_contr_added"};
+	my $num_contr_added = $process->{"num_contributions_added"};
 	my $type = $process->{"type"};
 	
-	unless($stmtAddProcess->execute($process_date, $user_started, $successful, $num_contr_added, $type))
+	unless($stmtAddProcess->execute($process_date, $user_started, $successful, $num_contr_added, $type)) 
 	{
 		print "Error executing SQL\n";
 		return 0;

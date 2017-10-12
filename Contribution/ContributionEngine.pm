@@ -1,4 +1,4 @@
-package Contribution::ContributionEngine;
+package Contribution::ContributionEngine;  
 use strict;
 use warnings;
 use Data::Dumper;
@@ -6,9 +6,11 @@ use lib '..';
 use Exporter qw(import);
 require Data::Contribution;
 require Data::Employee;
+require Data::ProcessHistory;
 require DAO::EmployeeDao;
 require DAO::ConnectionDao;
 require DAO::ContributionDao;
+require DAO::ProcessHistoryDao;
 require Utilities::Time;
 require Date::Calc;
 require DateTime::Duration;
@@ -44,7 +46,7 @@ sub generateAnnualAnniversaryContributions()
 	my $mnthEmpleeCount = 0;
 	my $mnthEmplerCount = 0;
 
-	my $currSysTime = Utilities::Time::getCurrentTimestampDate();
+	my $currSysTime = Utilities::Time::getCurrentTimestampTime();
 	
 	# for each employee, record the last date of each type of contribution
 	my %emplIdToLastContrDateTypeAnnual = loadContributionHash($ANNUAL_EMPLOYER_CONTIBUTIONS);
@@ -115,7 +117,7 @@ sub generateAnnualAnniversaryContributions()
 #@Param: $annualCount - number of annual contribution records created in this process 
 #@Param: $mnthEmpleeCount - number of employee contribution records created in this process
 #@Param: $mnthEmplerCount - number of employer contribution records created in this process
-sub updateSystemProcessRecords( )
+sub updateSystemProcessRecords()
 {
 	my $currSysTime = shift; 
 	my $currUserId = shift;
@@ -123,43 +125,54 @@ sub updateSystemProcessRecords( )
 	my $mnthEmpleeCount = shift; 
 	my $mnthEmplerCount = shift;
 	
-	DAO::ProcessHistoryDao::addProcess($currSysTime, $currUserId, 1, $annualCount, $ANNUAL_EMPLOYER_CONTIBUTIONS);
+	my $processTmp1 = new Data::ProcessHistory($currUserId, 1, $annualCount, $ANNUAL_EMPLOYER_CONTIBUTIONS);
+	DAO::ProcessHistoryDao::addProcess($processTmp1);
 	print "Successfully completed annual employee contribution update process on $currSysTime: $annualCount records persisted";
 
-	DAO::ProcessHistoryDao::addProcess($currSysTime, $currUserId, 1, $mnthEmpleeCount, $MONTHLY_EMPLOYEE_CONTIBUTIONS);
+	my $processTmp2 = new Data::ProcessHistory($currUserId, 1, $mnthEmpleeCount, $MONTHLY_EMPLOYEE_CONTIBUTIONS);
+	DAO::ProcessHistoryDao::addProcess($processTmp2);
 	print "Successfully completed monthly employee contribution update process on $currSysTime: $mnthEmpleeCount records persisted";
 
-	DAO::ProcessHistoryDao::addProcess($currSysTime, $currUserId, 1, $mnthEmplerCount, $MONTHLY_EMPLOYER_CONTIBUTIONS);
+	my $processTmp3 = new Data::ProcessHistory($currUserId, 1, $mnthEmplerCount, $MONTHLY_EMPLOYER_CONTIBUTIONS);
+	DAO::ProcessHistoryDao::addProcess($processTmp3);
 	print "Successfully completed monthly employer contribution update process on $currSysTime: $mnthEmplerCount records persisted";
 }
 
 
 
+
 # Get any array any dates up to today for which there is currently no contribution record. 
 # Return the array in ascending order
-#@param - $mostRecentContr - the date of the most recent contribution (if one exists)
-#         note that this vaue may be undefined if it does not exist
-#@param - employee start date 
-#@param - an number to describe if deling with annual of monthly contributions (0 = annual, 1 == monthly)    
+#@param - $mostRecentContr - the string datetime of the most recent contribution effective date (if one exists)
+#         note that this value may be undefined if it does not exist. 
+#         [Format = 'YYYY-M-DD HH-MM-SS' NOTE: Time values are nil as this should be a date field]
+#@param - employee start date [Format = 'YYYY-M-DD'] 
+#@param - a number to describe if dealing with annual of monthly contributions (0 = annual, 1 == monthly)    
 sub getMissingContrDatesForEmployeeInAscOrder()
 {
 	my $mostRecentContr = shift;  
 	my $empleeStartDate = shift;
 	my $incrementType = shift;
+	
+	# determine whether the most recent contribution at this stage is a date object (emloyee start date) 
+	# or datetime (most recent existing contribution effective date)
+	my $useDateFmt = 0;
+	
 	unless(defined($mostRecentContr))
 	{
-		$mostRecentContr = $empleeStartDate;   # TODO does this need cloning?????   strings........
+		$mostRecentContr = $empleeStartDate;
+		$useDateFmt = 1;   
 	}
 	
 	# define array of missing dates
 	my @datesNoContr;
 	
 	# suggest the first possible date that may be due a contribution
-	my $baseContrDate = getDate($mostRecentContr);
+	my $baseContrDate = createDateTimeObject($mostRecentContr, $useDateFmt);          
 	my $possContrDate = incrementDate($incrementType, $baseContrDate);
 	
 	# get the time now in object form
-	my $timeNow = DateTime->now;
+	my $timeNow = DateTime->now; 
 		
 	# record any other missing contribution dates  
 	my $allContrDatesRead = DateTime->compare($possContrDate, $timeNow);
@@ -189,7 +202,7 @@ sub getMissingContrDatesForEmployeeInAscOrder()
 sub incrementDate()
 {
 	my $incrementType = shift;
-	my $date = shift;
+	my $date = shift; 
 	if ($incrementType eq 0) 
 	{
 		return incrementDateByYear($date);	
@@ -201,6 +214,9 @@ sub incrementDate()
 }	
 
 
+######################################################################
+
+
 
 
 # Loads hash mapping each employee id with the latest date
@@ -209,7 +225,7 @@ sub incrementDate()
                # $ANNUAL_EMPLOYER_CONTIBUTIONS
                # $MONTHLY_EMPLOYEE_CONTIBUTIONS
                # $MONTHLY_EMPLOYER_CONTIBUTIONS
-# Returns - hash mapping each employee id with the latest date for the given contributions type              
+# Returns - hash mapping each employee id with the latest date string for the given contributions type              
 sub loadContributionHash()
 {
 	my $reqType = shift;   # TODO for simplicity, loop through each time separately for now, calling loadContributionHash() 3 times
@@ -244,6 +260,7 @@ sub loadContributionHash()
 }
 
 
+
 # Gets the date forward one calendar year - in the case of 29th Feb, the following 28th Feb is returned
 #@Param - the date to be incremented by 1 year
 #@Returns - the modified datetime object   
@@ -261,31 +278,46 @@ sub incrementDateByYear()
 sub incrementDateToLastDayOfNextMonth()
 {
 	my $date = shift;
-	return $date->add( months => 1, end_of_month => 'limit' );
+	
+	# forward the input date by 1 month
+	my $nextMnthDate = $date->add( months => 1, end_of_month => 'limit' );
+	
+	# forward to the end of next month 
+	my $endNextMnthDate = getDateOnLastDayOfCurrentMonth($nextMnthDate);
+	return $endNextMnthDate;
 }
 
 
 
-# Converts a string date into a specific datetime object (with default time values)
-#@Param - the datetime object 
-sub createDateObject()
+#@Param - the date string to be incremented to the last day of following month
+#@Returns - the modified datetime object
+sub getDateOnLastDayOfCurrentMonth()
 {
 	my $date = shift;
-	my $year = $date->year;
-	my $month = $date->month;
-	my $day = $date->day;
-	return DateTime->new( year => $year, month => $month, day => $day);
+	my $endMnthDate = DateTime->last_day_of_month(  
+	    year  =>  $date->year,
+	    month => $date->month);
+	return $endMnthDate;
 }
 
 
 
-#@Param - date in SQL form 
-#@Returns - date in DateTime form
-sub getDate()
+# Converts a string date time into a specific datetime object (with default time values 00:00:00)
+#@Param - the date object 
+#@Param - the date format
+sub createDateTimeObject()
 {
 	my $dateStr = shift;
-	my $dt = DateTime::Format::MySQL->parse_datetime($dateStr); 
-	return $dt;
+	my $useDateFmt = shift;
+	my $dateTime;
+	if ($useDateFmt eq 1) # use date format
+	{
+		return DateTime::Format::MySQL->parse_date($dateStr);
+	}
+	else # use datetime format
+	{
+		return DateTime::Format::MySQL->parse_datetime($dateStr);   	
+	}
 }
 
 
@@ -294,7 +326,7 @@ sub getDate()
 sub getDateStr()
 {
 	my $date = shift;
-	my $dateStr = $date->ymd;   
+	my $dateStr = $date->ymd('-');   
 	my $timeStr = $date->hms;   
 	return $dateStr . " " . $timeStr; 
 }

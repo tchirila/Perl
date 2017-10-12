@@ -70,7 +70,6 @@ BEGIN	{
 
     ## ----------------------- Data::Charity -----------------------
     my $charity = Data::Charity->new('1122564','Gobaith i Ethiopia','8 Penymaes Avenue','Wrexham','Wrexham','LL12 7AP','Wales','01978 351964','1','0');
-#    isa_ok( $charity,'Data::Charity', 'Check_Charity' ); ## Check for object/ref type.
     ok( defined $charity && $charity->isa('Data::Charity'), 'Charity Object defined & blessed.');
 
     is($charity->getId, '1122564', 'Charity::getId() returns ID.');
@@ -135,34 +134,56 @@ BEGIN	{
     DAO::CharityDao::hashRemoveCharity(\%hash, $newCharity->getId);
     is($count - keys %hash, 1, 'CharityDao::hashRemoveCharity() 1 charity removed from hash.');
 
+    my $empl = Data::Employee->new('7','Said Yousef','992','1980-03-22','85500','2.2','14.5','E','password992','1154109','2010-04-01','0.5');
+    ok( defined $empl && $empl->isa('Data::Employee'), 'Employee Object defined & blessed.');
 
 
 
-    #TODO: Below units require db connection to test.
-    is( DAO::CharityDao::addCharity($newCharity), 1, 'CharityDao::addCharity() add chatity to db.');
-    is( DAO::CharityDao::addCharity(), undef, 'CharityDao::addCharity() \'undef\' on NULL param.');
+    ## ----------------------- Data::Employee -----------------------
+    # id,Name,number,DOB,salary,employer_contribution,employee_contribution,role,pass,charity,start_date,annual_contr
+    my $empl = Data::Employee->new('7','Said Yousef','992','1980-03-22','85500','2.2','14.5','E','password992','1154109','2010-04-01','0.5');
+    ok( defined $empl && $empl->isa('Data::Employee'), 'Employee Object defined & blessed.');
 
-    is( DAO::CharityDao::removeCharity($newCharity->getId()), 1, 'CharityDao::removeCharity() delete charity from db.');
-    is( DAO::CharityDao::removeCharity('9999'), 0, 'CharityDao::removeCharity() delete (INVALID) charity from db.');
-    is( DAO::CharityDao::removeCharity(), undef, 'CharityDao::removeCharity()  \'undef\' on NULL param.');
+    is($empl->getId, '7', 'Employee::getId() returns ID.');
+    is($empl->setId('8'), '8', 'Employee::setId() change ID.');
+    is($empl->setId(), undef, 'Employee::setId() \'undef\' on NULL param.');
 
-    my %dbHash = DAO::CharityDao::readCharities($charity_file);
-    my $stmt1 = DAO::ConnectionDao::getDbConnection()->prepare('SELECT * FROM charities');
-    isnt(DAO::CharityDao::readCharities($stmt1),undef,'CharityDao::readCharities() does not return \'undef\'.');
-    cmp_ok( keys %dbHash,'eq',7, 'CharityDao::readCharities() read all records from file.'); ##TODO: update count (7) to reflect db table record count before testing.
-
-
-    my $dbCharity = DAO::CharityDao::getCharity('1122564');
-    ok( defined $dbCharity && $dbCharity->isa('Data::Charity'), 'CharityDao::getCharity returns defined & blessed charity object.' );
-    is(DAO::CharityDao::getCharity(),undef,'CharityDao::getCharity() returns \'undef\'on NULL param.');
-
-    isa_ok(DAO::CharityDao::getAllCharities(), 'HASH' , 'CharityDao::getAllCharities() returns hash value.');
-    my %dbHash2 = DAO::CharityDao::getAllCharities();
-    is(%dbHash2, 7, 'CharityDao::getAllCharities() returns all records from db table.');##TODO: update count (7) to reflect db table record count before testing.
+    is($empl->getName, 'Said Yousef', 'Employee::getName() returns ID.');
+    is($empl->setName('Said Yousef Said'), 'Said Yousef Said', 'Employee::setName() change name.');
+    is($empl->setName(), undef, 'Employee::setName() \'undef\' on NULL param.');
 
 
 
 
+
+
+
+
+
+    ## ---------------- DB CONNECTION SUB-ROUTINES -----------------
+    ## ----------------------- Data::Employee -----------------------
+#    # #TODO: Below units require db connection to test. ----- DAO::CharityDao ------
+#    is( DAO::CharityDao::addCharity($newCharity), 1, 'CharityDao::addCharity() add chatity to db.');
+#    is( DAO::CharityDao::addCharity(), undef, 'CharityDao::addCharity() \'undef\' on NULL param.');
+#
+#    is( DAO::CharityDao::removeCharity($newCharity->getId()), 1, 'CharityDao::removeCharity() delete charity from db.');
+#    is( DAO::CharityDao::removeCharity('9999'), 0, 'CharityDao::removeCharity() delete (INVALID) charity from db.');
+#    is( DAO::CharityDao::removeCharity(), undef, 'CharityDao::removeCharity()  \'undef\' on NULL param.');
+#
+#    my %dbHash = DAO::CharityDao::readCharities($charity_file);
+#    my $stmt1 = DAO::ConnectionDao::getDbConnection()->prepare('SELECT * FROM charities');
+#    isnt(DAO::CharityDao::readCharities($stmt1),undef,'CharityDao::readCharities() does not return \'undef\'.');
+#    cmp_ok( keys %dbHash,'eq',7, 'CharityDao::readCharities() read all records from file.'); ##TODO: update count (7) to reflect db table record count before testing.
+#
+#
+#    my $dbCharity = DAO::CharityDao::getCharity('1122564');
+#    ok( defined $dbCharity && $dbCharity->isa('Data::Charity'), 'CharityDao::getCharity returns defined & blessed charity object.' );
+#    is(DAO::CharityDao::getCharity(),undef,'CharityDao::getCharity() returns \'undef\'on NULL param.');
+#
+#    isa_ok(DAO::CharityDao::getAllCharities(), 'HASH' , 'CharityDao::getAllCharities() returns hash value.');
+#    my %dbHash2 = DAO::CharityDao::getAllCharities();
+#    is(%dbHash2, 7, 'CharityDao::getAllCharities() returns all records from db table.');##TODO: update count (7) to reflect db table record count before testing.
+#
 
 
 
