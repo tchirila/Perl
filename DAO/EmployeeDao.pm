@@ -205,6 +205,7 @@ sub getEmployee()
 
 	my %hash = readEmployees($stmtGetEmpl);
 	$stmtGetEmpl->finish();
+	DAO::ConnectionDao::closeDbConnection($connection);
 	return %hash;
 }
 
@@ -232,6 +233,7 @@ sub getAllEmployees()
 
 	my %hash = readEmployees($stmtGetEmpl);
 	$stmtGetEmpl->finish();
+	DAO::ConnectionDao::closeDbConnection($connection);
 	return %hash;
 } 
 
