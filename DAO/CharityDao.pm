@@ -2,7 +2,6 @@ package DAO::CharityDao;
 use strict;
 use warnings;
 
-#require Data::Charity;
 require Data::Charity;
 
 
@@ -41,12 +40,11 @@ sub getCharitiesFromCSV	{
 }
 
 
-#Param1: Employees hash.
-#Param2: Employee object.
-sub hashAddCharity	{ #TODO: Get auth for this change.
+#Param1: Charities hash.
+#Param2: Charity object.
+sub hashAddCharity	{
     my ($charities, $charity) = @_;
     my $id = Data::Charity::getId($charity);
-    #my $id = getId($charity);
     $charities->{$id} = $charity;
 }
 

@@ -122,7 +122,7 @@ sub setTel	{
 
 
 sub getApprovalStatus	{
-	return shift->{"approval"};
+	return shift->{"approved"};
 }
 
 sub setApprovalStatus	{

@@ -7,7 +7,7 @@ require Data::Charity;
 
 
 my $EMPLOYEE_FILE = "dataFiles/employeeRecords.csv";
-my $CHARITY_FILE = "dataFiles/charities.csv";
+my $CHARITY_FILE = "TestData/charities.csv";
 
 BEGIN	{
 
