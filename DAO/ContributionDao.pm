@@ -126,10 +126,10 @@ sub addContributionToCSV{
 	
 	for (my $i = 0; $i < scalar(@values); $i++){
 		if($i == scalar(@values) - 1){
-			$line = $line . @values[$i] . "\n";
+			$line = $line . $values[$i] . "\n";
 		}
 		else{
-			$line = $line . @values[$i] . ",";
+			$line = $line . $values[$i] . ",";
 		}				
 	}
 	
