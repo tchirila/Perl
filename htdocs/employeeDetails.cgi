@@ -18,11 +18,77 @@ sub main()
 	
 	print qq{
 		<html>
-			<h1>Employee Details</h1>
-			
-			<table>
-				<tr><td><a href="$homePage">Home</a></td></tr>
-			</table>
+			<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+			<link rel="stylesheet" href="stylesheet.css" />
+			<title>Pensions</title>
+			</head>
+			<body>
+				<header class="main-header">
+					<div class="page-container">
+						<h1>Pensions - Admin - Manage Employee </h1>
+					</div>
+				</header>
+				
+				<div class="page-container">
+					<form action="getEmployeeDetails" method="post">
+						<div class="col6 breaker right">
+							Employee <input name="employee">		
+						</div>
+						<div class="col6 breaker last">
+							<input class="center-a purchaseButton" type="submit" value="Submit" />
+						</div>
+					</form>
+					
+					<form action="editEmployeeDetails" method="post">
+						<div class="col12 breaker center-a">
+							Name <input name="name">		
+						</div>
+						<div class="col12 breaker center-a">
+							Number <!-- code to diplay here -->
+						</div>
+						<div class="col12 breaker center-a">
+							DoB <!-- code to diplay here -->
+						</div>
+						<div class="col12 breaker center-a">
+							Start Date <!-- code to diplay here -->
+						</div>
+						<div class="col12 breaker center-a">
+							Current Salary <input name="salary">	
+						</div>
+						<div class="col12 breaker center-a">
+							Employee Contribution <input name="employeeContribution">	
+						</div>
+						<div class="col12 breaker center-a">
+							Employer Contribution <input name="employerContribution">	
+						</div>
+						<div class="col12 breaker center-a">
+							Role
+						</div>
+						<div class="col12 breaker center-a">
+							Donate Anual Contribution to Charity <input type="checkbox" name="charityContribution">
+						</div>
+						<div class="col12 breaker center-a">
+							Selected Charity <!-- insert code to show all charities here -->
+						</div>
+						<div class="col12 breaker center-a">
+							Change Password <input name="password">	
+						</div>
+						<div class="col12 breaker center-a">
+							Confirm Password <input name="confirmPassword">	
+						</div>
+						<div class="col12 breaker center-a">
+							<input class="center-a purchaseButton" type="submit" value="Update" />
+						</div>
+					</form>			
+				</div>
+				
+				<footer class="row main-footer">
+					<div class="col12">
+						<a href="$homePage">Home</a>
+					</div>
+				</footer>
+			</body>
 		</html>
 	};	
 }
