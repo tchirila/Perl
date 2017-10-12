@@ -34,17 +34,18 @@ sub setMonth{
 		"Dec" => "12",
 	);
 	
-	return %numericalMonths{"$month"};
+	return $numericalMonths{"$month"};
 }
 
 sub setDay{
 	my $day = shift;
 	
 	if(length($day) == 1){
-		$day = "0" . $day;
+		return "0" . $day;
 	}
-	
-	return $day;
+	else {
+			return $day;
+	}
 }
 
 sub getCurrentDate{
@@ -58,7 +59,7 @@ sub getCurrentDate{
 sub getCurrentTimestampTime{
 	my $timestamp = getCurrentTimestamp();
 	my @values = (split " ", $timestamp);
-	my $time = @values[1];
+	my $time = $values[1];
 	
 	return $time;
 }

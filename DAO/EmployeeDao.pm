@@ -30,7 +30,8 @@ sub getEmployeesFromCSV	{
 			next LOOP1;
 		}
 
-		my $newEmp = new Data::Employee($fields[0], $fields[1], $fields[2], $fields[3], $fields[4], $fields[5],);
+		my $newEmp = new Data::Employee($fields[0], $fields[1], $fields[2], $fields[3], $fields[4], $fields[5],
+			$fields[6], $fields[7], $fields[8], $fields[9], $fields[10], $fields[11],);
 		hashAddEmployee(\%hash, $newEmp);
 	}
 	close INPUT;
@@ -69,17 +70,21 @@ sub hashAddEmployee	{
 #sub saveEmployeesToCSV	{
 #	my ($hash, $file) = @_;
 #	open(OUTPUT, '>'.$file) or die "Can't open file $file";
-#	print OUTPUT "Name,number,DOB,salary,employer_contribution,employee_contribution\n"; ##Header
+#	print OUTPUT "id,Name,number,DOB,salary,employer_contribution,employee_contribution,role,pass,charity,start_date,annual_contr\n"; ##Header
 #	foreach my $value (values $hash)
 #	{
-#		my $line = Data::Employee::getName($value).","
+#		my $line = Data::Employee::getId($value).","
+#			.Data::Employee::getName($value).","
 #			.Data::Employee::getNumber($value).","
 #			.Data::Employee::getDOB($value).","
 #			.Data::Employee::getSalary($value).","
 #			.Data::Employee::getEmployerContribution($value).","
 #			.Data::Employee::getEmployeeContribution($value).","
 #			.Data::Employee::getEmployeeRole($value).","
-#			.Data::Employee::getEmployeePassword($value)."\n";
+#			.Data::Employee::getEmployeePassword($value).","
+#			.Data::Employee::getCharityId($value).","
+#			.Data::Employee::getStartDate($value).","
+#			.Data::Employee::getAnnualContribution($value)."\n";
 #		print OUTPUT $line;
 #	}
 #	close(OUTPUT);
