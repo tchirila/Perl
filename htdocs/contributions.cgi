@@ -3,9 +3,11 @@
 use strict;
 use warnings;
 use CGI;
+use DAO::ContributionDao;
 
 my $cgi = new CGI();
 my $role = $cgi->param('role');
+my $employeeId = $cgi->param('id');
 
 sub main()
 {
@@ -13,15 +15,23 @@ sub main()
 	my $homePage = "generalHome.cgi";
 	
 	if($role eq "HRAdmin"){
-		$homePage = "adminHome.cgi"
+		$homePage = "adminHome.cgi";
 	}
 	
-	print qq{
-		<html>
+	my @hashes = DAO::ContributionDao::getAllContributionsForEmployeeId($employeeId); # this line disrupts the page
+	print buildHtml($homePage, @hashes);	
+}
+
+sub buildHtml
+{
+	my ($homePage, @hashes) = @_;
+
+	my $start = qq{
+		<hmtl>
 			<head>
-			<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-			<link rel="stylesheet" href="stylesheet.css" />
-			<title>Pensions</title>
+				<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+				<link rel="stylesheet" href="stylesheet.css" />
+				<title>Pensions</title>
 			</head>
 			<body>
 				<header class="main-header">
@@ -29,7 +39,6 @@ sub main()
 						<h1>Pensions - Admin - View Contributions </h1>
 					</div>
 				</header>
-				
 				<div class="page-container">
 					<form action="getEmployeeContributions" method="post">
 						<div class="col6 breaker center-a">
@@ -60,40 +69,60 @@ sub main()
 						<div class="col2 last">
 							Amount
 						</div>
-					<!-- insert code to loop through passed results -->
-					<!-- for-example a foreach loop starts here -->
-						<div class="col2">
-							<!-- insert (Effective Date value) passed to html page here -->
+	};
+	
+	my $content = $start;
+	
+	foreach my $hash(@hashes){
+		my $effectiveDate = $hash->{"effective_date"};
+		my $processDate = $hash->{"process_date"};
+		my $type = $hash->{"type"};
+		my $salary = $hash->{"salary"};
+		my $charityId = $hash->{"charity_id"};
+		my $contributionPc = $hash->{"contr_pc"};
+		my $contributionAmount = $hash->{"contr_amount"};
+		
+		my $toLoop = qq{
+						<div class="col2">		
+							$effectiveDate	
 						</div>
 						<div class="col2">
-							<!-- insert (Process Date value) passed to html page here -->
+							$processDate
 						</div>
 						<div class="col1">
-							<!-- insert (Type value) passed to html page here -->
+							$type
 						</div>
 						<div class="col1">
-							<!-- insert (Salary value) passed to html page here -->
+							$salary
 						</div>
 						<div class="col2">
-							<!-- insert (Charity value) passed to html page here -->
+							$charityId
 						</div>
 						<div class="col2">
-							<!-- insert (Contribution %  value) passed to html page here -->
+							$contributionPc
 						</div>
 						<div class="col2 last">
-							<!-- insert (Amount  value) passed to html page here -->
-						</div><!-- insert value passed to html page here -->
-					<!-- and the foreach loop ends here --> 
-					</div>
+							$contributionAmount
+						</div>
+		};
+		
+		$content = $content . $toLoop;
+	}
 				
+	my $end = qq{
+				</div>
 				<footer class="row main-footer">
 					<div class="col12">
 						<a href="$homePage">Home</a>
 					</div>
 				</footer>
 			</body>
-		</html>
-	};	
+		</hmtl>
+	};
+	
+	$content = $content . $end;
+			
+	return $content;
 }
 
 main();
