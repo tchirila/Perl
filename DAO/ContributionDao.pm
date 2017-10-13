@@ -7,11 +7,12 @@ require Data::Contribution;
 require DAO::ConnectionDao;
 require Utilities::Time;
 
-sub getAllContributionsForEmployeeNumber{
-	my $employeeNumber = shift;
+
+sub getAllContributionsForEmployeeId{
+	my $employeeId = shift;
 	
 	my $connection = DAO::ConnectionDao::getDbConnection();
-	my $query = "select * from contributions where employees_id = $employeeNumber";
+	my $query = "select * from contributions where employees_id = $employeeId";
 	my $preparedQuery = $connection->prepare($query);
 	
 	unless(defined($preparedQuery)){
@@ -43,14 +44,14 @@ sub readContributions{
 		"employees_id" => $record->{"employees_id"},
 		"charity_id" => $record->{"charity_id"},
 		);
-		
-		push \@contributions, %hash;
+
+#		my $contribution = new Data::Contribution($id, $type, $contr_pc, $contr_amount, $salary, $processed_date, $effective_date, $employees_id, $charity_id);
+#		hashAddContribution(\%hash, $contribution);		
+		push @contributions, %hash;
 	}
 	
 	return @contributions;
 }
-
-
 
 sub addContribution{
 	my ($type, $contr_pc, $contr_amount, $salary, $effective_date, $employees_id, $charity_id) = @_;
@@ -116,6 +117,12 @@ sub getAllContributionsForEmployeeIdFromCSV{
 	return @contributions;
 }
 
+sub hashAddContribution{
+	my ($contributions, $contribution) = @_;
+	my $id = Data::Contribution::getId($contribution);
+	$contributions->{$id} = $contribution;
+}
+
 sub addContributionToCSV{
 	my ($filePath, %hash) = @_;
 	
@@ -136,8 +143,6 @@ sub addContributionToCSV{
 	print OUTPUT $line;
 	close(OUTPUT);
 }
-
-
 
 ############################################
 # start PB method added for use by ContributionEngine 
