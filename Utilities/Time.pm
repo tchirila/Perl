@@ -1,8 +1,8 @@
 package Utilities::Time;
-
 use strict;
 use warnings;
 use DateTime;
+
 
 sub getCurrentTimestamp{
 	my $timeUnformatted = localtime();
@@ -35,26 +35,24 @@ sub setMonth{
 		"Dec" => "12",
 	);
 	
-	return %numericalMonths{"$month"};
+	return $numericalMonths{"$month"};
 }
 
 sub setDay{
 	my $day = shift;
 	
 	if(length($day) == 1){
-		$day = "0" . $day;
+		return "0" . $day;
 	}
-	
-	return $day;
+	else {
+			return $day;
+	}
 }
 
 sub getCurrentDate{
 	my $timestamp = getCurrentTimestamp();
 	my @values = (split " ", $timestamp);
-	my $dateString = $values[0];
-	my ($year, $month, $day) = (split "-", $dateString);
-	my $dateTime = DateTime->now();
-	my $date = $dateTime->ymd();
+	my $date = $values[0];
 	
 	return $date;
 }
@@ -62,7 +60,7 @@ sub getCurrentDate{
 sub getCurrentTimestampTime{
 	my $timestamp = getCurrentTimestamp();
 	my @values = (split " ", $timestamp);
-	my $time = @values[1];
+	my $time = $values[1];
 	
 	return $time;
 }

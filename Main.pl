@@ -4,10 +4,12 @@ use LWP::Simple;
 use Data::Dumper;
 
 require Data::Employee;
+require Data::ProcessHistory;
 require DAO::EmployeeDao;
-require DAO::CharityDao;
+#require DAO::CharityDao;
 require DAO::ConnectionDao;
 require DAO::ContributionDao;
+require DAO::ProcessHistoryDao;
 
 #use Dao::EmployeesDao qw(readEmployees writeEmployees);
 
@@ -43,10 +45,16 @@ sub contribution{
 	print $response;
 }
 
+sub testAddProcess{
+	my $process = new Data::ProcessHistory();
+	Dao::ProcessHistoryDao::addProcess($process);
+}
+
 ##-----------------------------------------------------------------
 
 #main();
 #charity();
 #contribution();
+testAddProcess();
 
 
