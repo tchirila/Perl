@@ -238,7 +238,7 @@ BEGIN	{
     is($count2 - keys %empHash, 1, 'EmployeeDao::hashRemoveEmployee() 1 employee removed from hash.');
 
 
-    ##TODO: Below units require db connection to test. ----- DAO::CharityDao ------
+    ##TODO: Below units require db connection to test. ----- DAO::EmployeeDao ------
 #    is( DAO::EmployeeDao::addEmployee($newEmpl), 1, 'EmployeeDao::hashAddEmployee() added employee to db.');
 #    is( DAO::EmployeeDao::addEmployee(), undef, 'EmployeeDao::addEmployee() \'undef\' on NULL param.');
 #
@@ -263,8 +263,47 @@ BEGIN	{
 
 
     ## ----------------------- Data::Contribution -----------------------
+    my $newCotr = Data::Contribution->new('a3','b3','c3','d3','e3','f3','g3','h3','i3',);
+    ok( defined $newCotr && $newCotr->isa('Data::Contribution'), 'Contribution Object defined & blessed.');
+
+    is($newCotr->getId, 'a3', 'Contribution::getId() returns contribution ID.');
+
+    is($newCotr->getType, 'b3', 'Contribution::getType() returns ID.');
+    is($newCotr->setType('B3'), 'B3', 'Contribution::setType() change type.');
+    is($newCotr->setType(), undef, 'Contribution::setType() \'undef\' on NULL param.');
+
+    is($newCotr->getContPc, 'c3', 'Contribution::getContPc() returns contribution_pc.');
+    is($newCotr->setContPc('C3'), 'C3', 'Contribution::setContPc() change contribution_pc.');
+    is($newCotr->setContPc(), undef, 'Contribution::setContPc() \'undef\' on NULL param.');
+
+    is($newCotr->getContAmount,'d3', 'Contribution::getContAmount() returns contribution ammount.');
+    is($newCotr->setContAmount('D3'), 'D3', 'Contribution::setContAmount() changes contribution ammount.');
+    is($newCotr->setContAmount(), undef, 'Contribution::setContAmount() \'undef\' on NULL param.');
+
+    is($newCotr->getSalary,'e3', 'Contribution::getSalary() returns salary.');
+    is($newCotr->setSalary('E3'), 'E3', 'Contribution::setSalary() change salary.');
+    is($newCotr->setSalary(), undef, 'Contribution::setSalary() \'undef\' on NULL param.');
+
+    is($newCotr->getProcessDate,'f3', 'Contribution::getProcessDate() returns contribution process date.');
+    is($newCotr->setProcessDate('F3'), 'F3', 'Contribution::setProcessDate() changes contribution process date.');
+    is($newCotr->setProcessDate(), undef, 'Contribution::setProcessDate() \'undef\' on NULL param.');
+
+    is($newCotr->getEffectiveDate,'g3', 'Contribution::getEffetiveDate() returns contribution effective date.');
+    is($newCotr->setEffetiveDate('G3'), 'G3', 'Contribution::setEffetiveDate() changes changescontribution effect date.');
+    is($newCotr->setEffetiveDate(), undef, 'Contribution::setEffetiveDate() \'undef\' on NULL param.');
+
+    is($newCotr->getCharityId,'i3', 'Contribution::getCharityId() returns contribution charity ID.');
+    is($newCotr->setCharityId('I3'), 'I3', 'Contribution::setCharityId() changes contribution charity ID.');
+    is($newCotr->setCharityId(), undef, 'Contribution::setCharityId() \'undef\' on NULL param.');
+
+    is($newCotr->getEmployeesId,'h3', 'Contribution::getEmployeesId() returns employee\'s ID.');
+    is($newCotr->setEmployeesId('H3'), 'H3', 'Contribution::setEmployeesId() changes employee\'s ID.');
+    is($newCotr->setEmployeesId(), undef, 'Contribution::setEmployeesId() \'undef\' on NULL param.');
+
+
 
     ## ---------------------- DAO::ContributionDao ----------------------
+
 
 
 
