@@ -1,4 +1,4 @@
-use strict;
+#use strict;
 use warnings;
 use LWP::Simple;
 use Data::Dumper;
@@ -41,20 +41,23 @@ sub charity	{
 }
 
 sub contribution{
-	my $response = Utilities::Time::getCurrentDate();
-	print $response;
+	my @response = DAO::ContributionDao::getAllContributionsForEmployeeId("1");
+	foreach my $hash(@response){
+		my $value = $hash->{"id"};
+		print "$value" . "\n";
+	}
 }
 
 sub testAddProcess{
 	my $process = new Data::ProcessHistory();
-	Dao::ProcessHistoryDao::addProcess($process);
+	DAO::ProcessHistoryDao::addProcess($process);
 }
 
 ##-----------------------------------------------------------------
 
 #main();
 #charity();
-#contribution();
-testAddProcess();
+contribution();
+#testAddProcess();
 
 

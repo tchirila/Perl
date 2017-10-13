@@ -47,7 +47,7 @@ sub readContributions{
 
 #		my $contribution = new Data::Contribution($id, $type, $contr_pc, $contr_amount, $salary, $processed_date, $effective_date, $employees_id, $charity_id);
 #		hashAddContribution(\%hash, $contribution);		
-		push @contributions, %hash;
+		push @contributions, \%hash;
 	}
 	
 	return @contributions;
