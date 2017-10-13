@@ -4,8 +4,6 @@ use Test::More qw(no_plan);
 use Test::Exception;
 
 
-#TODO: Given time, Test values:- numbers->performCalc, date->checkFormat,
-
 BEGIN	{
 
     ## ----------------------- DAO modules -----------------------

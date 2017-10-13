@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b59b0d74-379b-4ae3-9e16-7927d4d67df5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/UnitTests/TestData/contributionRecords.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UnitTests/cases.t" afterPath="$PROJECT_DIR$/UnitTests/cases.t" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -67,14 +65,14 @@
           <file leaf-file-name="cases.t" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/UnitTests/cases.t">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="621">
-                  <caret line="307" column="0" lean-forward="false" selection-start-line="307" selection-start-column="0" selection-end-line="307" selection-end-column="0" />
+                <state relative-caret-position="85">
+                  <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
                   <folding>
                     <element signature="e#26#53#0#Perl5" expanded="true" />
-                    <element signature="e#3294#3365#0#Perl5" expanded="true" />
-                    <element signature="e#3705#3773#0#Perl5" expanded="true" />
-                    <element signature="e#8916#8989#0#Perl5" expanded="true" />
-                    <element signature="e#15939#16019#0#Perl5" expanded="true" />
+                    <element signature="e#3219#3290#0#Perl5" expanded="true" />
+                    <element signature="e#3630#3698#0#Perl5" expanded="true" />
+                    <element signature="e#8841#8914#0#Perl5" expanded="true" />
+                    <element signature="e#15864#15944#0#Perl5" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -136,8 +134,8 @@
         <option value="$PROJECT_DIR$/Data/Contribution.pm" />
         <option value="$PROJECT_DIR$/DAO/ContributionDao.pm" />
         <option value="$PROJECT_DIR$/dataFiles/contributionRecords.csv" />
-        <option value="$PROJECT_DIR$/UnitTests/cases.t" />
         <option value="$PROJECT_DIR$/UnitTests/TestData/contributionRecords.csv" />
+        <option value="$PROJECT_DIR$/UnitTests/cases.t" />
       </list>
     </option>
   </component>
@@ -806,7 +804,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="FAQ Robot" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992464" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22166428" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1097561" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="MaxCompute Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="MaxCompute Job" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="MaxCompute Job Explorer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1299,20 +1297,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UnitTests/cases.t">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="307" column="0" lean-forward="false" selection-start-line="307" selection-start-column="0" selection-end-line="307" selection-end-column="0" />
-          <folding>
-            <element signature="e#26#53#0#Perl5" expanded="true" />
-            <element signature="e#3294#3365#0#Perl5" expanded="true" />
-            <element signature="e#3705#3773#0#Perl5" expanded="true" />
-            <element signature="e#8916#8989#0#Perl5" expanded="true" />
-            <element signature="e#15939#16019#0#Perl5" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Data/Contribution.pm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
@@ -1343,6 +1327,20 @@
             <element signature="e#3985#4696#1#Perl5" expanded="false" />
             <element signature="e#5304#5310#0#Perl5" expanded="true" />
             <marker date="1507901606000" expanded="false" signature="1520:2347" ph="{code block}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UnitTests/cases.t">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#26#53#0#Perl5" expanded="true" />
+            <element signature="e#3219#3290#0#Perl5" expanded="true" />
+            <element signature="e#3630#3698#0#Perl5" expanded="true" />
+            <element signature="e#8841#8914#0#Perl5" expanded="true" />
+            <element signature="e#15864#15944#0#Perl5" expanded="true" />
           </folding>
         </state>
       </provider>
