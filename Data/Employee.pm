@@ -31,8 +31,6 @@ sub new {
 	return $employee;
 }
 
-
-
 #Param1: Employee object
 sub getName	{
 	return shift->{"name"};
